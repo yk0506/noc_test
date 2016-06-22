@@ -1,0 +1,116 @@
+.temp {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("/../assets/images/companywe_sector1.png");
+  opacity: 0.3;
+  width: 3840px;
+  height: 2160px;
+  z-index: 30;
+  display: none;
+}
+.background-color {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #0d0d0d;
+  width: 3840px;
+  height: 2160px;
+  z-index: 10;
+}
+
+.sector1-img {
+  background: url("/../assets/images/companywe_sector1_image1.png");
+  width: 3840px;
+  height: 2160px;
+  position: absolute;
+  z-index: 20;
+}
+.sector1 {
+  position: absolute;
+  z-index: 30;
+  width: 3840px;
+  height: 2160px;
+  /*background-color: #0d0d0d;*/
+}
+
+.sector1-title {
+  position: absolute;
+  top: 106px;
+  left: 116px;
+}
+
+
+.sector1-gage1 {
+  position: absolute;
+  top: 427px;
+  left: 97px;
+}
+.gageSize {
+  width: 119px;
+  height: 554px;
+}
+.textalignRight {
+  text-align: right;
+}
+.textalignLeft {
+  text-align: left;
+}
+.sector1-gage2 {
+  position: absolute;
+  top: 427px;
+  left: 320px;
+}
+.sector1-gage3 {
+  position: absolute;
+  top: 427px;
+  left: 540px;
+}
+
+.sector1-gagebar {
+  position: absolute;
+  /*position: relative;*/
+  top: 427px;
+  left: 115px;
+  height: 554px;
+  width: 562px;
+}
+.sector1-ess,
+.sector1-new,
+.sector1-con {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 119px;
+  z-index: 10;
+}
+.energy-pool {
+  position: absolute;
+  font-size: 31px;
+  top: 1190px;
+  left: 300px;
+}
+.energy-pool-block {
+  position: absolute;
+  left: 118px;
+  top: 1287px;
+  width: 554px;
+  height: 666px;
+}
+.energy-pool-block1,
+.energy-pool-block3 {
+  width: 220px;
+  bottom: 0;
+  position: absolute;
+  z-index: 10;
+}
+.energy-pool-block2 {
+  width: 112px;
+  bottom: 0;
+  position: absolute;
+  z-index: 10;
+}

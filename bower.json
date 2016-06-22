@@ -1,0 +1,43 @@
+{
+  "name": "power-plant",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular-animate": "~1.4.2",
+    "jquery": "~2.1.4",
+    "angular-ui-router": "~0.2.15",
+    "bootstrap": "~3.3.5",
+    "angular-bootstrap": "~0.13.4",
+    "moment": "~2.10.6",
+    "animate.css": "~3.4.0",
+    "angular": "~1.4.2",
+    "angular-cookies": "~1.4.8",
+    "angular-resource": "~1.4.2",
+    "c3": "~0.4.10",
+    "lodash": "~4.8.2",
+    "angular-storage": "~0.5.0",
+    "angular-jwt": "~0.0.9",
+    "a0-angular-storage": "~0.0.13"
+  },
+  "devDependencies": {
+    "angular-mocks": "~1.4.2"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff",
+        "dist/fonts/glyphicons-halflings-regular.woff2"
+      ]
+    },
+    "moment": {
+      "main": "min/moment-with-locales.min.js"
+    }
+  },
+  "resolutions": {
+    "jquery": "~2.1.4",
+    "angular": "~1.4.2"
+  }
+}

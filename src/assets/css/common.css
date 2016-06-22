@@ -1,0 +1,70 @@
+
+
+* {
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  text-decoration: none;
+  border: 0 none;
+  font-style: normal;
+  font-weight: inherit;
+  color: inherit;
+  list-style-type: none;
+}
+
+body {
+  font-family: "SpoqaHanSans-Regular";
+  margin: 0 auto;
+  width: 3840px;
+  height: 2160px;
+  color: #fffef2;
+}
+
+div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, a, button, select {
+  margin: 0;
+  padding: 0;
+}
+
+
+.absolute {
+  position: absolute;
+}
+.floatLeft {
+  float: left;
+}
+
+
+.bfffff {
+  color: #bfffff;
+}
+.fffef2 {
+  color: #fffef2;
+}
+.c-7ca6a6 {
+  color: #7ca6a6 ;;
+}
+
+.pt20 {
+  font-size: 20px;
+}
+.pt26 {
+  font-size: 24px;
+}
+.pt31 {
+  font-size: 31px;
+}
+.pt38 {
+  font-size: 38px;
+}
+.pt44 {
+  font-size: 44px;
+}
+.pt28 {
+  font-size: 28px;
+}
+.pt70 {
+  font-size: 70px;
+}
+.pt10 {
+  font-size: 10px;
+}
