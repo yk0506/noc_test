@@ -1,0 +1,96 @@
+.part2-title {
+  position: absolute;
+  top: 84px;
+  left: 61px;
+}
+.polagon-bg {
+  top: 266px;
+  left: 107px;
+  position: absolute;
+}
+.polagon {
+  top: 266px;
+  left: 107px;
+  position: absolute;
+}
+.part2-measure {
+  position: absolute;
+  top: 508px;
+  left: 60px;
+}
+.part2-current-value {
+  position: absolute;
+  top: 614px;
+  left: 336px;
+}
+.part2-gage-left {
+  position: absolute;
+  top: 782px;
+  left: 59px;
+  width: 196px;
+  text-align: right;
+}
+.part2-gage-right {
+  position: absolute;
+  top: 782px;
+  left: 660px;
+  width: 196px;
+  text-align: left;
+}
+.part2-gage-right2 {
+  position: absolute;
+  top: 782px;
+  left: 770px;
+  width: 130px;
+  text-align: left;
+  line-height: 40px;
+}
+.part2-gage-bottom {
+  position: absolute;
+  top: 1258px;
+  left: 360px;
+}
+.part2-box {
+  position: absolute;
+  top: 1326px;
+  left: 334px;
+}
+.part2-table {
+  position: absolute;
+  top: 1455px;
+  left: 143px;
+}
+.part2-0 {
+  position: absolute;
+  top: 253px;
+  left: 54px;
+}
+.part2-1000 {
+  position: absolute;
+  top: 238px;
+  left: 576px;
+  width: 72px;
+}
+.part2-table-block {
+  position: absolute;
+  /*top, left img 왼쪽끝에 맞춰서 이 위치*/
+  top: 1417px;
+  left: 169px;
+  width: 500px;
+  height: 250px;
+}
+.part2-bar {
+  position: absolute;
+  top: 1807px;
+  text-align: right;
+}
+.part2-sourcebar {
+  position: absolute;
+  top: 1812px;
+  left: 70px;
+  width: 133px;
+}
+.part2-sourcebar div {
+  height: 7px;
+  position: absolute;
+}

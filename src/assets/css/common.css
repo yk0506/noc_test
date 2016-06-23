@@ -40,15 +40,45 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 .fffef2 {
   color: #fffef2;
 }
+.ff7e47 {
+  color: #ff7e47;
+}
 .c-7ca6a6 {
-  color: #7ca6a6 ;;
+  color: #7ca6a6;
+}
+.c-80ffff {
+  color: #80ffff;
+}
+.c-66ffff {
+  color: #66ffff;
 }
 
+.pt8 {
+  font-size: 8px;
+}
+.pt10 {
+  font-size: 10px;
+}
+.pt12 {
+  font-size: 12px;
+}
+.pt16 {
+  font-size: 16px;
+}
+.pt18 {
+  font-size: 18px;
+}
 .pt20 {
   font-size: 20px;
 }
-.pt26 {
+.pt24 {
   font-size: 24px;
+}
+.pt26 {
+  font-size: 26px;
+}
+.pt28 {
+  font-size: 28px;
 }
 .pt31 {
   font-size: 31px;
@@ -59,12 +89,16 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 .pt44 {
   font-size: 44px;
 }
-.pt28 {
-  font-size: 28px;
+.pt62 {
+  font-size: 62px;
 }
 .pt70 {
   font-size: 70px;
 }
-.pt10 {
-  font-size: 10px;
+.pt75 {
+  font-size: 75px;
 }
+.pt86 {
+  font-size: 86px;
+}
+

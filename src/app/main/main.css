@@ -9,7 +9,7 @@
   width: 3840px;
   height: 2160px;
   z-index: 30;
-  display: none;
+  /*display: none;*/
 }
 .background-color {
   position: absolute;
@@ -113,4 +113,27 @@
   bottom: 0;
   position: absolute;
   z-index: 10;
+}
+
+
+.sector1-part2 {
+  position: absolute;
+  left: 830px;
+  height: 2160px;
+  width: 965px;
+  z-index: 20;
+}
+.sector1-part3 {
+  position: absolute;
+  left: 1847px;
+  height: 2160px;
+  width: 965px;
+  z-index: 20;
+}
+.sector1-part4 {
+  position: absolute;
+  left: 2883px;
+  height: 2160px;
+  width: 965px;
+  z-index: 20;
 }
