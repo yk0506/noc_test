@@ -26,24 +26,26 @@
 .part2-gage-left {
   position: absolute;
   top: 782px;
-  left: 59px;
-  width: 196px;
+  left: 60px;
+  text-align: right;
+}
+.part2-gage-left2 {
+  position: absolute;
+  top: 782px;
+  left: 183px;
   text-align: right;
 }
 .part2-gage-right {
   position: absolute;
   top: 782px;
   left: 660px;
-  width: 196px;
   text-align: left;
 }
 .part2-gage-right2 {
   position: absolute;
   top: 782px;
   left: 770px;
-  width: 130px;
   text-align: left;
-  line-height: 40px;
 }
 .part2-gage-bottom {
   position: absolute;
@@ -53,7 +55,7 @@
 .part2-box {
   position: absolute;
   top: 1326px;
-  left: 334px;
+  left: 327px;
 }
 .part2-table {
   position: absolute;
@@ -94,3 +96,5 @@
   height: 7px;
   position: absolute;
 }
+
+

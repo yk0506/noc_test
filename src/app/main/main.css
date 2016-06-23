@@ -9,7 +9,7 @@
   width: 3840px;
   height: 2160px;
   z-index: 30;
-  /*display: none;*/
+  display: none;
 }
 .background-color {
   position: absolute;
@@ -132,8 +132,24 @@
 }
 .sector1-part4 {
   position: absolute;
-  left: 2883px;
+  left: 2868px;
   height: 2160px;
   width: 965px;
   z-index: 20;
+}
+
+
+.part2-gagebar {
+  position: absolute;
+  top: 702px;
+  left: 1195px;
+  height: 543px;
+  width: 180px;
+  z-index: 10;
+}
+.part2-gagebar div {
+  bottom: 0;
+  position: absolute;
+  width: 68px;
+  background-color: #fff;
 }

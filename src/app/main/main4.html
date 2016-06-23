@@ -1,7 +1,7 @@
 <div class="">
   <div class="part2-title">
-    <span class="bfffff pt26" style="margin-right: 10px;">R1</span>
-    <span class="c-80ffff pt86" style="margin-right: 160px;">ESS</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">R3</span>
+    <span class="c-86bfbf pt86" style="margin-right: 160px;">DR</span>
     <span class="bfffff pt26" style="margin-right: 10px;">자원</span>
     <span class="fffef2 pt86" style="margin-right: 67px;">25</span>
     <span class="bfffff pt26" style="margin-right: 10px;">발전소</span>
@@ -25,31 +25,45 @@
     <span class="pt26 fffef2">kW</span>
   </div>
 
+  <!---->
   <div class="part2-gage-left pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff"><span style="margin-right: 30px;">보유량</span><span>24 MWh</span></div>
-      <div class="c-66ffff"><span style="margin-right: 30px;">충전량</span> <span>14 MWh</span></div>
-      <div class="bfffff"><span style="margin-right: 30px;">가용량</span> <span>10 MWh</span></div>
-      <div class="c-66ffff"><span style="margin-right: 55px;">가용률</span> <span>48 %</span></div>
+      <div class="bfffff">총부하량</div>
+      <div class="c-66ffff">감축가능량</div>
+      <div class="bfffff">가용량</div>
+      <div class="c-66ffff">가용률</div>
     </div>
-    <div class="bfffff"><span style="margin-right: 40px;">전체 ESS수</span> <span>2,234</span></div>
+    <div class="bfffff">전체 발전기수</div>
+  </div>
+  <div class="part2-gage-left2 pt20">
+    <div style="line-height: 40px;margin-bottom: 36px;">
+      <div class="bfffff"><span>100 MW</span></div>
+      <div class="c-66ffff"><span>24 MW</span></div>
+      <div class="bfffff"><span>10 MW</span></div>
+      <div class="c-66ffff"><span>62.5 %</span></div>
+    </div>
+    <div class="bfffff"><span>2,234</span></div>
   </div>
 
   <div class="part2-gage-right pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff">10 MW</div>
-      <div class="c-66ffff">4 MW</div>
-      <div class="bfffff">50 분</div>
+      <div class="bfffff">6 MW</div>
+      <div class="c-66ffff">5 MW</div>
+      <div class="bfffff">1 MW</div>
       <div class="c-66ffff">48 %</div>
     </div>
-    <div class="bfffff"><span style="margin-right: 40px;">2,234</span> <span>가용 ESS수</span></div>
+    <div class="bfffff">1,234</div>
   </div>
   <div class="part2-gage-right2 pt20">
-    <div class="bfffff">최대가능출력</div>
-    <div class="c-66ffff">현재출력</div>
-    <div class="bfffff">잔여시간</div>
-    <div class="c-66ffff">가동률</div>
+    <div style="line-height: 40px;margin-bottom: 36px;">
+      <div class="bfffff">CBL</div>
+      <div class="c-66ffff">현재부하</div>
+      <div class="bfffff">현재출력</div>
+      <div class="c-66ffff">가동률</div>
+    </div>
+    <div>가용 발전기</div>
   </div>
+  <!---->
 
   <div class="part2-gage-bottom pt18 bfffff">
     <span style="margin-right: 38px;">신재생충전</span>
@@ -57,7 +71,7 @@
   </div>
 
   <div class="part2-box pt26">
-    <span class="bfffff" style="margin-right: 28px;">순간출력가동율</span>
+    <span class="bfffff" style="margin-right: 38px;">순간출력가동율</span>
     <span class="ff7e47">48 %</span>
   </div>
 
@@ -72,14 +86,14 @@
   </div>
 
   <div class="part2-bar">
-    <div style="color: #597c80;"><span class="pt8">MWh</span> <span class="pt12">보유량</span></div>
-    <div style="color: #80ffff;"><span class="pt8">MWh</span> <span class="pt12">충전량</span></div>
-    <div style="color: #fffef7;"><span class="pt8">MWh</span> <span class="pt12">가용량</span></div>
+    <div style="color: #597c80;"><span class="pt8">MW</span> <span class="pt12">총부하량</span></div>
+    <div style="color: #80ffff;"><span class="pt8">MW</span> <span class="pt12">감축가능량</span></div>
+    <div style="color: #fffef7;"><span class="pt8">MW</span> <span class="pt12">가용량</span></div>
     <div style="color: #ccffff;"><span class="pt8">MW</span> <span class="pt12">현재출력</span></div>
   </div>
 
   <!--todo:: width!!-->
-  <div class="part2-sourcebar">
+  <div class="part2-sourcebar" style="left: 85px;">
     <div style="width: 100%;background-color: #597c80;"></div>
     <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
     <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
@@ -87,7 +101,7 @@
     <br/>
     <span class="pt16 bfffff absolute" style="top: 120px;">자원 1</span>
   </div>
-  <div class="part2-sourcebar" style="left: 234px;">
+  <div class="part2-sourcebar" style="left: 249px;">
     <div style="width: 100%;background-color: #597c80;"></div>
     <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
     <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
@@ -95,7 +109,7 @@
     <br/>
     <span class="pt16 bfffff absolute" style="top: 120px;">자원 2</span>
   </div>
-  <div class="part2-sourcebar" style="left: 398px;">
+  <div class="part2-sourcebar" style="left: 413px;">
     <div style="width: 100%;background-color: #597c80;"></div>
     <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
     <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
@@ -103,7 +117,7 @@
     <br/>
     <span class="pt16 bfffff absolute" style="top: 120px;">자원 3</span>
   </div>
-  <div class="part2-sourcebar" style="left: 562px;">
+  <div class="part2-sourcebar" style="left: 577px;">
     <div style="width: 100%;background-color: #597c80;"></div>
     <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
     <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
@@ -111,7 +125,7 @@
     <br/>
     <span class="pt16 bfffff absolute" style="top: 120px;">자원 4</span>
   </div>
-  <div class="part2-sourcebar" style="left: 726px;">
+  <div class="part2-sourcebar" style="left: 741px;">
     <div style="width: 100%;background-color: #597c80;"></div>
     <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
     <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
