@@ -21,12 +21,12 @@
 .part2-current-value {
   position: absolute;
   top: 614px;
-  left: 336px;
+  left: 306px;
 }
 .part2-gage-left {
   position: absolute;
   top: 782px;
-  left: 60px;
+  left: 20px;
   text-align: right;
 }
 .part2-gage-left2 {
@@ -38,29 +38,34 @@
 .part2-gage-right {
   position: absolute;
   top: 782px;
-  left: 660px;
+  left: 590px;
   text-align: left;
 }
 .part2-gage-right2 {
   position: absolute;
   top: 782px;
-  left: 770px;
+  left: 720px;
   text-align: left;
 }
 .part2-gage-bottom {
   position: absolute;
   top: 1258px;
-  left: 360px;
+  left: 320px;
+}
+.part3-gage-bottom {
+  position: absolute;
+  top: 1258px;
+  left: 350px;
 }
 .part2-box {
   position: absolute;
   top: 1326px;
-  left: 327px;
+  left: 298px;
 }
 .part2-table {
   position: absolute;
   top: 1455px;
-  left: 143px;
+  left: 104px;
 }
 .part2-0 {
   position: absolute;
@@ -77,7 +82,7 @@
   position: absolute;
   /*top, left img 왼쪽끝에 맞춰서 이 위치*/
   top: 1417px;
-  left: 169px;
+  left: 133px;
   width: 500px;
   height: 250px;
 }

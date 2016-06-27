@@ -24,7 +24,7 @@
 }
 
 .sector1-img {
-  background: url("/../assets/images/companywe_sector1_image1.png");
+  background: url("/../assets/images/companywe_sector1_image2.png");
   width: 3840px;
   height: 2160px;
   position: absolute;
@@ -75,7 +75,7 @@
   position: absolute;
   /*position: relative;*/
   top: 427px;
-  left: 115px;
+  left: 156px;
   height: 554px;
   width: 562px;
 }
@@ -96,7 +96,7 @@
 }
 .energy-pool-block {
   position: absolute;
-  left: 118px;
+  left: 160px;
   top: 1287px;
   width: 554px;
   height: 666px;
@@ -118,31 +118,31 @@
 
 .sector1-part2 {
   position: absolute;
-  left: 830px;
+  left: 938px;
   height: 2160px;
   width: 965px;
   z-index: 20;
 }
 .sector1-part3 {
   position: absolute;
-  left: 1847px;
+  left: 1934px;
   height: 2160px;
   width: 965px;
   z-index: 20;
 }
 .sector1-part4 {
   position: absolute;
-  left: 2868px;
+  left: 2904px;
   height: 2160px;
-  width: 965px;
+  width: 932px;
   z-index: 20;
 }
 
 
 .part2-gagebar {
   position: absolute;
-  top: 702px;
-  left: 1195px;
+  top: 704px;
+  left: 1274px;
   height: 543px;
   width: 180px;
   z-index: 10;
