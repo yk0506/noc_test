@@ -1,0 +1,33 @@
+.sector2-img {
+  background: url("/../assets/images/companywe_sector2.png");
+  width: 3840px;
+  height: 2160px;
+  position: absolute;
+  z-index: 20;
+}
+.sector2-graph-go {
+  position: absolute;
+  right: 40px;
+  top: 860px;
+  width: 300px;
+  height: 265px;
+  z-index: 30;
+  cursor: pointer;
+}
+
+.sector2-1-img {
+  background: url("/../assets/images/companywe_sector2-1.png");
+  width: 3840px;
+  height: 2160px;
+  position: absolute;
+  z-index: 20;
+}
+.sector2-map-go {
+  position: absolute;
+  right: 40px;
+  top: 548px;
+  width: 300px;
+  height: 223px;
+  z-index: 30;
+  cursor: pointer;
+}
