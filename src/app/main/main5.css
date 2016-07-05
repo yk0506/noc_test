@@ -3,7 +3,9 @@
   width: 3840px;
   height: 2160px;
   position: absolute;
-  z-index: 20;
+  z-index: 30;
+  opacity: 0.2;
+  display: none;
 }
 .sector2-graph-go {
   position: absolute;
@@ -11,7 +13,7 @@
   top: 860px;
   width: 300px;
   height: 265px;
-  z-index: 30;
+  z-index: 40;
   cursor: pointer;
 }
 
@@ -20,8 +22,18 @@
   width: 3840px;
   height: 2160px;
   position: absolute;
-  z-index: 20;
+  z-index: 30;
+  opacity: 0.2;
 }
+
+.sector2-map {
+  position: absolute;
+}
+
+
+
+
+
 .sector2-map-go {
   position: absolute;
   right: 40px;
