@@ -10,19 +10,19 @@
     $stateProvider
       .state('state1', {
         url: '/',
-        templateUrl: 'app/main/main.html',
+        templateUrl: 'app/main/state1.html',
         controller: 'MainController',
         controllerAs: 'main'
       })
       .state('state2', {
         url: '/state2',
-        templateUrl: 'app/main/main5.html',
+        templateUrl: 'app/main/state2-map.html',
         controller: 'MainController',
         controllerAs: 'main'
       })
       .state('state2-1', {
         url: '/state2-1',
-        templateUrl: 'app/main/main6.html',
+        templateUrl: 'app/main/state2-graph.html',
         controller: 'MainController',
         controllerAs: 'main'
       });
