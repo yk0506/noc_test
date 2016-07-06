@@ -20,18 +20,24 @@
 
         $http({
           method: 'GET',
-          url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
-          headers: {
-            api_key: 'smartgrid'
-          }
+          url: '/app/main/test.json'
+          /*
+           url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
+           headers: {
+           api_key: 'smartgrid',
+           // Accept: 'application/json',
+           'Content-Type': 'application/json; charset=utf-8',
+           'Access-Control-Allow-Origin': '*',
+           'Access-Control-Allow-Methods': 'GET',
+           'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type'
+           }*/
         }).then(function (resp) {
 
-            $log.info('energyResources:: ', resp.data.data);
-            // var lastEnergyProd = resp.data.data.prod;
-            // var lastEnergyLoad = resp.data.data.load;
-            // deferred.resolve({lastEnergyProd: lastEnergyProd, lastEnergyLoad: lastEnergyLoad});
-          }, function errorCallback(response) {
-            $log.debug('ERRORS:: ', response);
+          $log.info('energyResources:: ', resp.data);
+          var energyResources = resp.data.data;
+          deferred.resolve({energyResources: energyResources});
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
         });
         return deferred.promise;
       }

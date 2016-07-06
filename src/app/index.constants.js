@@ -4,6 +4,7 @@
 
   angular
     .module('power-plant')
-    .constant('moment', moment);
-
+    .constant('moment', moment)
+    .constant('c3', c3);
 })();
+

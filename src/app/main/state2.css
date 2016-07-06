@@ -28,10 +28,42 @@
 
 .sector2-map {
   position: absolute;
+  left: 742px;
+}
+.state2-btn-dr {
+  font-size: 24px;
+  color: #bfffff;
+  background-color: #2e3c40;
+  width: 130px;
+  height: 40px;
+  border-radius: 6px;
+  text-align: center;
+  position: absolute;
+  line-height: 40px;
+}
+.watt-on {
+  position: absolute;
+  font-size: 14px;
+  color: #80ffff;
+  background: url("/../assets/images/sector2_image/watt_on.png") no-repeat;
+  text-indent: 20px;
+}
+.watt-off {
+  position: absolute;
+  font-size: 14px;
+  color: #2e3c50;
+  background: url("/../assets/images/sector2_image/watt_off.png") no-repeat;
+  text-indent: 20px;
 }
 
 
-
+.state2-graph {
+  position: absolute !important;
+  z-index: 40;
+}
+.c3-line {
+  stroke-width: 2px !important;
+}
 
 
 .sector2-map-go {
@@ -40,6 +72,6 @@
   top: 548px;
   width: 300px;
   height: 223px;
-  z-index: 30;
+  z-index: 40;
   cursor: pointer;
 }
