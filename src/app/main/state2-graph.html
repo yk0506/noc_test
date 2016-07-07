@@ -1,7 +1,7 @@
 <div class="sector2-1-img"></div>
 
 
-<img src="../assets/images/sector2_image/companywe_sector2_img2.png" style="position: absolute;left: 742px;" />
+<img src="../assets/images/sector2_image/companywe_sector2_img2.png" style="position: absolute;left: 742px;"/>
 
 
 <!--title-->
@@ -36,6 +36,29 @@
     <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
     <span class="pt60 fffef2">8,000</span><span class="pt24 fffef2">kW</span>
   </div>
+
+  <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
+
+  <!--todo:: call value, current temp value-->
+  <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
+    <ul ng-repeat="con in main.consumer">
+      <li style="overflow: hidden;
+    height: 55px;
+    text-overflow: ellipsis;
+    word-break: break-all;">{{con.name}}</li>
+    </ul>
+  </div>
+  <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
+    <div ng-repeat="con in main.consumer" style="">
+      <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;" ng-style="{width: con.target}"></div>
+      <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: con.value}"></div>
+    </div>
+  </div>
+
+
+  <div id="resource-graph" class="state2-graph" style="top: 320px;left: 1000px;"></div>
+
+
 
 </div>
 

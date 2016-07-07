@@ -40,7 +40,58 @@
             cbl.push(vm.energyResources[i].dem_cbl);
             watt.push(vm.energyResources[i].dem_watt);
           }
-          $log.info('cbl: ',cbl, ', watt: ',watt);
+          // $log.info('cbl: ',cbl, ', watt: ',watt);
+
+          c3.generate({
+            bindto: '#resource-map',
+            data: {
+              x: vm.timeX[0],
+              xFormat:'%H:%M',
+              columns: [vm.timeX, cbl, watt]
+            },
+            grid: { //점선
+              x: {
+                show: false
+              },
+              y: {
+                show: false
+              }
+            },
+            axis: { //가로 세로줄
+              x: {
+                show: false,
+                type: 'timeseries',
+                tick: {
+                  format: '%H:%M',
+                  values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+                    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+                }
+              },
+              y: {
+                show: false
+              }
+
+            },
+            point: {
+              show: false
+            },
+            tooltip: {
+              show: false
+            },
+            size: {
+              width: 2450,
+              height: 280
+            },
+            color: {
+              pattern: ['#608080', '#c5bc6d']
+            },
+            line: {
+              width: 10
+            },
+            legend: { //밑에 데이터 구분 테이블
+              hide: true
+            }
+          });
 
           c3.generate({
             bindto: '#resource-graph',
@@ -75,12 +126,15 @@
             point: {
               show: false
             },
+            tooltip: {
+              show: false
+            },
             size: {
-              width: 2450,
-              height: 280
+              width: 1620,
+              height: 420
             },
             color: {
-              pattern: ['#80ffff', '#608080']
+              pattern: ['#608080', '#80ffff']
             },
             line: {
               width: 10
@@ -95,6 +149,99 @@
         }
       )
     }
+
+    vm.consumer = [
+      {
+        'name': 'SK아파트 1동',
+        'target': 50,
+        'value': 150
+      },
+      {
+        'name': 'SK아파트 2동',
+        'target': 60,
+        'value': 180
+      },
+      {
+        'name': 'SK아파트 3동',
+        'target': 70,
+        'value': 160
+      },
+      {
+        'name': 'SK아파트 4동',
+        'target': 80,
+        'value': 120
+      },
+      {
+        'name': '명신빌딩',
+        'target': 150,
+        'value': 120
+      },
+      {
+        'name': 'SG스포츠',
+        'target': 250,
+        'value': 120
+      },
+      {
+        'name': '광성중학교',
+        'target': 300,
+        'value': 120
+      },
+      {
+        'name': '동철빌딩',
+        'target': 10,
+        'value': 120
+      },
+      {
+        'name': '효신아파트',
+        'target': 50,
+        'value': 120
+      },
+      {
+        'name': 'KA아파트 1동',
+        'target': 50,
+        'value': 250
+      },
+      {
+        'name': 'KA아파트 2동',
+        'target': 60,
+        'value': 250
+      },
+      {
+        'name': 'KA아파트 3동',
+        'target': 60,
+        'value': 300
+      },
+      {
+        'name': 'KA아파트 4동',
+        'target': 50,
+        'value': 250
+      },
+      {
+        'name': '명송빌딩',
+        'target': 50,
+        'value': 250
+      },
+      {
+        'name': 'TTA스포츠',
+        'target': 50,
+        'value': 320
+      },
+      {
+        'name': '설성중학교',
+        'target': 50,
+        'value': 250
+      },
+      {
+        'name': '마철빌딩',
+        'target': 50,
+        'value': 250
+      },
+      {
+        'name': '성신아파트',
+        'target': 50,
+        'value': 250
+      }
+    ];
 
   }
 })();
