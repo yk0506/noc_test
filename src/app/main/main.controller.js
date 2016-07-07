@@ -79,7 +79,7 @@
               show: false
             },
             size: {
-              width: 2450,
+              width: 2500,
               height: 280
             },
             color: {
