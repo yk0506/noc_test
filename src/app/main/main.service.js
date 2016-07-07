@@ -21,16 +21,10 @@
         $http({
           method: 'GET',
           url: '/app/main/test.json'
-          /*
-           url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
-           headers: {
-           api_key: 'smartgrid',
-           // Accept: 'application/json',
-           'Content-Type': 'application/json; charset=utf-8',
-           'Access-Control-Allow-Origin': '*',
-           'Access-Control-Allow-Methods': 'GET',
-           'Access-Control-Allow-Headers': 'X-Requested-With,Content-Type'
-           }*/
+          /*url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
+          headers: {
+            api_key: 'smartgrid'
+          }*/
         }).then(function (resp) {
 
           $log.info('energyResources:: ', resp.data);

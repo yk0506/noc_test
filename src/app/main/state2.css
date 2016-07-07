@@ -65,7 +65,9 @@
 .c3-line {
   stroke-width: 2px !important;
 }
-
+#donut-watt {
+  position: absolute !important;
+}
 
 .sector2-map-go {
   position: absolute;

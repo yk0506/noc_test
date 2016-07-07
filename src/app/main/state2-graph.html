@@ -1,75 +1,82 @@
 <div class="sector2-1-img"></div>
 
 
-<img src="../assets/images/sector2_image/companywe_sector2_img2.png" style="position: absolute;left: 742px;"/>
+<img src="../assets/images/sector2_image/companywe_sector2_img2.png"
+     style="position: absolute;left: 742px;z-index: 30;"/>
 
 
-<!--title-->
-<div class="absolute pt42 bfffff" style="left: 954px;top: 80px;width: 260px;">
-  NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
-</div>
+<div class="absolute" style="border-radius: 50%;width: 450px;height: 450px;top: 300px;left: 877px;background-color: #80ffff;"></div>
 
-<div class="absolute pt42 bfffff" style="left: 2040px;top: 80px;width: 260px;">ROOT</div>
-<div class="absolute pt42 bfffff" style="left: 2317px;top: 80px;">자원1. 부천 테크노파크</div>
+<!--<div id="donut-watt" style="top: 300px;left: 867px;width: 470px;height: 470px;"></div>-->
 
-<div class="state2-btn-dr" style="left: 2994px;top: 90px;">Fast DR</div>
-<div class="state2-btn-dr" style="left: 3138px;top: 90px;">DR</div>
-<div class="state2-btn-dr" style="left: 3280px;top: 90px;">Slow DR</div>
-
-
-<!--section-->
-<div class="sector2-map">
-
-  <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
-    <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
-    <span class="pt60 fffef2">270</span><span class="pt24 fffef2">kW</span><br/>
-    <span class="pt20 c-7ca6a6">for 수요자원</span>
+<div class="absolute" style="z-index: 40;">
+  <!--title-->
+  <div class="absolute pt42 bfffff" style="left: 954px;top: 80px;width: 260px;">
+    NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
   </div>
 
-  <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
-    <span class="pt16 c-80ffff" style="margin-bottom: 6px;display: inline-block;">POWER OUTPUT</span><br/>
-    <span class="watt-off">Megawatt Mode</span><br/>
-    <span class="watt-on">Negawatt Mode</span>
-  </div>
+  <div class="absolute pt42 bfffff" style="left: 2040px;top: 80px;width: 260px;">ROOT</div>
+  <div class="absolute pt42 bfffff" style="left: 2317px;top: 80px;width: 416px;">자원1. 부천 테크노파크</div>
 
-  <div class="absolute" style="left: 618px;top: 684px;">
-    <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
-    <span class="pt60 fffef2">8,000</span><span class="pt24 fffef2">kW</span>
-  </div>
+  <div class="state2-btn-dr" style="left: 2994px;top: 90px;">Fast DR</div>
+  <div class="state2-btn-dr" style="left: 3138px;top: 90px;">DR</div>
+  <div class="state2-btn-dr" style="left: 3280px;top: 90px;">Slow DR</div>
 
-  <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
 
-  <!--todo:: call value, current temp value-->
-  <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
-    <ul ng-repeat="con in main.consumer">
-      <li style="overflow: hidden;
+  <!--section-->
+  <div class="sector2-map">
+    <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
+      <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
+      <span class="pt60 fffef2">270</span><span class="pt24 fffef2">kW</span><br/>
+      <span class="pt20 c-7ca6a6">for 수요자원</span>
+    </div>
+
+    <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
+      <span class="pt16 c-80ffff" style="margin-bottom: 6px;display: inline-block;">POWER OUTPUT</span><br/>
+      <span class="watt-off">Megawatt Mode</span><br/>
+      <span class="watt-on">Negawatt Mode</span>
+    </div>
+
+    <div class="absolute" style="left: 618px;top: 684px;">
+      <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
+      <span class="pt60 fffef2">8,000</span><span class="pt24 fffef2">kW</span>
+    </div>
+
+    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
+
+    <!--todo:: call value, current temp value-->
+    <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
+      <ul ng-repeat="con in main.consumer">
+        <li style="overflow: hidden;
     height: 55px;
     text-overflow: ellipsis;
-    word-break: break-all;">{{con.name}}</li>
-    </ul>
-  </div>
-  <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
-    <div ng-repeat="con in main.consumer" style="">
-      <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;" ng-style="{width: con.target}"></div>
-      <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: con.value}"></div>
+    word-break: break-all;">{{con.name}}
+        </li>
+      </ul>
     </div>
-  </div>
+    <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
+      <div ng-repeat="con in main.consumer" style="">
+        <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
+             ng-style="{width: con.target}"></div>
+        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: con.value}"></div>
+      </div>
+    </div>
 
 
-  <div id="resource-graph" class="state2-graph" style="top: 320px;left: 994px;"></div>
+    <div id="resource-graph" class="state2-graph" style="top: 320px;left: 987px;"></div>
 
 
-  <!--temp img-->
-  <img src="../assets/images/sector2_image/tempimg.png" class="absolute"
-       style="left: 596px;
+    <!--temp img-->
+    <img src="../assets/images/sector2_image/tempimg.png" class="absolute"
+         style="left: 596px;
     top: 903px;
     z-index: 45;
     position: absolute;
-    width: 2090px;" />
+    width: 2090px;"/>
 
 
+  </div>
 </div>
-
 
 <div class="sector2-map-go" ui-sref="state2"></div>
 

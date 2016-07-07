@@ -79,7 +79,7 @@
               show: false
             },
             size: {
-              width: 2500,
+              width: 2530,
               height: 280
             },
             color: {
@@ -130,7 +130,7 @@
               show: false
             },
             size: {
-              width: 1680,
+              width: 1700,
               height: 420
             },
             color: {
@@ -149,6 +149,8 @@
         }
       )
     }
+
+
 
     vm.consumer = [
       {
