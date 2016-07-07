@@ -144,7 +144,7 @@
             }
           });
 
-          $timeout(getEnergyResources, 3600000);
+          $timeout(getEnergyResources, 900000);
 
         }
       )
