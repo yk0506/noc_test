@@ -223,47 +223,47 @@
     {
       "dem_date": "11:00",
       "dem_cbl": "31.84",
-      "dem_watt": null
+      "dem_watt": "27.75"
     },
     {
       "dem_date": "11:15",
       "dem_cbl": "32.72",
-      "dem_watt": null
+      "dem_watt": "27.35"
     },
     {
       "dem_date": "11:30",
       "dem_cbl": "32.03",
-      "dem_watt": null
+      "dem_watt": "28.04"
     },
     {
       "dem_date": "11:45",
       "dem_cbl": "21.07",
-      "dem_watt": null
+      "dem_watt": "20.9"
     },
     {
       "dem_date": "12:00",
       "dem_cbl": "18.75",
-      "dem_watt": null
+      "dem_watt": "18.42"
     },
     {
       "dem_date": "12:15",
       "dem_cbl": "21.24",
-      "dem_watt": null
+      "dem_watt": "19.62"
     },
     {
       "dem_date": "12:30",
       "dem_cbl": "22.87",
-      "dem_watt": null
+      "dem_watt": "21.18"
     },
     {
       "dem_date": "12:45",
       "dem_cbl": "24.87",
-      "dem_watt": null
+      "dem_watt": "22.61"
     },
     {
       "dem_date": "13:00",
       "dem_cbl": "25.74",
-      "dem_watt": null
+      "dem_watt": "25.6"
     },
     {
       "dem_date": "13:15",

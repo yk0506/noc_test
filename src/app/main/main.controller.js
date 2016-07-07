@@ -130,7 +130,7 @@
               show: false
             },
             size: {
-              width: 1620,
+              width: 1680,
               height: 420
             },
             color: {
