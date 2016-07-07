@@ -268,22 +268,22 @@
     {
       "dem_date": "13:15",
       "dem_cbl": "27.7",
-      "dem_watt": null
+      "dem_watt": "23.29"
     },
     {
       "dem_date": "13:30",
       "dem_cbl": "29.03",
-      "dem_watt": null
+      "dem_watt": "23.96"
     },
     {
       "dem_date": "13:45",
       "dem_cbl": "31.57",
-      "dem_watt": null
+      "dem_watt": "26.16"
     },
     {
       "dem_date": "14:00",
       "dem_cbl": "32.64",
-      "dem_watt": null
+      "dem_watt": "27.02"
     },
     {
       "dem_date": "14:15",
