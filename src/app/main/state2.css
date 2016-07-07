@@ -65,8 +65,9 @@
 .c3-line {
   stroke-width: 2px !important;
 }
-#donut-watt {
+.round-progress-wrapper {
   position: absolute !important;
+  /*z-index: 40;*/
 }
 
 .sector2-map-go {
