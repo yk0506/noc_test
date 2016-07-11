@@ -22,7 +22,7 @@
   width: 3840px;
   height: 2160px;
   position: absolute;
-  z-index: 30;
+  z-index: 31;
   opacity: 0.2;
   display: none;
 }
@@ -78,4 +78,30 @@
   height: 223px;
   z-index: 40;
   cursor: pointer;
+}
+
+.graph-section-each {
+  width: 597px;
+  height: 611px;
+  left: 46px;
+  top: 12px;
+  margin-right: 90px;
+  float: left;
+  position: relative;
+}
+.factory-bg {
+  position: absolute;
+  background-color: #80ffff;
+  width: 220px;
+  height: 200px;
+  z-index: 20;
+  left: 1452px;
+  bottom: 753px;
+}
+.nonfactory-bg {
+  position: absolute;
+  background-color: #2e3c40;
+  width: 220px;
+  height: 350px;
+  z-index: 20;
 }

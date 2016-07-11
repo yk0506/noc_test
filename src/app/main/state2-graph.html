@@ -59,7 +59,7 @@
 
     <!--todo:: call value, current temp value-->
     <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
-      <ul ng-repeat="con in main.consumer">
+      <ul ng-repeat="con in main.consumerlist">
         <li style="overflow: hidden;
     height: 55px;
     text-overflow: ellipsis;
@@ -68,7 +68,7 @@
       </ul>
     </div>
     <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
-      <div ng-repeat="con in main.consumer" style="">
+      <div ng-repeat="con in main.consumerlist" style="">
         <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
              ng-style="{width: con.target}"></div>
         <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: con.value}"></div>
@@ -79,17 +79,78 @@
     <div id="resource-graph" class="state2-graph" style="top: 320px;left: 987px;"></div>
 
 
-    <!--temp img-->
+    <!--temp img
     <img src="../assets/images/sector2_image/tempimg.png" class="absolute"
          style="left: 596px;
     top: 903px;
     z-index: 45;
     position: absolute;
-    width: 2090px;"/>
+    width: 2090px;"/>-->
+
+    <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
+      <!--each-->
+      <div class="bfffff graph-section-each" ng-repeat="con in main.consumerlist">
+        <div class="pt28">{{con.name}}</div>
+        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{con.standardTime}}</span>
+        </div>
+
+        <div class="absolute" style="top:167px;">
+          <div class="pt14">감축부하</div>
+          <div class="pt24 ff7e47">{{con.reduceLoad}}<span class="pt16">kW</span></div>
+        </div>
+        <div class="absolute" style="top:292px;">
+          <div class="pt14">현재부하</div>
+          <div class="pt20 fffbcc">{{con.currentLoad}}<span class="pt16">kW</span></div>
+        </div>
+        <div class="absolute" style="top:450px;">
+          <div class="pt14">MAX</div>
+          <div class="pt20">{{con.max}}<span class="pt16">kW</span></div>
+        </div>
+        <div class="absolute" style="top:253px;left: 258px;">
+          <span class="pt14">CBL</span>
+          <span class="pt20">{{con.cbl}}<span class="pt16">kW</span></span>
+        </div>
+        <div class="absolute" style="top:411px;left: 274px;">
+          <span class="pt14">TARGET</span>
+          <span class="pt20">{{con.targetValue}}<span class="pt16">kW</span></span>
+        </div>
+
+        <div class="absolute" style="top:167px;left: 425px;width: 177px;">
+          <div class="pt14">가동률</div>
+          <div class="pt60 ff7e47" style="text-align: center;">{{con.operationRate}} %</div>
+          <div class="pt8 c-7ca6a6">가동률 =</div>
+          <div class="pt8 c-7ca6a6">현재감축량/최대감축가능량</div>
+        </div>
+        <div class="absolute" style="top:330px;left: 425px;line-height: 31px;">
+          <div class="pt16 c-66ffff">현재부하</div>
+          <div class="pt16">CBL</div>
+          <div class="pt16 c-66ffff">감축부하</div>
+          <div class="pt16">TARGET</div>
+          <div class="pt16 c-66ffff">MAX RATGET</div>
+        </div>
+
+        <div class="absolute" style="top:330px;left: 544px;line-height: 31px;">
+          <div class="pt16 c-66ffff">{{con.currentLoad}}kW</div>
+          <div class="pt16">{{con.cbl}}kW</div>
+          <div class="pt16 c-66ffff">{{con.reduceLoad}}kW</div>
+          <div class="pt16">{{con.targetValue}}kW</div>
+          <div class="pt16 c-66ffff">{{con.max}}kW</div>
+        </div>
+      </div>
+    </section>
 
 
   </div>
 </div>
+
+<div class="nonfactory-bg" style="left: 1452px;bottom: 753px;"></div>
+<div class="nonfactory-bg" style="left: 2147px;bottom: 753px;"></div>
+<div class="nonfactory-bg" style="left: 2834px;bottom: 753px;"></div>
+<div class="nonfactory-bg" style="left: 1452px;bottom: 137px;"></div>
+<div class="nonfactory-bg" style="left: 2147px;bottom: 137px;"></div>
+<div class="nonfactory-bg" style="left: 2834px;bottom: 137px;"></div>
+
+<div class="factory-bg"></div>
 
 <div class="sector2-map-go" ui-sref="state2"></div>
 

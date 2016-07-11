@@ -43,6 +43,9 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 .ff7e47 {
   color: #ff7e47;
 }
+.fffbcc {
+  color: #fffbcc;
+}
 .d9ffff {
   color: #d9ffff;
 }
@@ -67,6 +70,9 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 }
 .pt12 {
   font-size: 12px;
+}
+.pt14 {
+  font-size: 14px;
 }
 .pt16 {
   font-size: 16px;

@@ -152,16 +152,30 @@
 
 
 
-    vm.consumer = [
+    vm.consumerlist = [
       {
         'name': 'SK아파트 1동',
         'target': 50,
-        'value': 150
+        'value': 150,
+        'standardTime': '2016-05-27 13:45:21',
+        'reduceLoad': 10000,
+        'currentLoad': 972000,
+        'max': 800,
+        'cbl': 980000,
+        'targetValue': 900,
+        'operationRate': 4.4
       },
       {
         'name': 'SK아파트 2동',
         'target': 60,
-        'value': 180
+        'value': 180,
+        'standardTime': '2016-05-27 13:45:21',
+        'reduceLoad': 10000,
+        'currentLoad': 972000,
+        'max': 800,
+        'cbl': 980000,
+        'targetValue': 900,
+        'operationRate': 5.4
       },
       {
         'name': 'SK아파트 3동',
@@ -244,6 +258,7 @@
         'value': 250
       }
     ];
+
 
   }
 })();

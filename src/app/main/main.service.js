@@ -20,11 +20,10 @@
 
         $http({
           method: 'GET',
-          url: '/app/main/test.json'
-          /*url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
+          url: 'http://61.39.74.111:32770/aict/nvpp/energy/resources/5',
           headers: {
             api_key: 'smartgrid'
-          }*/
+          }
         }).then(function (resp) {
 
           $log.info('energyResources:: ', resp.data);
