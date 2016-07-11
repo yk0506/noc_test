@@ -76,9 +76,9 @@
 .c3-line {
   stroke-width: 2px !important;
 }
-.c3-tooltip-container {
+/*.c3-tooltip-container {
   display: block !important;
-}
+}*/
 .round-progress-wrapper {
   position: absolute !important;
   /*z-index: 40;*/
