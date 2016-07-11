@@ -62,8 +62,22 @@
   position: absolute !important;
   z-index: 40;
 }
+.state2-graph-tooltip {
+  position: absolute;
+  z-index: 40;
+  width: 100px;
+  height: 30px;
+  color: #80ffff;
+  background-color: #597c80;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+}
 .c3-line {
   stroke-width: 2px !important;
+}
+.c3-tooltip-container {
+  display: block !important;
 }
 .round-progress-wrapper {
   position: absolute !important;

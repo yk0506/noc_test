@@ -39,8 +39,13 @@
           for (var i=0; i<vm.energyResources.length; i++) {
             cbl.push(vm.energyResources[i].dem_cbl);
             watt.push(vm.energyResources[i].dem_watt);
+
+            if(vm.energyResources[i].dem_watt != null){
+              vm.currentXtime = vm.energyResources[i].dem_date;
+            }
           }
           // $log.info('cbl: ',cbl, ', watt: ',watt);
+
 
           var chart1 = c3.generate({
             bindto: '#resource-map',
@@ -80,7 +85,7 @@
             },
             size: {
               width: 2530,
-              height: 280
+              height: 300
             },
             color: {
               pattern: ['#608080', '#c5bc6d']
@@ -126,9 +131,28 @@
             point: {
               show: false
             },
-            /*tooltip: {
-              show: false
-            },*/
+            tooltip: {
+              contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+                // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
+
+                var data = 0;
+                for (var i=0; i<d.length; i++) {
+                  if (d[i].id == "전력량") {
+                    data = d[i].value;
+                  }
+                }
+
+                if (data != null) {
+                  var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
+                    'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  data + '</div>'; // formatted html as you want
+                } else {
+                  var dataHtml = '';
+                }
+
+                return dataHtml;
+
+              }
+            },
             size: {
               width: 1700,
               height: 450
@@ -144,7 +168,7 @@
             }
           });
 
-          // chart2.tooltip.show({x:vm.timeX[20]});
+          chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
 
           $timeout(getEnergyResources, 900000);
 
@@ -255,7 +279,7 @@
         'value': 250
       },
       {
-        'name': '성신아파트',
+        'name': '성신아파트 1222동',
         'target': 50,
         'value': 250
       }
