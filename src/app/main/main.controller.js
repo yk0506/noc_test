@@ -132,7 +132,7 @@
               show: false
             },
             tooltip: {
-              contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+              contents: function (d) {
                 // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
 
                 var data = 0;
@@ -169,6 +169,9 @@
           });
 
           chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
+          $("#resource-graph").mouseleave(function () {
+            chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
+          });
 
           $timeout(getEnergyResources, 900000);
 
