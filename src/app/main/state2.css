@@ -100,8 +100,12 @@
 }
 .nonfactory-bg {
   position: absolute;
-  background-color: #2e3c40;
+  background-color: #0c1011;
   width: 220px;
   height: 350px;
   z-index: 20;
+}
+
+.c3-tooltip td {
+  color: #000;
 }

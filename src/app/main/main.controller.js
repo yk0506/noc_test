@@ -42,7 +42,7 @@
           }
           // $log.info('cbl: ',cbl, ', watt: ',watt);
 
-          c3.generate({
+          var chart1 = c3.generate({
             bindto: '#resource-map',
             data: {
               x: vm.timeX[0],
@@ -93,7 +93,7 @@
             }
           });
 
-          c3.generate({
+          var chart2 = c3.generate({
             bindto: '#resource-graph',
             data: {
               x: vm.timeX[0],
@@ -126,12 +126,12 @@
             point: {
               show: false
             },
-            tooltip: {
+            /*tooltip: {
               show: false
-            },
+            },*/
             size: {
               width: 1700,
-              height: 420
+              height: 450
             },
             color: {
               pattern: ['#608080', '#80ffff']
@@ -143,6 +143,8 @@
               hide: true
             }
           });
+
+          // chart2.tooltip.show({x:vm.timeX[20]});
 
           $timeout(getEnergyResources, 900000);
 
