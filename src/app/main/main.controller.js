@@ -6,9 +6,11 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3) {
+  function MainController($log, $timeout, energyService, c3, $interval) {
     var vm = this;
     vm._ = _;
+
+    vm.currentTime = moment().format('YYYY-DD-MM hh:mm:ss');
 
     // vm.timeX = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 
@@ -179,6 +181,42 @@
       )
     }
 
+
+    getCompaniesResources();
+    function getCompaniesResources() {
+      energyService.companiesResources().then(
+        function (resp) {
+          vm.companiesResources = resp.companiesResources;
+
+          $timeout(getCompaniesResources, 900000);
+
+        }
+      )
+    }
+
+    getResourcesConsumers();
+    function getResourcesConsumers() {
+      energyService.resourcesConsumers().then(
+        function (resp) {
+          vm.resourcesConsumers = resp.resourcesConsumers;
+
+          $timeout(getResourcesConsumers, 900000);
+
+        }
+      )
+    }
+
+    /*
+    cons_idx
+    cons_name
+    cont_watt
+    eco_dr_flag
+    name
+    negaWatt
+    phone
+    photo
+    tr_bad
+    tr_complete*/
 
 
     vm.consumerlist = [

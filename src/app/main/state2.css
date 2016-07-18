@@ -76,9 +76,6 @@
 .c3-line {
   stroke-width: 2px !important;
 }
-/*.c3-tooltip-container {
-  display: block !important;
-}*/
 .round-progress-wrapper {
   position: absolute !important;
   /*z-index: 40;*/
@@ -102,22 +99,16 @@
   margin-right: 90px;
   float: left;
   position: relative;
+  /*background-color: #0d0d0d;*/
 }
 .factory-bg {
   position: absolute;
   background-color: #80ffff;
-  width: 220px;
+  width: 197px;
   height: 200px;
   z-index: 20;
-  left: 1452px;
-  bottom: 753px;
-}
-.nonfactory-bg {
-  position: absolute;
-  background-color: #0c1011;
-  width: 220px;
-  height: 350px;
-  z-index: 20;
+  left: 87px;
+  bottom: 118px;
 }
 
 .c3-tooltip td {

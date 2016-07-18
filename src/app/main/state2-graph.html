@@ -59,45 +59,35 @@
 
     <!--todo:: call value, current temp value-->
     <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
-      <ul ng-repeat="con in main.consumerlist">
+      <ul ng-repeat="con in main.resourcesConsumers">
         <li style="overflow: hidden;
     height: 55px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    word-break: break-all;">{{con.name}}
+    word-break: break-all;">{{con.cons_name}}
         </li>
       </ul>
     </div>
     <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
-      <div ng-repeat="con in main.consumerlist" style="">
+      <div ng-repeat="con in main.resourcesConsumers" style="">
         <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
-             ng-style="{width: con.target}"></div>
-        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: con.value}"></div>
+             ng-style="{width: con.cont_watt/320 *100}"></div>
+        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: 320}"></div>
       </div>
     </div>
 
 
     <div id="resource-graph" class="state2-graph" style="top: 320px;left: 987px;"></div>
-    <!--<div class="absolute" style="top: 320px;left: 987px;width: 1700px;height: 450px;">
-      <div id="resource-graph-tooltip" class="state2-graph-tooltip"
-           ng-style="{bottom:main.tooltipBottom, left:main.tooltipLeft}">200kW</div>
-    </div>-->
-
-
-    <!--temp img
-    <img src="../assets/images/sector2_image/tempimg.png" class="absolute"
-         style="left: 596px;
-    top: 903px;
-    z-index: 45;
-    position: absolute;
-    width: 2090px;"/>-->
 
     <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
       <!--each-->
-      <div class="bfffff graph-section-each" ng-repeat="con in main.consumerlist">
-        <div class="pt28">{{con.name}}</div>
-        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{con.standardTime}}</span>
+      <div class="bfffff graph-section-each" ng-repeat="con in main.resourcesConsumers">
+        <div class="pt28">{{con.cons_name}}</div>
+        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{main.currentTime}}</span>
         </div>
+
+        <img src="../assets/images/sector2_image/plant_img.png" style="position: absolute;top: 163px;left: 86px;z-index: 40;" />
+        <div class="factory-bg"></div>
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>
@@ -111,11 +101,11 @@
           <div class="pt14">MAX</div>
           <div class="pt20">{{con.max}}<span class="pt16">kW</span></div>
         </div>
-        <div class="absolute" style="top:253px;left: 258px;">
+        <div class="absolute" style="top:253px;left: 258px;z-index: 40;">
           <span class="pt14">CBL</span>
           <span class="pt20">{{con.cbl}}<span class="pt16">kW</span></span>
         </div>
-        <div class="absolute" style="top:411px;left: 274px;">
+        <div class="absolute" style="top:411px;left: 283px;z-index: 40;">
           <span class="pt14">TARGET</span>
           <span class="pt20">{{con.targetValue}}<span class="pt16">kW</span></span>
         </div>
@@ -147,15 +137,6 @@
 
   </div>
 </div>
-
-<div class="nonfactory-bg" style="left: 1452px;bottom: 750px;"></div>
-<div class="nonfactory-bg" style="left: 2147px;bottom: 750px;"></div>
-<div class="nonfactory-bg" style="left: 2834px;bottom: 750px;"></div>
-<div class="nonfactory-bg" style="left: 1452px;bottom: 135px;"></div>
-<div class="nonfactory-bg" style="left: 2147px;bottom: 135px;"></div>
-<div class="nonfactory-bg" style="left: 2834px;bottom: 135px;"></div>
-
-<div class="factory-bg"></div>
 
 <div class="sector2-map-go" ui-sref="state2"></div>
 
