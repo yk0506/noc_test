@@ -11,8 +11,8 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">234 kW</div>
-  <div class="absolute pt26 bfffff" style="left: 447px;top: 292px;">{{vm.currentTime}}</div>
+  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.currentCompanyResources.dem_negawatt}} kW</div>
+  <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>
 
   <img src="../assets/images/sector2_image/administrator.png"
        style="position: absolute;left: 88px;top: 350px;width: 247px;height: 247px;" />
@@ -32,8 +32,9 @@
 
   <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
     <span class="state2-btn-active">급전지시</span>
-    <span class="absolute" style="width: 180px;left: 190px;">14:00 ~ 15:00</span>
-    <span class="absolute" style="width:180px;left: 370px;">435 kWh</span>
+    <!--여기부터-->
+    <span class="absolute" style="width: 180px;left: 190px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
+    <span class="absolute" style="width:180px;left: 370px;">{{vm.currentCompanyResources.cont_watt}} kWh</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.currentDay}}
@@ -54,19 +55,19 @@
   <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
     <tr>
       <td>목표</td>
-      <td>232</td>
+      <td>{{vm.currentCompanyResources.cont_watt}}</td>
     </tr>
     <tr>
       <td>CBL</td>
-      <td>123</td>
+      <td>{{vm.currentCompanyResources.dem_cbl}}</td>
     </tr>
     <tr>
       <td>부하</td>
-      <td>22</td>
+      <td>{{vm.currentCompanyResources.dem_watt}}</td>
     </tr>
     <tr>
       <td>발전</td>
-      <td>111</td>
+      <td>{{vm.currentCompanyResources.dem_negawatt}}</td>
     </tr>
   </table>
 
@@ -78,17 +79,17 @@
   <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">대기</div>
   <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">탈락</div>
 
-  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">563</div>
-  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">563</div>
-  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">563</div>
+  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.typeB.length}}</div>
+  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.typeA.length}}</div>
+  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">{{vm.typeC.length}}</div>
 
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1267px;">F-DR</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1300px;">DR</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1329px;">S-DR</div>
 
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1267px;">43,000 kW</div>
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">232,000 kW</div>
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">4,000 kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1267px;">0 kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.currentCompanyResources.cont_watt}} kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
   <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">부천시 노원구</div>

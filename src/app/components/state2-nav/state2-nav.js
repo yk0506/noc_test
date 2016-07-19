@@ -26,7 +26,7 @@
     return directive;
 
     /** @ngInject */
-    function state2NavController(moment, $interval, $state, energyService, $timeout) {
+    function state2NavController(moment, $interval, $state, energyService, $timeout, $log) {
       var vm = this;
       vm.currentState = $state.current.name;
 
@@ -113,55 +113,30 @@
         energyService.companiesResources().then(
           function (resp) {
             vm.companiesResources = resp.companiesResources;
+            vm.currentCompanyResources = vm.companiesResources[0];
+            vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
+            vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
+
+            vm.typeA = [];
+            vm.typeB = [];
+            vm.typeC = [];
+
+            for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
+              if (vm.currentCompanyResources.events[i].event_type == 'A') {
+                vm.typeA.push(vm.currentCompanyResources.events[i]);
+              } else if (vm.currentCompanyResources.events[i].event_type == 'B') {
+                vm.typeB.push(vm.currentCompanyResources.events[i]);
+              } else {
+                vm.typeC.push(vm.currentCompanyResources.events[i]);
+              }
+            }
+            // $log.info('typeA:',vm.typeA,' typeB:',vm.typeB,' typeC:',vm.typeC);
 
             $timeout(getCompaniesResources, 900000);
 
           }
         )
       }
-
-      /*cons_division
-        :
-        "B"
-      cons_idx
-        :
-        "4"
-      cons_name
-        :
-        "수용가4"
-      cont_watt
-        :
-        "100.0"
-      dem_cbl
-        :
-        "0.01"
-      dem_rate
-        :
-        "83.0"
-      dem_watt
-        :
-        "0.01"
-      eco_dr_flag
-        :
-        "0"
-      name
-        :
-        "수용가4"
-      negaWatt
-        :
-        "0.0"
-      phone
-        :
-        "434-232-1213"
-      photo
-        :
-        "/images/user.png"
-      tr_bad
-        :
-        "2"
-      tr_complete
-        :
-        "2"*/
 
 
       var chartbar2 = c3.generate({

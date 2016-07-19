@@ -187,6 +187,7 @@
       energyService.companiesResources().then(
         function (resp) {
           vm.companiesResources = resp.companiesResources;
+          vm.currentCompanyResources = vm.companiesResources[0]; //처음엔 0번째 자원
 
           $timeout(getCompaniesResources, 900000);
 
@@ -205,18 +206,6 @@
         }
       )
     }
-
-    /*
-    cons_idx
-    cons_name
-    cont_watt
-    eco_dr_flag
-    name
-    negaWatt
-    phone
-    photo
-    tr_bad
-    tr_complete*/
 
 
     vm.consumerlist = [
