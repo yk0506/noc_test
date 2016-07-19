@@ -21,6 +21,14 @@
   <div class="state2-btn-active" style="left: 522px;top: 355px;">출력</div>
 
   <div id="chartbar1"></div>
+  <div class="absolute bfffff pt12" style="left: 358px;top: 560px;">
+    <ul ng-repeat="t in vm.currentXtime" style="float: left;width: 37px;margin-top: 10px;
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+    transform: rotate(90deg);">
+      <li>{{t}}</li>
+    </ul>
+  </div>
 
   <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
     <span class="state2-btn-active">급전지시</span>

@@ -29,7 +29,18 @@
   </div>
 
   <div class="absolute pt42 bfffff" style="left: 2040px;top: 80px;width: 260px;">ROOT</div>
-  <div class="absolute pt42 bfffff" style="left: 2317px;top: 80px;width: 416px;">자원1. 부천 테크노파크</div>
+  <div class="absolute pt42 bfffff resource-dropdown" style="left: 2317px;top: 80px;width: 416px;">
+    <span uib-dropdown on-toggle="toggled(open)">
+      <a href id="simple-dropdown" uib-dropdown-toggle style="color: #bfffff;">
+        {{main.companiesResources[0].res_name}}
+      </a>
+      <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+        <li ng-repeat="resource in main.companiesResources">
+          <a href>{{resource.res_name}}</a>
+        </li>
+      </ul>
+    </span>
+  </div>
 
   <div class="state2-btn-dr" style="left: 2994px;top: 90px;">Fast DR</div>
   <div class="state2-btn-dr" style="left: 3138px;top: 90px;">DR</div>
@@ -86,7 +97,8 @@
         <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{main.currentTime}}</span>
         </div>
 
-        <img src="../assets/images/sector2_image/plant_img.png" style="position: absolute;top: 163px;left: 86px;z-index: 40;" />
+        <img src="../assets/images/sector2_image/plant_img.png" ng-show="con.cons_division == 'F'" class="consumer-img" />
+        <img src="../assets/images/sector2_image/building_img.png" ng-show="con.cons_division == 'B'" class="consumer-img" />
         <div class="factory-bg"></div>
 
         <div class="absolute" style="top:167px;">
@@ -95,7 +107,7 @@
         </div>
         <div class="absolute" style="top:292px;">
           <div class="pt14">현재부하</div>
-          <div class="pt20 fffbcc">{{con.currentLoad}}<span class="pt16">kW</span></div>
+          <div class="pt20 fffbcc">{{con.negaWatt}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:450px;">
           <div class="pt14">MAX</div>
@@ -103,11 +115,11 @@
         </div>
         <div class="absolute" style="top:253px;left: 258px;z-index: 40;">
           <span class="pt14">CBL</span>
-          <span class="pt20">{{con.cbl}}<span class="pt16">kW</span></span>
+          <span class="pt20">{{con.dem_cbl}}<span class="pt16">kW</span></span>
         </div>
         <div class="absolute" style="top:411px;left: 283px;z-index: 40;">
           <span class="pt14">TARGET</span>
-          <span class="pt20">{{con.targetValue}}<span class="pt16">kW</span></span>
+          <span class="pt20">{{con.cont_watt|number:0}}<span class="pt16">kW</span></span>
         </div>
 
         <div class="absolute" style="top:167px;left: 425px;width: 177px;">
@@ -125,10 +137,10 @@
         </div>
 
         <div class="absolute" style="top:330px;left: 544px;line-height: 31px;">
-          <div class="pt16 c-66ffff">{{con.currentLoad}}kW</div>
-          <div class="pt16">{{con.cbl}}kW</div>
+          <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
+          <div class="pt16">{{con.dem_cbl}}kW</div>
           <div class="pt16 c-66ffff">{{con.reduceLoad}}kW</div>
-          <div class="pt16">{{con.targetValue}}kW</div>
+          <div class="pt16">{{con.cont_watt|number:0}}kW</div>
           <div class="pt16 c-66ffff">{{con.max}}kW</div>
         </div>
       </div>

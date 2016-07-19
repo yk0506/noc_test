@@ -101,6 +101,9 @@
   position: relative;
   /*background-color: #0d0d0d;*/
 }
+.consumer-img {
+  position: absolute;top: 163px;left: 86px;z-index: 40;width: 199px;height: 335px;
+}
 .factory-bg {
   position: absolute;
   background-color: #80ffff;
@@ -113,4 +116,12 @@
 
 .c3-tooltip td {
   color: #000;
+}
+
+.resource-dropdown .dropdown-menu{
+  width: 400px;
+  font-size: 38px;
+  border-radius: 0 !important;
+  background-color: #ddd;
+  opacity: 0.8;
 }
