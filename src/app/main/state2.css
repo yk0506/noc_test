@@ -102,7 +102,7 @@
   /*background-color: #0d0d0d;*/
 }
 .consumer-img {
-  position: absolute;top: 163px;left: 86px;z-index: 40;width: 199px;height: 335px;
+  position: absolute;top: 163px;left: 66px;z-index: 40;width: 199px;height: 335px;
 }
 .factory-bg {
   position: absolute;
@@ -110,7 +110,7 @@
   width: 197px;
   height: 200px;
   z-index: 20;
-  left: 87px;
+  left: 67px;
   bottom: 118px;
 }
 
