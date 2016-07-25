@@ -6,7 +6,7 @@
 
 <round-progress
   max="400"
-  current="main.currentCompanyResources.dem_negawatt"
+  current="main.currentCompanyNegawattSum"
   color="#80ffff"
   bgcolor="#edfbff"
   radius="210"
@@ -51,7 +51,7 @@
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyResources.dem_negawatt|number:0}}</span><span
+      <span class="pt60 fffef2">{{main.currentCompanyNegawattSum|number:0}}</span><span
       class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
@@ -64,7 +64,7 @@
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
-      <span class="pt60 fffef2">{{}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt60 fffef2">{{main.currentCompanyNegawattSum}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
@@ -114,7 +114,7 @@
         </div>
         <div class="absolute" style="top:450px;">
           <div class="pt14">MAX</div>
-          <div class="pt20">{{con.max}}<span class="pt16">kW</span></div>
+          <div class="pt20">{{con.negawattSum}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:253px;left: 273px;z-index: 40;">
           <span class="pt14">CBL</span>
@@ -132,7 +132,7 @@
         <div class="absolute" style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
             <div class="pt14">가동률</div>
-            <div class="pt60 ff7e47" style="text-align: center;">{{con.operationRate}} %</div>
+            <div class="pt60 ff7e47" style="text-align: center;">{{con.operateRatio|number:0}} %</div>
             <div class="pt8 c-7ca6a6">가동률 =</div>
             <div class="pt8 c-7ca6a6">현재감축량/최대감축가능량</div>
           </div>
@@ -141,14 +141,14 @@
             <div class="pt16">CBL</div>
             <div class="pt16 c-66ffff">감축부하</div>
             <div class="pt16">TARGET</div>
-            <div class="pt16 c-66ffff">MAX RATGET</div>
+            <div class="pt16 c-66ffff">MAX TARGET</div>
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
             <div class="pt16">{{con.dem_cbl}}kW</div>
-            <div class="pt16 c-66ffff">{{con.reduceLoad}}kW</div>
+            <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
             <div class="pt16">{{con.cont_watt|number:0}}kW</div>
-            <div class="pt16 c-66ffff">{{con.max}}kW</div>
+            <div class="pt16 c-66ffff">{{con.negawattSum}}kW</div>
           </div>
         </div>
 

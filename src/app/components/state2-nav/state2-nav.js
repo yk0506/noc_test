@@ -114,6 +114,9 @@
           function (resp) {
             vm.companiesResources = resp.companiesResources;
             vm.currentCompanyResources = vm.companiesResources[0];
+            vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
+            // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
+
             vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
             vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
 

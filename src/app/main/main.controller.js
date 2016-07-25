@@ -188,6 +188,8 @@
         function (resp) {
           vm.companiesResources = resp.companiesResources;
           vm.currentCompanyResources = vm.companiesResources[0]; //처음엔 0번째 자원
+          vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
+          // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
 
           $timeout(getCompaniesResources, 900000);
 
@@ -200,6 +202,10 @@
       energyService.resourcesConsumers().then(
         function (resp) {
           vm.resourcesConsumers = resp.resourcesConsumers;
+          for (var i=0; i<vm.resourcesConsumers.length; i++) {
+            vm.resourcesConsumers[i].negawattSum = parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt);
+            vm.resourcesConsumers[i].operateRatio = (parseFloat(vm.resourcesConsumers[i].dem_watt)/parseFloat(vm.resourcesConsumers[i].add_cont_watt))*100;
+          }
 
           $timeout(getResourcesConsumers, 900000);
 
@@ -208,112 +214,6 @@
     }
 
 
-    vm.consumerlist = [
-      {
-        'name': 'SK아파트 1동',
-        'target': 50,
-        'value': 150,
-        'standardTime': '2016-05-27 13:45:21',
-        'reduceLoad': 10000,
-        'currentLoad': 972000,
-        'max': 800,
-        'cbl': 980000,
-        'targetValue': 900,
-        'operationRate': 4.4
-      },
-      {
-        'name': 'SK아파트 2동',
-        'target': 60,
-        'value': 180,
-        'standardTime': '2016-05-27 13:45:21',
-        'reduceLoad': 10000,
-        'currentLoad': 972000,
-        'max': 800,
-        'cbl': 980000,
-        'targetValue': 900,
-        'operationRate': 5.4
-      },
-      {
-        'name': 'SK아파트 3동',
-        'target': 70,
-        'value': 160
-      },
-      {
-        'name': 'SK아파트 4동',
-        'target': 80,
-        'value': 120
-      },
-      {
-        'name': '명신빌딩',
-        'target': 150,
-        'value': 120
-      },
-      {
-        'name': 'SG스포츠',
-        'target': 250,
-        'value': 120
-      },
-      {
-        'name': '광성중학교',
-        'target': 300,
-        'value': 120
-      },
-      {
-        'name': '동철빌딩',
-        'target': 10,
-        'value': 120
-      },
-      {
-        'name': '효신아파트',
-        'target': 50,
-        'value': 120
-      },
-      {
-        'name': 'KA아파트 1동',
-        'target': 50,
-        'value': 250
-      },
-      {
-        'name': 'KA아파트 2동',
-        'target': 60,
-        'value': 250
-      },
-      {
-        'name': 'KA아파트 3동',
-        'target': 60,
-        'value': 300
-      },
-      {
-        'name': 'KA아파트 4동',
-        'target': 50,
-        'value': 250
-      },
-      {
-        'name': '명송빌딩',
-        'target': 50,
-        'value': 250
-      },
-      {
-        'name': 'TTA스포츠',
-        'target': 50,
-        'value': 320
-      },
-      {
-        'name': '설성중학교',
-        'target': 50,
-        'value': 250
-      },
-      {
-        'name': '마철빌딩',
-        'target': 50,
-        'value': 250
-      },
-      {
-        'name': '성신아파트 1222동',
-        'target': 50,
-        'value': 250
-      }
-    ];
 
 
   }
