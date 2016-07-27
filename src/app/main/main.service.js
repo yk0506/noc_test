@@ -20,7 +20,7 @@
 
         $http({
           method: 'GET',
-          url: 'http://61.39.74.111:32770/aict/nvpp/energy/resources/5',
+          url: 'http://61.39.74.111:32777/aict/nvpp/energy/resources/5',
           headers: {
             api_key: 'smartgrid'
           }
@@ -40,7 +40,7 @@
 
         $http({
           method: 'GET',
-          url: 'http://61.39.74.111:32770/aict/nvpp/companies/1/resources'
+          url: 'http://61.39.74.111:32777/aict/nvpp/companies/1/resources'
         }).then(function (resp) {
 
           $log.info('companiesResources:: ', resp.data);
@@ -57,7 +57,7 @@
 
         $http({
           method: 'GET',
-          url: 'http://61.39.74.111:32770/aict/nvpp/resources/5/consumers'
+          url: 'http://61.39.74.111:32777/aict/nvpp/resources/5/consumers'
         }).then(function (resp) {
 
           $log.info('resourcesConsumers:: ', resp.data);
