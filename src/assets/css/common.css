@@ -95,6 +95,9 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 .pt31 {
   font-size: 31px;
 }
+.pt36 {
+  font-size: 36px;
+}
 .pt38 {
   font-size: 38px;
 }
@@ -118,5 +121,8 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 }
 .pt86 {
   font-size: 86px;
+}
+.pt100 {
+  font-size: 100px;
 }
 

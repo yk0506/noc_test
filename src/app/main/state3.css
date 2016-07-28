@@ -1,0 +1,53 @@
+.sector3-img {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("/../assets/images/companywe_sector3.png");
+  opacity: 0.5;
+  width: 3840px;
+  height: 2160px;
+  z-index: 40;
+  /*display: none;*/
+}
+
+.sector3 {
+  position: absolute;
+  z-index: 30;
+  width: 3840px;
+  height: 2160px;
+  background-color: #0d0d0d;
+}
+.grid1-bt-on {
+  background: url("/../assets/images/sector3/grid1_bt_on.png");
+  font-size: 24px;
+  color: #bfffff;
+  text-align: center;
+  width: 254px;
+  height: 62px;
+  line-height: 62px;
+}
+.grid1-bt-off {
+  background: url("/../assets/images/sector3/grid1_bt_off.png");
+  font-size: 24px;
+  color: #bfffff;
+  text-align: center;
+  width: 254px;
+  height: 62px;
+  line-height: 62px;
+}
+.grid1_box_on {
+  background: url("/../assets/images/sector3/grid1_box_on.png");
+  color: #bfffff;
+  text-align: center;
+  width: 210px;
+  height: 170px;
+}
+.grid1_box_off {
+  background: url("/../assets/images/sector3/grid1_box_off.png");
+  color: #597c80;
+  text-align: center;
+  width: 210px;
+  height: 170px;
+}

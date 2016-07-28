@@ -25,6 +25,12 @@
         templateUrl: 'app/main/state2-graph.html',
         controller: 'MainController',
         controllerAs: 'main'
+      })
+      .state('state3', {
+        url: '/state3',
+        templateUrl: 'app/main/state3.html',
+        controller: 'MainController',
+        controllerAs: 'main'
       });
 
     $urlRouterProvider.otherwise('/');
