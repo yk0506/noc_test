@@ -53,7 +53,7 @@
 }
 
 .grid1-bargraph-m {
-  left: 91px;top: 1693px;z-index: 30;
+  left: 110px;top: 1693px;z-index: 30;
 }
 .grid1-bargraph-m span {
   margin-right: 180px;
@@ -78,4 +78,12 @@
   text-align: center;
   width: 205px;
   height: 170px;
+}
+.sector3-graph {
+  position: absolute;
+  left: 97px;top: 1492px;
+}
+.sector3-graph div {
+  float: left;
+  margin-right: 64px;
 }

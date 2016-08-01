@@ -29,6 +29,44 @@
       '23:00', '23:15', '23:30', '23:45', '24:00', '24:15', '24:30', '24:45'
     ];
 
+
+    for (var i=0; i<9; i++) {
+      var sector3Graph = c3.generate({
+        bindto: '#sector3-graph'+i,
+        data: {
+          x: 'x',
+          columns: [
+            ['x', '15', '30', '35', '40'],
+            ['data1', 20, 15, 30, 45]
+          ],
+          type: 'bar'
+        },
+        bar: {
+          width: 10 // this makes bar width 100px
+        },
+        color: {
+          pattern: ['#bfffff', '#597c80', '#fffbcc', '#80ffff']
+        },
+        size: {
+          width: 160,
+          height: 200
+        },
+        legend: {
+          show: false
+        },
+        axis: {
+          x: {
+            type: 'categories',
+            show: true
+          },
+          y: {
+            show: false
+          }
+        }
+      });
+    }
+
+
     getEnergyResources();
     function getEnergyResources() {
       energyService.energyResources().then(
