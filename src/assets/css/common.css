@@ -101,11 +101,17 @@ div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fie
 .pt38 {
   font-size: 38px;
 }
+.pt40 {
+  font-size: 40px;
+}
 .pt42 {
   font-size: 42px;
 }
 .pt44 {
   font-size: 44px;
+}
+.pt55 {
+  font-size: 55px;
 }
 .pt62 {
   font-size: 62px;

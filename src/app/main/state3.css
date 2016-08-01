@@ -9,7 +9,7 @@
   width: 3840px;
   height: 2160px;
   z-index: 40;
-  /*display: none;*/
+  display: none;
 }
 
 .sector3 {
@@ -49,5 +49,33 @@
   color: #597c80;
   text-align: center;
   width: 210px;
+  height: 170px;
+}
+
+.grid1-bargraph-m {
+  left: 91px;top: 1693px;z-index: 30;
+}
+.grid1-bargraph-m span {
+  margin-right: 180px;
+}
+
+
+.grid2_frame {
+  background: url("/../assets/images/sector3/grid2_frame.png");
+  width: 596px;
+  height: 664px;
+}
+.grid2_box_on {
+  background: url("/../assets/images/sector3/grid2_box_on.png");
+  color: #bfffff;
+  text-align: center;
+  width: 210px;
+  height: 170px;
+}
+.grid2_box_off {
+  background: url("/../assets/images/sector3/grid2_box_off.png");
+  color: #597c80;
+  text-align: center;
+  width: 205px;
   height: 170px;
 }
