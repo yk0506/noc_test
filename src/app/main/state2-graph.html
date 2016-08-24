@@ -6,7 +6,7 @@
 
 <round-progress
   max="400"
-  current="main.currentCompanyNegawattSum"
+  current="main.currentCompanyResources.dem_negawatt"
   color="#80ffff"
   bgcolor="#edfbff"
   radius="210"
@@ -51,8 +51,8 @@
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyNegawattSum|number:0}}</span><span
-      class="pt24 fffef2">kW</span><br/>
+      <span class="pt60 fffef2">{{main.currentCompanyResources.dem_negawatt|number:0}}</span>
+      <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
 
@@ -83,8 +83,8 @@
     <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
       <div ng-repeat="con in main.resourcesConsumers" style="">
         <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
-             ng-style="{width: con.dem_watt/320 *100}"></div>
-        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;" ng-style="{width: 320}"></div>
+             ng-style="{width: con.dem_watt}"></div>
+        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;max-width: 320px;" ng-style="{width: con.negawattSum/320 * 100}"></div>
       </div>
     </div>
 
@@ -102,7 +102,7 @@
              class="consumer-img"/>
         <img src="../assets/images/sector2_image/building_img.png" ng-show="con.cons_division == 'B'"
              class="consumer-img"/>
-        <div class="factory-bg" ng-style="{height: con.dem_watt}"></div>
+        <div class="factory-bg" ng-style="{height: con.negaWattSum}"></div>
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>

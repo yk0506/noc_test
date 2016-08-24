@@ -117,8 +117,16 @@
             vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
             // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
 
-            vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
-            vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
+
+            for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
+              if (vm.currentCompanyResources.events[i].event_status == 'B') {
+                vm.emergencyStartime = moment(vm.currentCompanyResources.event_start).format('hh:mm');
+                vm.emargencyEndtime = moment(vm.currentCompanyResources.event_start).add(vm.currentCompanyResources.events[i].event_duration, 'h').format('hh:mm');
+              }
+            }
+
+            // vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
+            // vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
 
             vm.typeA = [];
             vm.typeB = [];
