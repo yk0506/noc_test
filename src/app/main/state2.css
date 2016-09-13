@@ -124,3 +124,18 @@
   background-color: #ddd;
   opacity: 0.8;
 }
+
+
+.map-pindrop {
+  position: absolute;
+  width: 2600px;
+  left: 798px;
+  top: 68px;
+  /*z-index: 20;*/
+}
+.map-pindrop img {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  z-index: 30;
+}
