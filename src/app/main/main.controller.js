@@ -243,6 +243,9 @@
           for (var i=0; i<vm.resourcesConsumers.length; i++) {
             vm.resourcesConsumers[i].negawattSum = parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt); /* == max target*/
             vm.resourcesConsumers[i].operateRatio = (parseFloat(vm.resourcesConsumers[i].dem_watt)/parseFloat(vm.resourcesConsumers[i].add_cont_watt))*100;
+
+            // resourcesConsumers
+            vm.resourcesConsumers[i].building = (parseFloat(vm.resourcesConsumers[i].dem_watt)/parseFloat(vm.resourcesConsumers[i].dem_cbl))*100;
           }
 
           $timeout(getResourcesConsumers, 900000);

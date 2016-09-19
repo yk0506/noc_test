@@ -12,7 +12,8 @@
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
   <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.currentCompanyNegawattSum}} kW</div>
-  <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>
+  <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.nowDateTime}}</div>
+  <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
   <img src="../assets/images/sector2_image/administrator.png"
        style="position: absolute;left: 88px;top: 350px;width: 247px;height: 247px;" />
@@ -56,19 +57,19 @@
   <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
     <tr>
       <td>목표</td>
-      <td>{{vm.currentCompanyResources.cont_watt}}</td>
+      <td>{{vm.currentCompanyResources.cont_watt|number:0}}</td>
     </tr>
     <tr>
       <td>CBL</td>
-      <td>{{vm.currentCompanyResources.dem_cbl}}</td>
+      <td>{{vm.currentCompanyResources.dem_cbl|number:0}}</td>
     </tr>
     <tr>
       <td>부하</td>
-      <td>{{vm.currentCompanyResources.dem_watt}}</td>
+      <td>{{vm.currentCompanyResources.dem_watt|number:0}}</td>
     </tr>
     <tr>
       <td>발전</td>
-      <td>{{vm.currentCompanyResources.dem_negawatt}}</td>
+      <td>{{vm.currentCompanyResources.dem_negawatt|number:0}}</td>
     </tr>
   </table>
 
@@ -80,9 +81,9 @@
   <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">대기</div>
   <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">탈락</div>
 
-  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.typeB.length}}</div>
-  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.typeA.length}}</div>
-  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">{{vm.typeC.length}}</div>
+  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.consumersStatus.success_cont}}</div>
+  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.consumersStatus.warning_cont}}</div>
+  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">{{vm.consumersStatus.danger_cont}}</div>
 
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1267px;">F-DR</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1300px;">DR</div>

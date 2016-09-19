@@ -31,7 +31,8 @@
       vm.currentState = $state.current.name;
 
       $interval(function () {
-        vm.currentTime = moment().format('h:mm:ss');
+        vm.nowDateTime = moment().format('YYYY-MM-DD h:mm:ss');
+        // vm.currentTime = moment().format('h:mm:ss');
       }, 1000);
       vm.currentDay = moment().format('YYYY.MM.DD');
 
@@ -103,6 +104,17 @@
 
             $timeout(getEnergyResources, 900000);
 
+          }
+        )
+      }
+
+
+      getConsumersStatus();
+      function getConsumersStatus() {
+        energyService.consumersStatus().then(
+          function (resp) {
+            vm.consumersStatus = resp.consumersStatus[0];
+            $timeout(getConsumersStatus, 900000);
           }
         )
       }

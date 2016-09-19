@@ -73,6 +73,46 @@
           $log.debug('ERRORS:: ', response);
         });
         return deferred.promise;
+      },
+
+      consumersStatus: function () {
+        var deferred = $q.defer();
+
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/resources/5/consumers/status',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          $log.info('consumersStatus:: ', resp.data);
+          var consumersStatus = resp.data.data;
+          deferred.resolve({consumersStatus: consumersStatus});
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
+        return deferred.promise;
+      },
+
+      developPlan: function () {
+        var deferred = $q.defer();
+
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/devlop/5/plan',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          $log.info('developPlan:: ', resp.data);
+          var developPlan = resp.data.data;
+          deferred.resolve({developPlan: developPlan});
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
+        return deferred.promise;
       }
 
 
