@@ -227,6 +227,8 @@
           vm.companiesResources = resp.companiesResources;
           vm.currentCompanyResources = vm.companiesResources[0]; //처음엔 0번째 자원
           vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
+          vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyNegawattSum *100;
+
           // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
 
           $timeout(getCompaniesResources, 900000);

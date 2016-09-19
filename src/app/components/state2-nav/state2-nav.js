@@ -131,7 +131,8 @@
 
 
             for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
-              if (vm.currentCompanyResources.events[i].event_status == 'B') {
+              if (vm.currentCompanyResources.events[i].event_status == 'A') {
+                vm.emergencyStartDate = moment(vm.currentCompanyResources.event_start).format('YYYY.MM.DD');
                 vm.emergencyStartime = moment(vm.currentCompanyResources.event_start).format('hh:mm');
                 vm.emargencyEndtime = moment(vm.currentCompanyResources.event_start).add(vm.currentCompanyResources.events[i].event_duration, 'h').format('hh:mm');
               }

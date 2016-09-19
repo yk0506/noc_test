@@ -34,13 +34,13 @@
   <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
     <span class="state2-btn-active">급전지시</span>
     <!--여기부터-->
-    <!--<span class="absolute" style="width: 180px;left: 190px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>-->
-    <span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>
+    <span class="absolute" style="width: 180px;left: 190px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
+    <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
     <span class="absolute" style="width:180px;left: 370px;">{{vm.currentCompanyResources.cont_watt}} kWh</span>
   </div>
 
-  <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.currentDay}}
-    <span style="margin-left: 10px;">{{vm.beforeTime}} ~ {{vm.afterTime}}</span>
+  <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
+    <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
   </div>
 
   <div class="ff7e47 pt10" style="position: absolute;left: 187px;top: 883px;">현재 발전출력</div>
