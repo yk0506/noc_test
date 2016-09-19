@@ -71,22 +71,25 @@
 
     <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
 
-    <!--todo:: call value, current temp value-->
-    <div class="absolute pt24 c-7ca6a6" style="left: 52px;top: 1015px;width: 170px;line-height: 55px;">
-      <ul ng-repeat="con in main.resourcesConsumers">
-        <li style="overflow: hidden;
+    <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: scroll;">
+      <!--todo:: call value, current temp value-->
+      <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
+        <ul ng-repeat="con in main.resourcesConsumers">
+          <li style="overflow: hidden;
     height: 55px;
     text-overflow: ellipsis;
     white-space: nowrap;
     word-break: break-all;">{{con.cons_name}}
-        </li>
-      </ul>
-    </div>
-    <div class="absolute pt24 c-7ca6a6" style="left: 225px;top: 1027px;width: 320px;height: 30px;line-height: 55px;">
-      <div ng-repeat="con in main.resourcesConsumers" style="">
-        <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
-             ng-style="{width: con.dem_watt}"></div>
-        <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;max-width: 320px;" ng-style="{width: con.negawattSum/320 * 100}"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
+        <div ng-repeat="con in main.resourcesConsumers" style="">
+          <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
+               ng-style="{width: con.dem_watt}"></div>
+          <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;max-width: 320px;"
+               ng-style="{width: con.negawattSum/320 * 100}"></div>
+        </div>
       </div>
     </div>
 
@@ -131,7 +134,8 @@
         <img src="../assets/images/sector2_image/factory_line2.png"
              style="position: absolute;top: 442px;left: 50px;z-index: 40;"/>
 
-        <div class="absolute" style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
+        <div class="absolute"
+             style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
             <div class="pt14">가동률</div>
             <div class="pt60 ff7e47" style="text-align: center;">{{con.operateRatio|number:0}} %</div>
