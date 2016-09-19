@@ -140,21 +140,6 @@
             // vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
             // vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
 
-            vm.typeA = [];
-            vm.typeB = [];
-            vm.typeC = [];
-
-            for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
-              if (vm.currentCompanyResources.events[i].event_type == 'A') {
-                vm.typeA.push(vm.currentCompanyResources.events[i]);
-              } else if (vm.currentCompanyResources.events[i].event_type == 'B') {
-                vm.typeB.push(vm.currentCompanyResources.events[i]);
-              } else {
-                vm.typeC.push(vm.currentCompanyResources.events[i]);
-              }
-            }
-            // $log.info('typeA:',vm.typeA,' typeB:',vm.typeB,' typeC:',vm.typeC);
-
             $timeout(getCompaniesResources, 900000);
 
           }
@@ -162,39 +147,59 @@
       }
 
 
-      var chartbar2 = c3.generate({
-        bindto: '#chartbar2',
-        data: {
-          x: 'x',
-          columns: [
-            ['x', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',' 11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'],
-            ['data1', 2, 2, 30, 30, 34, 45, 50, 50, 2, 2, 30, 30, 34, 45, 50, 50, 2, 2, 30, 30, 34, 45, 50, 50]
-          ],
-          type: 'bar'
-        },
-        bar: {
-          width: 3 // this makes bar width 100px
-        },
-        size: {
-          width: 280,
-          height: 70
-        },
-        color: {
-          pattern: ['#bfffff']
-        },
-        legend: {
-          show: false
-        },
-        axis: {
-          x: {
-            type: 'categories',
-            show: false
-          },
-          y: {
-            show: false
+      getDevelopPlan();
+      function getDevelopPlan() {
+        energyService.developPlan().then(
+          function (resp) {
+            vm.developPlan = resp.developPlan[0];
+
+            var chart2Value = ['발전량'];
+            for(var i=1; i<10; i++) {
+              chart2Value.push(vm.developPlan['0'+i+':00']);
+            }
+            for(var i=10; i<25; i++) {
+              chart2Value.push(vm.developPlan[i+':00']);
+            }
+
+            var chartbar2 = c3.generate({
+              bindto: '#chartbar2',
+              data: {
+                x: 'x',
+                columns: [
+                  ['x', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00',' 11:00', '12:00',
+                    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
+                  chart2Value
+                ],
+                type: 'bar'
+              },
+              bar: {
+                width: 3 // this makes bar width 100px
+              },
+              size: {
+                width: 280,
+                height: 70
+              },
+              color: {
+                pattern: ['#bfffff']
+              },
+              legend: {
+                show: false
+              },
+              axis: {
+                x: {
+                  type: 'categories',
+                  show: false
+                },
+                y: {
+                  show: false
+                }
+              }
+            });
+            //END chart2
           }
-        }
-      });
+        )
+      }
+
 
 
     }
