@@ -221,10 +221,44 @@
     return directive;
 
     /** @ngInject */
-    function state2Nav2Controller($state) {
+    function state2Nav2Controller($state, energyService, $timeout, $log) {
       var vm = this;
 
       vm.currentState = $state.current.name;
+
+
+      getResourcesConsumers();
+      function getResourcesConsumers() {
+        energyService.resourcesConsumers().then(
+          function (resp) {
+            vm.resourcesConsumers = resp.resourcesConsumers;
+
+            vm.currentPage = 1;
+            if (vm.resourcesConsumers.length%6 != 0) {
+              vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
+            } else if(vm.resourcesConsumers.length%6 == 0) {
+              vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
+            }
+
+            $timeout(getResourcesConsumers, 900000);
+
+          }
+        )
+      }
+
+
+      vm.consumerBeginNumber = energyService.getConsumerBeginNumber();
+
+      vm.clickedR = function () {
+        if (vm.currentPage != vm.consumerPageNum) { //다음 페이지가 있음
+          vm.consumerBeginNumber = vm.consumerBeginNumber+6;
+          vm.currentPage = vm.currentPage+1;
+          energyService.setConsumerBeginNumber(vm.consumerBeginNumber);
+        } else { //없음
+          //alert
+          alert('last page!!');
+        }
+      }
 
     }
   }

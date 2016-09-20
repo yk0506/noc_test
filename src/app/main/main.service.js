@@ -13,7 +13,18 @@
   function energyService($log, $http, $q) {
     $log.info("START energyService!!");
 
+    var consumerBeginNumber = 0;
+
     return {
+      getConsumerBeginNumber: function() {
+        return consumerBeginNumber;
+      },
+      setConsumerBeginNumber: function(data) {
+        consumerBeginNumber = data;
+        $log.debug('consumerBeginNumber:: ', consumerBeginNumber);
+        return consumerBeginNumber;
+      },
+
 
       energyResources: function () {
         var deferred = $q.defer();
