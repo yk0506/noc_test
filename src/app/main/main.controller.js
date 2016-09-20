@@ -6,11 +6,11 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $interval) {
+  function MainController($log, $timeout, energyService, c3) {
     var vm = this;
     vm._ = _;
 
-    vm.currentTime = moment().format('YYYY-DD-MM hh:mm:ss');
+    vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
     // vm.timeX = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
 
@@ -227,7 +227,7 @@
           vm.companiesResources = resp.companiesResources;
           vm.currentCompanyResources = vm.companiesResources[0]; //처음엔 0번째 자원
           vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
-          vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyNegawattSum *100;
+          vm.gageCurrentDevelop = vm.currentCompanyNegawattSum / parseFloat(vm.currentCompanyResources.dem_negawatt) *100;
 
           // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
 
@@ -255,6 +255,8 @@
         }
       )
     }
+
+    vm.consumerBeginNumber = energyService.getConsumerBeginNumber();
 
 
 
