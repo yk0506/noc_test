@@ -102,14 +102,14 @@
   /*background-color: #0d0d0d;*/
 }
 .consumer-img {
-  position: absolute;top: 163px;left: 66px;z-index: 40;width: 199px;height: 335px;
+  position: absolute;top: 163px;left: 90px;z-index: 40;height: 335px;width: 178px;/*original img width: 199px*/
 }
 .factory-bg {
   position: absolute;
   background-color: #80ffff;
-  width: 197px;
+  width: 176px;
   z-index: 20;
-  left: 67px;
+  left: 91px;
   bottom: 118px;
 }
 
