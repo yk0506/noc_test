@@ -71,7 +71,7 @@
 
     <!--수용가 repeat-->
     <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
-    <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: scroll;">
+    <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
         <ul ng-repeat="con in main.resourcesConsumers|limitTo:6">
@@ -85,8 +85,8 @@
       </div>
       <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
         <div ng-repeat="con in main.resourcesConsumers|limitTo:6" style="">
-          <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;"
-               ng-style="{width: con.dem_watt}"></div>
+          <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 320px;"
+               ng-style="{width: con.dem_watt/320 *100}"></div>
           <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;max-width: 320px;"
                ng-style="{width: con.negawattSum/320 * 100}"></div>
         </div>
@@ -150,7 +150,7 @@
             <div class="pt16 c-66ffff">MAX TARGET</div>
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
-            <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
+            <div class="pt16 c-66ffff">{{con.dem_watt}}kW</div>
             <div class="pt16">{{con.dem_cbl}}kW</div>
             <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
             <div class="pt16">{{con.cont_watt|number:0}}kW</div>
