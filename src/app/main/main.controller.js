@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3) {
+  function MainController($log, $timeout, energyService, c3, $rootScope, $scope) {
     var vm = this;
     vm._ = _;
 
@@ -260,9 +260,19 @@
       )
     }
 
-    vm.consumerBeginNumber = energyService.getConsumerBeginNumber();
 
+    $log.log('MainController!');
+    vm.consumerBeginNumber = 0;
 
+    $scope.$on('consumerBeginNumber-changedR', function(event, args) {
+      vm.consumerBeginNumber = args.consumerBeginNumber;
+      $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
+    });
+
+    $scope.$on('consumerBeginNumber-changedL', function(event, args) {
+      vm.consumerBeginNumber = args.consumerBeginNumber;
+      $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
+    });
 
 
   }

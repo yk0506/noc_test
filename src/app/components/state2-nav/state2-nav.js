@@ -221,8 +221,9 @@
     return directive;
 
     /** @ngInject */
-    function state2Nav2Controller($state, energyService, $timeout, $log) {
+    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope) {
       var vm = this;
+      $log.log('state2Nav2Controller!');
 
       vm.currentState = $state.current.name;
 
@@ -246,19 +247,33 @@
         )
       }
 
-
-      vm.consumerBeginNumber = energyService.getConsumerBeginNumber();
+      vm.consumerBeginNumber = 0;
 
       vm.clickedR = function () {
-        if (vm.currentPage != vm.consumerPageNum) { //다음 페이지가 있음
+        if (vm.currentPage < vm.consumerPageNum) { //다음 페이지가 있음
           vm.consumerBeginNumber = vm.consumerBeginNumber+6;
           vm.currentPage = vm.currentPage+1;
-          energyService.setConsumerBeginNumber(vm.consumerBeginNumber);
-        } else { //없음
+          $rootScope.$broadcast('consumerBeginNumber-changedR', {
+            consumerBeginNumber: vm.consumerBeginNumber
+          });
+        } else if (vm.currentPage == vm.consumerPageNum) { //없음
           //alert
           alert('last page!!');
         }
-      }
+      };
+
+      vm.clickedL = function () {
+        if (vm.currentPage > 1) { //이전 페이지가 있음
+          vm.consumerBeginNumber = vm.consumerBeginNumber-6;
+          vm.currentPage = vm.currentPage-1;
+          $rootScope.$broadcast('consumerBeginNumber-changedL', {
+            consumerBeginNumber: vm.consumerBeginNumber
+          });
+        } else if (vm.currentPage == 1) { //없음
+          //alert
+          alert('first page!!');
+        }
+      };
 
     }
   }

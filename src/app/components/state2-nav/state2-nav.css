@@ -12,6 +12,26 @@
   right: 0;
 }
 
+.sector2-buttonL {
+  background: url("/../assets/images/sector2_image/L_off.png");
+  width: 106px;
+  height: 68px;
+  position: absolute;left: 76px;top:1953px;
+}
+.sector2-buttonL:hover {
+  background: url("/../assets/images/sector2_image/L_on.png");
+}
+.sector2-buttonR {
+  background: url("/../assets/images/sector2_image/R_off.png");
+  width: 106px;
+  height: 68px;
+  position: absolute;left: 220px;top:1953px;
+}
+.sector2-buttonR:hover {
+  background: url("/../assets/images/sector2_image/R_on.png");
+}
+
+
 .energyicon-gif {
   position: absolute;
   left: 120px;

@@ -7,23 +7,26 @@
 
   angular
     .module('power-plant')
+    .service('consumerService', consumerService)
     .service('energyService', energyService);
+
+  function consumerService() {
+    this.consumerBeginNumber = 0;
+  }
 
 
   function energyService($log, $http, $q) {
     $log.info("START energyService!!");
-
-    var consumerBeginNumber = 0;
-
     return {
-      getConsumerBeginNumber: function() {
+
+      /*getConsumerBeginNumber: function() {
         return consumerBeginNumber;
       },
       setConsumerBeginNumber: function(data) {
         consumerBeginNumber = data;
         $log.debug('consumerBeginNumber:: ', consumerBeginNumber);
         return consumerBeginNumber;
-      },
+      },*/
 
 
       energyResources: function () {
