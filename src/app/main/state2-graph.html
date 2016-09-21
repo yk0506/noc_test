@@ -107,7 +107,9 @@
              class="consumer-img"/>
         <img src="../assets/images/sector2_image/building_img.png" ng-show="con.cons_division == 'B'"
              class="consumer-img"/>
-        <div class="factory-bg" ng-style="{height: con.building / con.dem_cbl}"></div>
+
+        <!--빌딩 게이지 가동률로 변경-->
+        <div class="factory-bg" ng-style="{height: con.operateRatio*335/100}"></div>
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>
