@@ -244,11 +244,13 @@
         function (resp) {
           vm.resourcesConsumers = resp.resourcesConsumers;
           for (var i=0; i<vm.resourcesConsumers.length; i++) {
-            // max target
-            vm.resourcesConsumers[i].negawattSum = parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt);
+            // CBL - (계약용량+추가용량)
+            vm.resourcesConsumers[i].maxTarget =
+              parseFloat(vm.resourcesConsumers[i].dem_cbl) - (parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt));
             // 가동률
             vm.resourcesConsumers[i].operateRatio =
-              ((parseFloat(vm.resourcesConsumers[i].dem_cbl) - parseFloat(vm.resourcesConsumers[i].dem_watt)) / vm.resourcesConsumers[i].negawattSum)*100;
+              ((parseFloat(vm.resourcesConsumers[i].dem_cbl) - parseFloat(vm.resourcesConsumers[i].dem_watt))
+              / vm.resourcesConsumers[i].maxTarget)*100;
 
             // resourcesConsumers
             vm.resourcesConsumers[i].building = (parseFloat(vm.resourcesConsumers[i].dem_watt)/parseFloat(vm.resourcesConsumers[i].dem_cbl))*100;

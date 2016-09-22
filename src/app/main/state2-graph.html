@@ -49,6 +49,7 @@
   <div class="state2-btn-dr" style="left: 3280px;top: 90px;">Slow DR</div>
 
 
+
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
@@ -69,7 +70,7 @@
       <span class="pt60 fffef2">{{main.currentCompanyNegawattSum}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
-    <!--수용가 repeat-->
+    <!--수용가 list repeat-->
     <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
@@ -85,14 +86,16 @@
       </div>
       <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
         <div ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber" style="">
-          <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 320px;"
-               ng-style="{width: con.operateRatio*320/100}"></div>
-          <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 320px;"></div>
-          <!--ng-style="{width: con.negawattSum/320 * 100}"-->
+
+          <div style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;" ng-show="con.operateRatio < 0"></div>
+          <div style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;" ng-show="con.operateRatio > -1"></div>
+
+          <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 310px;"
+               ng-style="{width: con.operateRatio*310/100}"></div>
+          <div style="background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 310px;"></div>
         </div>
       </div>
     </div>
-
 
     <div id="resource-graph" class="state2-graph" style="top: 320px;left: 987px;"></div>
 
@@ -113,28 +116,33 @@
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>
-          <div class="pt24 ff7e47">{{con.negaWatt}}<span class="pt16">kW</span></div>
+          <div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:292px;">
           <div class="pt14">현재부하</div>
           <div class="pt20 fffbcc">{{con.dem_watt}}<span class="pt16">kW</span></div>
         </div>
-        <div class="absolute" style="top:450px;">
+        <div class="absolute" style="top:430px;">
           <div class="pt14">MAX</div>
-          <div class="pt20">{{con.negawattSum}}<span class="pt16">kW</span></div>
+          <div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>
         </div>
+
         <div class="absolute" style="top:253px;left: 273px;z-index: 40;">
           <span class="pt14">CBL</span>
           <span class="pt20">{{con.dem_cbl}}<span class="pt16">kW</span></span>
         </div>
         <img src="../assets/images/sector2_image/factory_line.png"
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
+
         <div class="absolute" style="top:411px;left: 265px;z-index: 40;">
           <span class="pt14">TARGET</span>
-          <span class="pt20">{{con.cont_watt|number:0}}<span class="pt16">kW</span></span>
+          <span class="pt20">{{con.dem_cbl-con.cont_watt|number:0}}<span class="pt16">kW</span></span>
         </div>
+        <!--line:: 바닥부터 cbl라인까지 높이 208px-->
         <img src="../assets/images/sector2_image/factory_line2.png"
-             style="position: absolute;top: 442px;left: 50px;z-index: 40;"/>
+             style="position: absolute;left: 50px;z-index: 40;"
+             ng-style="{top: con.dem_cbl-con.cont_watt < '1' ? '493px' : '((con.dem_cbl-con.cont_watt)*100)/208'}"
+             /><!--origin top: 442px-->
 
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
@@ -154,9 +162,9 @@
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.dem_watt}}kW</div>
             <div class="pt16">{{con.dem_cbl}}kW</div>
-            <div class="pt16 c-66ffff">{{con.negaWatt}}kW</div>
-            <div class="pt16">{{con.cont_watt|number:0}}kW</div>
-            <div class="pt16 c-66ffff">{{con.negawattSum}}kW</div>
+            <div class="pt16 c-66ffff">{{con.con.dem_cbl-con.dem_watt|number:0}}kW</div>
+            <div class="pt16">{{con.dem_cbl-con.cont_watt|number:0}}kW</div>
+            <div class="pt16 c-66ffff">{{con.maxTarget|number:0}}kW</div>
           </div>
         </div>
 
@@ -168,6 +176,9 @@
 </div>
 
 <div class="sector2-map-go" ui-sref="state2"></div>
+
+<!--consumer minus line-->
+<div class="absolute" style="width: 0;height: 370px;top: 992px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>
 
 <state2-nav></state2-nav>
 <state2-nav2></state2-nav2>
