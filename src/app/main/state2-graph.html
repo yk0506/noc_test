@@ -54,7 +54,7 @@
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyResources.dem_negawatt|number:0}}</span>
+      <span class="pt60 fffef2">{{main.currentCompanyResources.dem_cbl-main.currentCompanyResources.dem_watt|number:0}}</span>
       <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
@@ -67,7 +67,7 @@
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyNegawattSum}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt60 fffef2">{{main.currentCompanyMax}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
@@ -112,7 +112,8 @@
              class="consumer-img"/>
 
         <!--빌딩 게이지 가동률로 변경-->
-        <div class="factory-bg" ng-style="{height: con.operateRatio*335/100}"></div>
+        <div class="factory-bg" ng-style="{height: (con.dem_watt/con.dem_cbl)*208}"></div>
+        <!--height: con.operateRatio*335/100-->
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>

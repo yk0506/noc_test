@@ -226,11 +226,10 @@
         function (resp) {
           vm.companiesResources = resp.companiesResources;
           vm.currentCompanyResources = vm.companiesResources[0]; //처음엔 0번째 자원
-          vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
-          $log.debug('currentCompanyNegawattSum:',vm.currentCompanyNegawattSum, 'dem_negawatt:',vm.currentCompanyResources.dem_negawatt);
-          vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyNegawattSum *100;
+          vm.currentCompanyMax = parseFloat(vm.companiesResources[0].dem_cbl) - (parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt));
+          // $log.debug('currentCompanyMax:',vm.currentCompanyMax, 'dem_negawatt:',vm.currentCompanyResources.dem_negawatt);
 
-          // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
+          vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyMax *100;
 
           $timeout(getCompaniesResources, 900000);
 
