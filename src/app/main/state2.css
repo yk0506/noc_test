@@ -111,6 +111,7 @@
   z-index: 20;
   left: 91px;
   bottom: 118px;
+  max-height: 330px;
 }
 
 .c3-tooltip td {

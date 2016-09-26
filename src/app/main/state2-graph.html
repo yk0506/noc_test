@@ -87,8 +87,8 @@
       <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
         <div ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber" style="">
 
-          <div style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;" ng-show="con.operateRatio < -1"></div>
-          <div style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;" ng-show="con.operateRatio >= -1"></div>
+          <div style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;" ng-show="con.operateRatio < -1"></div>
+          <div style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;" ng-show="con.operateRatio >= -1"></div>
 
           <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 310px;"
                ng-style="{width: con.operateRatio*310/100}"></div>
@@ -179,7 +179,7 @@
 <div class="sector2-map-go" ui-sref="state2"></div>
 
 <!--consumer minus line-->
-<div class="absolute" style="width: 0;height: 328px;top: 1011px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>
+<!--<div class="absolute" style="width: 0;height: 328px;top: 1011px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>-->
 
 <state2-nav></state2-nav>
 <state2-nav2></state2-nav2>
