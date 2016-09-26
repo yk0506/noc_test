@@ -126,9 +126,16 @@
           function (resp) {
             vm.companiesResources = resp.companiesResources;
             vm.currentCompanyResources = vm.companiesResources[0];
+
+            vm.currentWatt = ((parseFloat(vm.currentCompanyResources.dem_cbl) - parseFloat(vm.currentCompanyResources.dem_watt)) / parseFloat(vm.currentCompanyResources.dem_cbl)) * 100;
+            $log.debug('currentWatt:',vm.currentWatt);
+
+            vm.maxAvailable = ((parseFloat(vm.currentCompanyResources.cont_watt) + parseFloat(vm.currentCompanyResources.add_cont_watt))
+              / parseFloat(vm.currentCompanyResources.dem_cbl))*100;
+            $log.debug('maxA:',vm.maxAvailable);
+
             vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
             // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
-
 
             for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
               if (vm.currentCompanyResources.events[i].event_status == 'A') {

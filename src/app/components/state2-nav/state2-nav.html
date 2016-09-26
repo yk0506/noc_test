@@ -43,11 +43,14 @@
     <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;left: 187px;top: 883px;">현재 발전출력</div>
-  <img src="../assets/images/sector2_image/reduction.png" style="left:207px;top: 900px;position: absolute;" />
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.currentWatt*1.8 + 95}">현재 발전출력</div>
+  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:vm.currentWatt*1.8 + 116}" />
 
-  <div style="width: 130px;background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;"></div>
-  <div style="width: 50px;background-color: #fffbcc;height: 7px;left:255px;top: 916px;position: absolute;"></div>
+  <!--all: 180px-->
+  <div style="background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;"
+       ng-style="{width: vm.maxAvailable*0.18}"></div>
+  <div style="background-color: #fffbcc;height: 7px;top: 916px;position: absolute;"
+       ng-style="{width: 180 - (vm.maxAvailable*0.18), left:124 + (vm.maxAvailable*0.18)}"></div>
 
   <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">현재 최대 발전가능출력</div>
   <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">발전용량</div>
