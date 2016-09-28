@@ -6,9 +6,13 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $rootScope, $scope) {
+  function MainController($log, $timeout, energyService, c3, $rootScope, $scope, computedService) {
     var vm = this;
     vm._ = _;
+
+    computedService.then(function(result) {
+      $log.info('computedResult:: ', result);
+    });
 
     vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
