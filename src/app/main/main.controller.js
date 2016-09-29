@@ -293,6 +293,22 @@
 
             // resourcesConsumers
             vm.resourcesConsumers[i].building = (parseFloat(vm.resourcesConsumers[i].dem_watt)/parseFloat(vm.resourcesConsumers[i].dem_cbl))*100;
+
+
+            vm.resourcesConsumers[i].target = vm.resourcesConsumers[i].dem_cbl - vm.resourcesConsumers[i].cont_watt;
+
+            if (vm.resourcesConsumers[i].target == 0) {
+              vm.resourcesConsumers[i].line2 = 493; //target 0%
+            } else if (vm.resourcesConsumers[i].target > 0) {
+              if (vm.resourcesConsumers[i].target == vm.resourcesConsumers[i].dem_cbl) { // target 100%
+                vm.resourcesConsumers[i].line2 = 285;
+              } else if (vm.resourcesConsumers[i].target < vm.resourcesConsumers[i].dem_cbl) { // target 1 ~ 99%
+                vm.resourcesConsumers[i].line2 = 493 - (((vm.resourcesConsumers[i].target/vm.resourcesConsumers[i].dem_cbl) * 100) * 2.08);
+              }
+            } else {
+              vm.resourcesConsumers[i].line2 = 207;
+            }
+
           }
 
           $timeout(getResourcesConsumers, 900000);
