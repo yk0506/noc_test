@@ -163,30 +163,24 @@
         var dem_watt = parseFloat(resources.dem_watt),
           dem_cbl = parseFloat(resources.dem_cbl),
           cont_watt = parseFloat(resources.cont_watt),
-          add_cont_watt = parseFloat(resources.add_cont_watt),
-          dem_negawatt = parseFloat(resources.dem_negawatt),
-          target = dem_cbl - cont_watt, status = false;
+          // add_cont_watt = parseFloat(resources.add_cont_watt),
+          // dem_negawatt = parseFloat(resources.dem_negawatt),
+          target = dem_cbl - cont_watt, status = false, code;
 
-        if (resources.social_status) status = true; // 8
-        if (dem_watt == 0) deferred.resolve({code: "MAX", status: status}); // 9
+        if (resources.social_status) status = true; // status check
+
+        if (dem_watt == 0) deferred.resolve({code: "MAX", status: status}); // dem_watt check
 
         if (dem_watt > dem_cbl) {
-          if (dem_watt > target) {
-            deferred.resolve({code: "FAIL", status: status}); // 1
-          } else {
-            deferred.resolve({code: "CRITICAL", status: status}); // 2
-          }
+          (dem_watt > target) ? code = "FAIL" : code = "CRITICAL";
         } else if (dem_watt == dem_cbl) {
-          deferred.resolve({code: "ZERO balance", status: status}); // 3
+          code = "ZERO balance";
         } else {
-          if(dem_watt < target) {
-            deferred.resolve({code: "MIN", status: status});
-          } else if(dem_watt == target) {
-            deferred.resolve({code: "TARGET NORMAL", status: status});
-          } else {
-            deferred.resolve({code: "TARGET HIGH", status: status});
-          }
+          (dem_watt < target) ? code = "MIN" : ((dem_watt == target) ? code = "TARGET NORMAL" : code = "TARGET HIGH");
         }
+
+        deferred.resolve({code: code, status: status});
+
       }, function (err) {
         deferred.reject(err);
       });
