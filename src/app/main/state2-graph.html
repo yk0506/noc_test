@@ -49,12 +49,12 @@
   <div class="state2-btn-dr" style="left: 3280px;top: 90px;">Slow DR</div>
 
 
-
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyResources.dem_cbl-main.currentCompanyResources.dem_watt|number:0}}</span>
+      <span
+        class="pt60 fffef2">{{main.currentCompanyResources.dem_cbl-main.currentCompanyResources.dem_watt|number:0}}</span>
       <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
@@ -64,6 +64,9 @@
       <span class="watt-off">Megawatt Mode</span><br/>
       <span class="watt-on">Negawatt Mode</span>
     </div>
+
+    <img src="../assets/images/sector2_image/high_line.png" style="position: absolute;left: 454px;top: 522px;" ng-show="main.gageCurrentDevelop == 270" />
+    <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="main.gageCurrentDevelop == 270" />
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
@@ -87,8 +90,12 @@
       <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
         <div ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber" style="">
 
-          <div style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;" ng-show="con.operateRatio < -1"></div>
-          <div style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;" ng-show="con.operateRatio >= -1"></div>
+          <div
+            style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"
+            ng-show="con.operateRatio < -1"></div>
+          <div
+            style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"
+            ng-show="con.operateRatio >= -1"></div>
 
           <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 310px;"
                ng-style="{width: con.operateRatio*310/100}"></div>
@@ -101,7 +108,8 @@
 
     <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
       <!--each-->
-      <div class="bfffff graph-section-each" ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber">
+      <div class="bfffff graph-section-each"
+           ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber">
         <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.cons_name}}</div>
         <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{main.currentTime}}</span>
         </div>
@@ -143,7 +151,7 @@
         <img src="../assets/images/sector2_image/factory_line2.png"
              style="position: absolute;left: 50px;z-index: 40;"
              ng-style="{top: con.dem_cbl-con.cont_watt < '1' ? '493px' : '((con.dem_cbl-con.cont_watt)*100)/208'}"
-             /><!--origin top: 442px-->
+        /><!--origin top: 442px-->
 
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">

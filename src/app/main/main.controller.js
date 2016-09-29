@@ -12,6 +12,42 @@
 
     computedService.then(function(result) {
       $log.info('computedResult:: ', result);
+
+      if(result.status == false) {
+        switch(result.code) {
+          case 'FAIL':
+            vm.gageCurrentDevelop = 0;
+            break;
+          case 'CRITICAL':
+            vm.gageCurrentDevelop = 45;
+            break;
+          case 'CRITICALZEROBALANCE':
+            vm.gageCurrentDevelop = 67.5;
+            break;
+          case 'ZERO balance':
+            vm.gageCurrentDevelop = 90;
+            break;
+          case 'MIN':
+            vm.gageCurrentDevelop = 45;
+            break;
+          case 'TARGET NORMAL':
+            vm.gageCurrentDevelop = 45;
+            break;
+          case 'TARGET HIGH':
+            vm.gageCurrentDevelop = 45;
+            break;
+          case 'MAX':
+            vm.gageCurrentDevelop = 45;
+            break;
+          default:
+            vm.gageCurrentDevelop = 0;
+        }
+      } else {
+        vm.gageCurrentDevelop = 270;
+      }
+
+
+
     });
 
     vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
@@ -233,7 +269,7 @@
           vm.currentCompanyMax = parseFloat(vm.companiesResources[0].dem_cbl) - (parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt));
           // $log.debug('currentCompanyMax:',vm.currentCompanyMax, 'dem_negawatt:',vm.currentCompanyResources.dem_negawatt);
 
-          vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyMax *100;
+          // vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyMax *100;
 
           $timeout(getCompaniesResources, 900000);
 
