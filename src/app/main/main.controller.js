@@ -6,7 +6,7 @@
     .controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $rootScope, $scope, computedService) {
+  function MainController($log, $timeout, energyService, c3, $scope, computedService) {
     var vm = this;
     vm._ = _;
 
