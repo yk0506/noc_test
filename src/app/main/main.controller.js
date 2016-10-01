@@ -306,7 +306,7 @@
                 vm.resourcesConsumers[i].line2 = 493 - (((vm.resourcesConsumers[i].target/vm.resourcesConsumers[i].dem_cbl) * 100) * 2.08);
               }
             } else {
-              vm.resourcesConsumers[i].line2 = 207;
+              vm.resourcesConsumers[i].line2 = 493;
             }
 
           }
