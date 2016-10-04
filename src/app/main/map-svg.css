@@ -1,0 +1,37 @@
+.zoomContainer {
+  margin:0;
+  padding:0;
+  width:800px;
+  height:600px;
+  position:relative;
+}
+.zoomViewport {
+  margin:0;
+  padding:0;
+  width:800px;
+  height:600px;
+  border:1px solid #ccc;
+  background-color: white;
+  overflow:hidden;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:1em;
+}
+.zoomContainer .zoomTarget {
+  background-color: white;
+  border: 1px solid #EAEAEA;
+  width:137px;
+  height:50px;
+  margin:10px;
+  padding:20px;
+  float:left;
+}
+.st0{clip-path:url(#SVGID_2_);}
+.st1{fill:#80FFFF;stroke:#BFFFFF;stroke-width:3.5;}
+.st2{fill:#86BFBF;stroke:#BFFFFF;stroke-width:3.5;}
+.st3{fill:#2E3C40;stroke:#BFFFFF;stroke-width:3.5;}
+.st4{opacity:0.98;fill:#2E3C40;stroke:#BFFFFF;stroke-width:3.5;enable-background:new;}
+
+.state2-map-svg {
+  position: absolute;left: 798px;top: 68px;width: 2600px;height: 1800px;
+}
