@@ -24,10 +24,10 @@
 .zoomTarget-seoul {
   position: absolute;
   z-index: 30;
-  width: 600px;
-  height: 500px;
-  left: 1200px;
-  top: 750px;
+  width: 400px;
+  height: 400px;
+  left: 1300px;
+  top: 770px;
 
   line-height: 500px;
   text-align: center;
