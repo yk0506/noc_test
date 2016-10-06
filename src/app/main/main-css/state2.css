@@ -1,5 +1,5 @@
 .sector2-img {
-  background: url("/../assets/images/companywe_sector2.png");
+  background: url("/images/companywe_sector2.png");
   width: 3840px;
   height: 2160px;
   position: absolute;
@@ -18,7 +18,7 @@
 }
 
 .sector2-1-img {
-  background: url("/../assets/images/companywe_sector2-1.png");
+  background: url("/images/companywe_sector2-1.png");
   width: 3840px;
   height: 2160px;
   position: absolute;
@@ -46,14 +46,14 @@
   position: absolute;
   font-size: 14px;
   color: #80ffff;
-  background: url("/../assets/images/sector2_image/watt_on.png") no-repeat;
+  background: url("/images/sector2_image/watt_on.png") no-repeat;
   text-indent: 20px;
 }
 .watt-off {
   position: absolute;
   font-size: 14px;
   color: #2e3c50;
-  background: url("/../assets/images/sector2_image/watt_off.png") no-repeat;
+  background: url("/images/sector2_image/watt_off.png") no-repeat;
   text-indent: 20px;
 }
 

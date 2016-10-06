@@ -20,9 +20,21 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
-      .state('state2-1', {
+      .state('state2-1', { //DR
         url: '/state2-1',
-        templateUrl: 'app/main/state2-graph.html',
+        templateUrl: 'app/main/state2-dr.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
+      .state('state2-2', { //ESS
+        url: '/state2-2',
+        templateUrl: 'app/main/state2-ess.html',
+        controller: 'MainController',
+        controllerAs: 'main'
+      })
+      .state('state2-3', { //solar
+        url: '/state2-3',
+        templateUrl: 'app/main/state2-solar.html',
         controller: 'MainController',
         controllerAs: 'main'
       })
