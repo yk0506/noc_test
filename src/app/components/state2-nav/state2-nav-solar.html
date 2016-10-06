@@ -3,8 +3,8 @@
 
 <div class="sector2-nav1">
   <img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite" />
-  <div class="absolute bfffff pt24" style="left: 123px;top: 276px;">R3
-    <span class="c-86bfbf pt38">수요자원</span>
+  <div class="absolute bfffff pt24" style="left: 123px;top: 276px;">R2
+    <span class="c-86bfbf pt38">Solar</span>
   </div>
 
   <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">발전중</div>
@@ -55,7 +55,7 @@
   <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">현재 최대 발전가능출력</div>
   <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">발전용량</div>
 
-  <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">감축이행율 <span class="pt18">%</span></div>
+  <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">태양광발전율 <span class="pt18">%</span></div>
 
   <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
     <tr>
@@ -63,15 +63,15 @@
       <td>{{vm.currentCompanyResources.cont_watt|number:0}}</td>
     </tr>
     <tr>
-      <td>CBL</td>
+      <td>예측</td>
       <td>{{vm.currentCompanyResources.dem_cbl|number:0}}</td>
     </tr>
     <tr>
-      <td>부하</td>
+      <td>발전</td>
       <td>{{vm.currentCompanyResources.dem_watt|number:0}}</td>
     </tr>
     <tr>
-      <td>발전</td>
+      <td>송전</td>
       <td>{{vm.currentCompanyResources.dem_negawatt|number:0}}</td>
     </tr>
   </table>
@@ -82,7 +82,7 @@
 
   <div class="pt24 ff7e47 absolute" style="left: 300px;top: 1035px;">발전중</div>
   <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">대기</div>
-  <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">탈락</div>
+  <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">유지보수</div>
 
   <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.consumersStatus.success_cont}}</div>
   <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.consumersStatus.warning_cont}}</div>
