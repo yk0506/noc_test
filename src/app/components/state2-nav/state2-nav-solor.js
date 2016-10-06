@@ -28,7 +28,9 @@
 
     return directive;
 
-    /** @ngInject */
+    /*
+     * 화면 좌측 전체
+     */
     function state2NavController(moment, $interval, $state, energyService, $timeout, $log, $http) {
       var vm = this;
       vm.currentState = $state.current.name;
@@ -55,8 +57,6 @@
             api_key: 'smartgrid'
           }
         }).then(function(resp) {
-          $log.info('# solar miniBarChart data : ', resp.data);
-
           vm.energyResources = resp.data.data;
 
           var watt = [];
@@ -224,6 +224,10 @@
     }
   }
 
+
+  /*
+   * 화면 우측 전체
+   */
   function state2Nav2Solar() {
     var directive = {
       restrict: 'E',
@@ -241,7 +245,6 @@
     /** @ngInject */
     function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope) {
       var vm = this;
-      $log.log('state2Nav2Controller!');
 
       vm.currentState = $state.current.name;
 
