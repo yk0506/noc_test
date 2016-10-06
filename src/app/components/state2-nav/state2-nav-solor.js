@@ -165,7 +165,6 @@
       }
 
 
-
       /*
        * 오늘 발전 계획(좌측하단 미니 막대그래프)
        */
@@ -243,7 +242,7 @@
     return directive;
 
     /** @ngInject */
-    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope) {
+    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope, $http) {
       var vm = this;
 
       vm.currentState = $state.current.name;
@@ -251,36 +250,82 @@
 
       getResourcesConsumers();
       function getResourcesConsumers() {
-        energyService.resourcesConsumers().then(
-          function (resp) {
-            vm.resourcesConsumers = resp.resourcesConsumers;
 
-            vm.currentPage = 1;
-            if (vm.resourcesConsumers.length%6 != 0) {
-              vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
-            } else if(vm.resourcesConsumers.length%6 == 0) {
-              vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
-            }
-
-            $timeout(getResourcesConsumers, 900000);
-
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/noc/solar/resources/5/consumers',
+          headers: {
+            api_key: 'smartgrid'
           }
-        )
+        }).then(function(resp) {
+          vm.resourcesConsumers = resp.data.list;
+
+          vm.currentPage = 1;
+          if (vm.resourcesConsumers.length%6 != 0) {
+            vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
+          } else if(vm.resourcesConsumers.length%6 == 0) {
+            vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
+          }
+
+          vm.existPrevPage = false;
+          vm.existNextPage = false;
+
+          if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
+
+          buttonCtrl();
+
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
+
+        $timeout(getResourcesConsumers, 900000);
+      }
+
+      //페이지 이동버튼 켜고 끄기
+      function buttonOnOff(direction, onOff){
+        $(".sector2-button" + direction).css("background-image", 'url("/../assets/images/sector2_image/'+ direction +'_'+ (onOff ? 'on' : 'off') +'.png")');
+      }
+
+      //페이지 이동버튼 컨트롤
+      function buttonCtrl(){
+        if(vm.existPrevPage){
+          buttonOnOff("L", true);
+        }else{
+          buttonOnOff("L", false);
+        }
+
+        if(vm.existNextPage){
+          buttonOnOff("R", true);
+        }else{
+          buttonOnOff("R", false);
+        }
       }
 
       vm.consumerBeginNumber = 0;
 
       vm.clickedR = function () {
-        if (vm.currentPage < vm.consumerPageNum) { //다음 페이지가 있음
+        if (vm.currentPage < vm.consumerPageNum) {  //다음 페이지가 있음
           vm.consumerBeginNumber = vm.consumerBeginNumber+6;
           vm.currentPage = vm.currentPage+1;
           $rootScope.$broadcast('consumerBeginNumber-changedR', {
             consumerBeginNumber: vm.consumerBeginNumber
           });
+
+          if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
+            vm.existPrevPage = true;
+            vm.existNextPage = true;
+          }else{
+            vm.existPrevPage = true;
+            vm.existNextPage = false;
+          }
+
         } else if (vm.currentPage == vm.consumerPageNum) { //없음
           //alert
           alert('last page!!');
         }
+
+        buttonCtrl();
+
       };
 
       vm.clickedL = function () {
@@ -290,10 +335,21 @@
           $rootScope.$broadcast('consumerBeginNumber-changedL', {
             consumerBeginNumber: vm.consumerBeginNumber
           });
+
+          if(vm.currentPage > 1){  //또 이전 페이지가 있음
+            vm.existPrevPage = true;
+            vm.existNextPage = true;
+          }else{
+            vm.existPrevPage = false;
+            vm.existNextPage = true;
+          }
+
         } else if (vm.currentPage == 1) { //없음
           //alert
           alert('first page!!');
         }
+
+        buttonCtrl();
       };
 
     }
