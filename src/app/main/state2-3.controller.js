@@ -18,7 +18,7 @@
       // at debugging when zoomooz positioning fails
       debug: false,
       // this specifies, that clicking an element that is zoomed to zooms
-      // back out
+      // back out1234
       closeclick: true
     };
 
