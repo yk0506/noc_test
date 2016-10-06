@@ -28,31 +28,27 @@
     vm.zoomMap = function (site) {
       switch (site) {
         case 'seoul':
-          $('#mapselect').append("<div class='animated fadeIn zoomMap'>" +
-            "<img src='/assets/images/map/map-seoul.png' ng-click='main.zoomoutMap()' /></div>");
+          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-seoul.png' ng-click='main.zoomoutMap()' /></div>");
               break;
 
         case 'ansan':
-          $('#mapselect').append("<div class='animated fadeIn zoomMap'>" +
-            "<img src='/assets/images/map/map-ansan.png' ng-click='main.zoomoutMap()' /></div>");
+          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-ansan.png' ng-click='main.zoomoutMap()' /></div>");
           break;
 
         case 'bucheon':
-          $('#mapselect').append("<div class='animated fadeIn zoomMap'>" +
-            "<img src='/assets/images/map/map-bucheon.png' ng-click='main.zoomoutMap()' /></div>");
+          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-bucheon.png' ng-click='main.zoomoutMap()' /></div>");
           break;
 
         case 'incheon':
-          $('#mapselect').append("<div class='animated fadeIn zoomMap'>" +
-            "<img src='/assets/images/map/map-incheon.png' ng-click='main.zoomoutMap()' /></div>");
+          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-incheon.png' ng-click='main.zoomoutMap()' /></div>");
           break;
 
       }
-    };
 
-    vm.zoomoutMap = function () {
-      $log.debug('remove');
-      $('.zoomMap').remove();
+      $('#mapselect').children('img').on('click', function(e) {
+        console.log(this);
+        this.remove();
+      })
     };
 
 
