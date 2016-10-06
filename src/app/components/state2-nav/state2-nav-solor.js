@@ -1,7 +1,10 @@
 /**
- * Created by rachel.yang on 2016. 6. 30..
+ * @description : state2-3 태양광 발전 상세 화면. 좌측 부분
+ * @author : Tim
+ * @date : 2016. 5. 19.
+ * @param urlList
+ * @return
  */
-
 (function() {
   'use strict';
 
@@ -26,7 +29,7 @@
     return directive;
 
     /** @ngInject */
-    function state2NavController(moment, $interval, $state, energyService, $timeout, $log) {
+    function state2NavController(moment, $interval, $state, energyService, $timeout, $log, $http) {
       var vm = this;
       vm.currentState = $state.current.name;
 
@@ -40,102 +43,113 @@
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
 
-      getEnergyResources();
-      function getEnergyResources() {
-        energyService.energyResources().then(
-          function (resp) {
-            vm.energyResources = resp.energyResources;
+      /*
+       * 좌측 상단 미니 막대차트 8개
+       */
+      miniBarChart();
+      function miniBarChart(){
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/noc/solar/energy/5',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function(resp) {
+          $log.info('# solar miniBarChart data : ', resp.data);
 
-            // var cbl = ['cbl'];
-            var watt = [];
-            vm.currentXtime = [];
+          vm.energyResources = resp.data.data;
 
-            for (var i=0; i<vm.energyResources.length; i++) {
-              if(vm.energyResources[i].dem_watt != null){
-                watt.push(parseInt(vm.energyResources[i].dem_watt));
-                vm.currentXtime.push(vm.energyResources[i].dem_date);
-              }
+          var watt = [];
+          vm.currentXtime = [];
+
+          for (var i=0; i<vm.energyResources.length; i++) {
+            if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
+              watt.push(parseInt(vm.energyResources[i].dem_watt));
+              vm.currentXtime.push(vm.energyResources[i].dem_date);
             }
-            watt = watt.splice(watt.length-8, 8);
-            vm.currentXtime = vm.currentXtime.splice(vm.currentXtime.length-8, 8); //최근 8개 시간만
+          }
+          watt = watt.splice(watt.length-8, 8);
+          vm.currentXtime = vm.currentXtime.splice(vm.currentXtime.length-8, 8); //최근 8개 시간만
 
-            var watt8 = ['전력량'];
-            watt8 = watt8.concat(watt);
-            var currentXtime8 = ['x'];
-            currentXtime8 = currentXtime8.concat(vm.currentXtime);
+          var watt8 = ['전력량'];
+          watt8 = watt8.concat(watt);
+          var currentXtime8 = ['x'];
+          currentXtime8 = currentXtime8.concat(vm.currentXtime);
 
-            var chartbar1 = c3.generate({
-              bindto: '#chartbar1',
-              data: {
-                x: 'x',
-                columns: [
-                  currentXtime8, watt8
-                  /*['x', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00'],
-                  ['data1', 2, 2, 30, 30, 34, 45, 80, 80]*/
-                ],
-                type: 'bar'
-              },
-              bar: {
-                width: 10 // this makes bar width 100px
-              },
-              size: {
-                width: 300,
-                height: 120
-              },
-              color: {
-                pattern: ['#bfffff']
-              },
-              legend: {
+          var chartbar1 = c3.generate({
+            bindto: '#chartbar1',
+            data: {
+              x: 'x',
+              columns: [
+                currentXtime8, watt8
+              ],
+              type: 'bar'
+            },
+            bar: {
+              width: 10 // this makes bar width 100px
+            },
+            size: {
+              width: 300,
+              height: 120
+            },
+            color: {
+              pattern: ['#bfffff']
+            },
+            legend: {
+              show: false
+            },
+            axis: {
+              x: {
+                type: 'categories',
+                tick: {
+                  rotate: 90
+                },
                 show: false
               },
-              axis: {
-                x: {
-                  type: 'categories',
-                  tick: {
-                    rotate: 90
-                  },
-                  show: false
-                },
-                y: {
-                  show: false
-                }
+              y: {
+                show: false
               }
-            });
+            }
+          });
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
 
-            $timeout(getEnergyResources, 900000);
-
-          }
-        )
+         $timeout(miniBarChart, 900000);
       }
 
 
-      getConsumersStatus();
-      function getConsumersStatus() {
-        energyService.consumersStatus().then(
-          function (resp) {
-            vm.consumersStatus = resp.consumersStatus[0];
-            $timeout(getConsumersStatus, 900000);
-          }
-        )
-      }
-
-
+      /*
+       * 태양광발전율, 목표, 예측, 발전, 송전
+       */
       getCompaniesResources();
       function getCompaniesResources() {
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/noc/solar/vision/5',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function(resp) {
+
+          vm.solarDemandData = resp.data.list;
+
+          vm.maxAvailable = 180 * vm.solarDemandData.goal / vm.solarDemandData.max_limit;
+          vm.currentWatt = vm.solarDemandData.nega_watt * 100 / vm.solarDemandData.max_limit;
+
+          vm.currentCompanyNegawattSum = vm.solarDemandData.nega_watt;
+
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
+
+        /*
+         * 급전지시, RESOURCE POOL, COMMUNICATION ZONE
+         */
         energyService.companiesResources().then(
           function (resp) {
             vm.companiesResources = resp.companiesResources;
             vm.currentCompanyResources = vm.companiesResources[0];
-
-            vm.currentWatt = ((parseFloat(vm.currentCompanyResources.dem_cbl) - parseFloat(vm.currentCompanyResources.dem_watt)) / parseFloat(vm.currentCompanyResources.dem_cbl)) * 100;
-            $log.debug('currentWatt:',vm.currentWatt);
-
-            vm.maxAvailable = ((parseFloat(vm.currentCompanyResources.cont_watt) + parseFloat(vm.currentCompanyResources.add_cont_watt))
-              / parseFloat(vm.currentCompanyResources.dem_cbl))*100;
-            $log.debug('maxA:',vm.maxAvailable);
-
-            vm.currentCompanyNegawattSum = parseFloat(vm.companiesResources[0].cont_watt) + parseFloat(vm.companiesResources[0].add_cont_watt);
-            // $log.debug("vm.currentCompanyNegawattSum: ", vm.currentCompanyNegawattSum);
 
             for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
               if (vm.currentCompanyResources.events[i].event_status == 'A') {
@@ -144,17 +158,17 @@
                 vm.emargencyEndtime = moment(vm.currentCompanyResources.event_start).add(vm.currentCompanyResources.events[i].event_duration, 'h').format('hh:mm');
               }
             }
-
-            // vm.emergencyStartime = moment(vm.currentCompanyResources.cont_start_date).format('hh:mm');
-            // vm.emargencyEndtime = moment(vm.currentCompanyResources.cont_start_date).add(vm.currentCompanyResources.cont_duration, 'h').format('hh:mm');
-
-            $timeout(getCompaniesResources, 900000);
-
           }
-        )
+        );
+
+        $timeout(getCompaniesResources, 900000);
       }
 
 
+
+      /*
+       * 오늘 발전 계획(좌측하단 미니 막대그래프)
+       */
       getDevelopPlan();
       function getDevelopPlan() {
         energyService.developPlan().then(
@@ -207,9 +221,6 @@
           }
         )
       }
-
-
-
     }
   }
 
