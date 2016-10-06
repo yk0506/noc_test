@@ -12,6 +12,7 @@
 .g-incheon {fill: #80FFFF;stroke:#BFFFFF;stroke-width:3.5;}
 .g-seoungnam {fill: #80FFFF;stroke:#BFFFFF;stroke-width:3.5;}
 .g-ansan {fill: #80FFFF;stroke:#BFFFFF;stroke-width:3.5;}
+.g-bucheon {fill: #80FFFF;stroke:#BFFFFF;stroke-width:3.5;}
 
 .state2-map-svg {
   position: absolute;
@@ -27,22 +28,26 @@
   height: 500px;
   left: 1200px;
   top: 750px;
+
+  line-height: 500px;
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
 }
 .zoomTarget-incheon {
   position: absolute;
   z-index: 30;
-  width: 600px;
-  height: 600px;
-  left: 660px;
-  top: 650px;
-}
-.zoomTarget-seoungnam {
-  position: absolute;
-  z-index: 30;
-  width: 250px;
-  height: 300px;
-  left: 1500px;
-  top: 1050px;
+  width: 220px;
+  height: 400px;
+  left: 1020px;
+  top: 850px;
+
+  line-height: 400px;
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
 }
 .zoomTarget-ansan {
   position: absolute;
@@ -51,4 +56,28 @@
   height: 200px;
   left: 1180px;
   top: 1220px;
+
+  line-height: 200px;
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
 }
+.zoomTarget-bucheon {
+  position: absolute;
+  z-index: 30;
+  width: 120px;
+  height: 140px;
+  left: 1200px;
+  top: 980px;
+
+  line-height: 140px;
+  text-align: center;
+  align-items: center;
+  font-size: 30px;
+  color: black;
+}
+
+
+.zoomMap {width: 2712px;height: 2160px;position: absolute;z-index: 40;}
+.zoomMap img {width: 2712px;height: 2160px;}
