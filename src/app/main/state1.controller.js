@@ -36,37 +36,48 @@
     }
 
 
+    $scope.essSmallRotate = calcSmallRotate(180);
+    $scope.essLargeRotate = calcLargeRotate(1);
 
+//    $scope.solarSmallRotate = calcSmallRotate(150);
+//    $scope.solarLargeRotate = calcSmallRotate(2);
+//
+//    $scope.drSmallRotate = calcSmallRotate(270);
+//    $scope.drLargeRotate = calcSmallRotate(3);
 
-
-
-
-
-    calcSmallRotate(270);
     // 가용량
     // 0 이면 12 부터 시작, +30 -> 한 칸 증가
     function calcSmallRotate(degree) {
+
+      var result;
+
       if(degree < 180 || degree == 360) {
-        $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '44px' , 'top': '128px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '44px' , 'top': '128px'};
       } else if (degree >= 180) {
-        $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '48px' , 'top': '130px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '48px' , 'top': '130px'};
       }
+
+      return result;
     }
 
-    calcLargeRotate(4);
     // 현재 출력
     function calcLargeRotate(flag) {
+
+      var result;
+
       if(flag == 0) {
-        $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '696px' , 'top': '129px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '696px' , 'top': '129px'};
       } else if (flag == 1) {
-        $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '693px' , 'top': '131px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '693px' , 'top': '131px'};
       } else if (flag == 2) {
-        $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '693px' , 'top': '129px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '693px' , 'top': '129px'};
       } else if (flag == 3) {
-        $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '693px' , 'top': '127px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '693px' , 'top': '127px'};
       } else if (flag == 4) {
-        $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '696px' , 'top': '127px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '696px' , 'top': '127px'};
       }
+
+      return result;
     }
 
 
