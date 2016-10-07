@@ -228,7 +228,7 @@
     return directive;
 
     /** @ngInject */
-    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope) {
+    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope, utilService) {
       var vm = this;
       $log.log('state2Nav2Controller!');
 
@@ -248,6 +248,15 @@
               vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
             }
 
+            // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+            vm.existPrevPage = false;
+            vm.existNextPage = false;
+
+            if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
+
+            utilService.buttonCtrl(vm);
+            //Tim
+
             $timeout(getResourcesConsumers, 900000);
 
           }
@@ -263,10 +272,24 @@
           $rootScope.$broadcast('consumerBeginNumber-changedR', {
             consumerBeginNumber: vm.consumerBeginNumber
           });
+
+          // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+          if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
+            vm.existPrevPage = true;
+            vm.existNextPage = true;
+          }else{
+            vm.existPrevPage = true;
+            vm.existNextPage = false;
+          }
+          //Tim
+
         } else if (vm.currentPage == vm.consumerPageNum) { //없음
           //alert
           alert('last page!!');
         }
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        utilService.buttonCtrl(vm);
       };
 
       vm.clickedL = function () {
@@ -276,10 +299,24 @@
           $rootScope.$broadcast('consumerBeginNumber-changedL', {
             consumerBeginNumber: vm.consumerBeginNumber
           });
+
+          // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+          if(vm.currentPage > 1){  //또 이전 페이지가 있음
+            vm.existPrevPage = true;
+            vm.existNextPage = true;
+          }else{
+            vm.existPrevPage = false;
+            vm.existNextPage = true;
+          }
+          //Tim
+
         } else if (vm.currentPage == 1) { //없음
           //alert
           alert('first page!!');
         }
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        utilService.buttonCtrl(vm);
       };
 
     }

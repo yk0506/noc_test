@@ -29,6 +29,9 @@
         //중앙 원형 그래프 %
         vm.gageCurrentDevelop = vm.solarDemandData.nega_watt_rate;
 
+
+
+
       }, function errorCallback(response) {
         $log.debug('ERRORS:: ', response);
       });

@@ -16,15 +16,15 @@
 
   <div class="part2-measure">
     <span class="pt26 bfffff" style="margin-right: 517px;">가용량 <span class="pt16 bfffff">MWh</span></span>
-    <img src="../../../assets/images/icon2.png"  ng-style="calcSmallRotate;"/>
+    <img src="../../../assets/images/icon2.png"  ng-style="essSmallRotate;"/>
     <span class="pt26 bfffff">현재출력 <span class="pt16 bfffff">MW</span></span>
-    <img src="../../../assets/images/icon2.png" ng-style="calcLargeRotate;"/>
+    <img src="../../../assets/images/icon2.png" ng-style="essLargeRotate;"/>
   </div>
 
   <div class="part2-current-value">
     <span class="pt26 bfffff" style="margin-right: 40px;">출력</span>
-    <span class="pt62 fffef2">540</span>
-    <span class="pt26 fffef2">kW</span>
+    <span class="pt62 fffef2">{{state1.apiData.sector2.generator}}</span>
+    <span class="pt26 fffef2">MW</span>
   </div>
 
   <!---->
@@ -39,20 +39,20 @@
   </div>
   <div class="part2-gage-left2 pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff"><span>4.8 MWh</span></div>
-      <div class="c-66ffff"><span>2.3 MWh</span></div>
-      <div class="bfffff"><span>2.0 MWh</span></div>
-      <div class="c-66ffff"><span>41.6 %</span></div>
+      <div class="bfffff"><span>{{state1.apiData.sector2.holding_acc}} MWh</span></div>
+      <div class="c-66ffff"><span>{{state1.apiData.sector2.meter_acc}} MWh</span></div>
+      <div class="bfffff"><span>{{state1.apiData.sector2.rest_meter_acc}} MWh</span></div>
+      <div class="c-66ffff"><span>{{state1.apiData.sector2.rest_meter_rate}} %</span></div>
     </div>
     <div class="bfffff"><span>6</span></div>
   </div>
 
   <div class="part2-gage-right pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff">2.0 MW</div>
-      <div class="c-66ffff">0.54 MW</div>
-      <div class="bfffff">187 분</div>
-      <div class="c-66ffff">27 %</div>
+      <div class="bfffff">{{state1.apiData.sector2.max_generator_limit}} MW</div>
+      <div class="c-66ffff">{{state1.apiData.sector2.generator}} MW</div>
+      <div class="bfffff">{{state1.apiData.sector2.rest_generator_minutes}} 분</div>
+      <div class="c-66ffff">{{state1.apiData.sector2.ess_oper_rate}} %</div>
     </div>
     <div class="bfffff">6</div>
   </div>
@@ -74,7 +74,7 @@
 
   <div class="part2-box pt26">
     <span class="bfffff" style="margin-right: 40px;">현재가동율</span>
-    <span class="ff7e47">41.6 %</span>
+    <span class="ff7e47">{{state1.apiData.sector2.ess_oper_rate}} %</span>
   </div>
 
   <div class="part2-table pt16 bfffff">

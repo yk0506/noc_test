@@ -75,7 +75,8 @@
 
         $http({
           method: 'GET',
-          url: 'http://api.ourwatt.com/nvpp/resources/5/consumers',
+          //url: 'http://api.ourwatt.com/nvpp/resources/5/consumers',
+          url: 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers',  //Tim 수정 DR 수용가들만 나오도록 API 변경
           headers: {
             api_key: 'smartgrid'
           }
@@ -149,7 +150,8 @@
 
     var consumers = $http({
       method: 'GET',
-      url: 'http://api.ourwatt.com/nvpp/resources/5/consumers',
+      //url: 'http://api.ourwatt.com/nvpp/resources/5/consumers',
+      url: 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers',  //Tim 수정 DR 수용가들만 나오도록 API 변경
       headers: {
         api_key: 'smartgrid'
       }

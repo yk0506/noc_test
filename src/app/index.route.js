@@ -11,8 +11,8 @@
       .state('state1', {
         url: '/',
         templateUrl: 'app/main/state1.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+        controller: 'State1Controller',
+        controllerAs: 'state1'
       })
       .state('state2', {
         url: '/state2',
