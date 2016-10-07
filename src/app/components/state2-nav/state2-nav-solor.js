@@ -1,7 +1,7 @@
 /**
  * @description : state2-3 태양광 발전 상세 화면. 좌측 부분
  * @author : Tim
- * @date : 2016. 5. 19.
+ * @date : 2016. 10. 07.
  * @param urlList
  * @return
  */
@@ -227,7 +227,7 @@
   /*
    * 화면 우측 전체
    */
-  function state2Nav2Solar() {
+  function state2Nav2Solar(utilService) {
     var directive = {
       restrict: 'E',
       templateUrl: 'app/components/state2-nav/state2-nav2.html',
@@ -272,37 +272,13 @@
 
           if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
 
-          buttonCtrl();
+          utilService.buttonCtrl(vm);
 
         }, function errorCallback(response) {
           $log.debug('ERRORS:: ', response);
         });
 
         $timeout(getResourcesConsumers, 900000);
-      }
-
-      /*
-       * 페이지 이동버튼 켜고 끄기
-       * @param direction : 'L', 'R'
-       * @param onOff : true(on), false(off)
-       */
-      function buttonOnOff(direction, onOff){
-        $(".sector2-button" + direction).css("background-image", 'url("/../assets/images/sector2_image/'+ direction +'_'+ (onOff ? 'on' : 'off') +'.png")');
-      }
-
-      //페이지 이동버튼 컨트롤
-      function buttonCtrl(){
-        if(vm.existPrevPage){
-          buttonOnOff("L", true);
-        }else{
-          buttonOnOff("L", false);
-        }
-
-        if(vm.existNextPage){
-          buttonOnOff("R", true);
-        }else{
-          buttonOnOff("R", false);
-        }
       }
 
       vm.consumerBeginNumber = 0;
@@ -328,7 +304,7 @@
           alert('last page!!');
         }
 
-        buttonCtrl();
+        utilService.buttonCtrl(vm);
 
       };
 
@@ -353,7 +329,7 @@
           alert('first page!!');
         }
 
-        buttonCtrl();
+        utilService.buttonCtrl(vm);
       };
 
     }
