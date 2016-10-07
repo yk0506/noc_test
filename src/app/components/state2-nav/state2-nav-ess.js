@@ -262,8 +262,6 @@
         getResourcesConsumers();
         function getResourcesConsumers() {
 
-
-      console.log("!!!!!!!!!!!!!!!!");
           $http({
             method: 'GET',
             url: 'http://api.ourwatt.com/nvpp/noc/ess/resources/5/consumers',
@@ -284,7 +282,7 @@
             vm.existNextPage = false;
 
             if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
-            console.log("!!!!!!!!!!!!!!!" + vm.resourcesConsumers.length);
+
             utilService.buttonCtrl(vm);
 
           }, function errorCallback(response) {
