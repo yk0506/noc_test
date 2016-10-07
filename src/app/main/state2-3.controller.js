@@ -163,7 +163,7 @@
 
 
 
-    //
+    //중앙 하단 막대그래프, 수용가 건물 리스트
     getSolarConsumers();
     function getSolarConsumers() {
 
