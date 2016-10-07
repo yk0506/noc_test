@@ -1,45 +1,45 @@
 <!--<div class="sector2-img"></div>-->
 
-<div style="position: absolute;width: 2712px;height: 2160px;left: 742px;" class="zoomViewport">
+<div id="mapselect" style="position: absolute;width: 2712px;height: 2160px;left: 742px;">
 
-  <div style="position: absolute;width: 2712px;height: 2160px;z-index: 30;" class="zoomContainer">
-    <!--data-debug="true" data-scalemode="width" data-nativeanimation="true"-->
-    <div class="zoomTargeting zoomTarget-seoul"></div>
-    <div class="zoomTargeting zoomTarget-incheon"></div>
-    <div class="zoomTargeting zoomTarget-seoungnam"></div>
-    <div class="zoomTargeting zoomTarget-ansan"></div>
-
-
-  <img src="../assets/images/sector2_image/map_bg.png" style="position: absolute;"/>
-  <img src="../assets/images/sector2_image/map_grid.png" style="position: absolute;left: 56px;top: 68px;z-index: 20;"/>
-
-  <div class="map-pindrop">
-    <img src="../assets/images/pindrop.svg" style="left: 1375px;top: 900px;"/>
-    <span style="left: 1388px;top: 963px;">gs타워</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1600px;top: 1070px;"/>
-    <span style="left: 1587px;top: 1133px;">sk아파트형공장</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1120px;top: 750px;"/>
-    <span style="left: 1130px;top: 813px;">광명잉크</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1315px;top: 830px;"/>
-    <span style="left: 1315px;top: 893px;">광화문빌딩</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1680px;top: 1130px;"/>
-    <span style="left: 1680px;top: 1193px;">남동레미콘 남동</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1300px;top: 1210px;"/>
-    <span style="left: 1316px;top: 1273px;">뉴워터</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1900px;top: 1210px;"/>
-    <span style="left: 1916px;top: 1273px;">대구텍</span>
-    <img src="../assets/images/pindrop.svg" style="left: 2000px;top: 1310px;"/>
-    <span style="left: 2000px;top: 1373px;">대한유화 공장</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1150px;top: 825px;"/>
-    <span style="left: 1137px;top: 888px;">롯데몰 김포공항</span>
-    <img src="../assets/images/pindrop.svg" style="left: 1850px;top: 713px;"/>
-    <span style="left: 1840px;top: 776px;">라파즈 한라</span>
-  </div>
+  <div style="position: absolute;width: 2712px;height: 2160px;z-index: 30;">
+    <div class="zoomTarget-seoul" ng-click="main.zoomMap('seoul')">서울시</div>
+    <div class="zoomTarget-incheon" ng-click="main.zoomMap('incheon')">인천시</div>
+    <div class="zoomTarget-bucheon" ng-click="main.zoomMap('bucheon')">부천시</div>
+    <div class="zoomTarget-ansan" ng-click="main.zoomMap('ansan')">안산시</div>
 
 
-  <!--START map svg -->
-  <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+    <img src="../assets/images/sector2_image/map_bg.png" style="position: absolute;"/>
+    <img src="../assets/images/sector2_image/map_grid.png"
+         style="position: absolute;left: 56px;top: 68px;z-index: 20;"/>
+
+    <div class="map-pindrop">
+      <img src="../assets/images/pindrop.svg" style="left: 1375px;top: 900px;"/>
+      <span style="left: 1388px;top: 963px;">gs타워</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1600px;top: 1070px;"/>
+      <span style="left: 1587px;top: 1133px;">sk아파트형공장</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1120px;top: 750px;"/>
+      <span style="left: 1130px;top: 813px;">광명잉크</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1315px;top: 830px;"/>
+      <span style="left: 1315px;top: 893px;">광화문빌딩</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1680px;top: 1130px;"/>
+      <span style="left: 1680px;top: 1193px;">남동레미콘 남동</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1300px;top: 1210px;"/>
+      <span style="left: 1316px;top: 1273px;">뉴워터</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1900px;top: 1210px;"/>
+      <span style="left: 1916px;top: 1273px;">대구텍</span>
+      <img src="../assets/images/pindrop.svg" style="left: 2000px;top: 1310px;"/>
+      <span style="left: 2000px;top: 1373px;">대한유화 공장</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1150px;top: 825px;"/>
+      <span style="left: 1137px;top: 888px;">롯데몰 김포공항</span>
+      <img src="../assets/images/pindrop.svg" style="left: 1850px;top: 713px;"/>
+      <span style="left: 1840px;top: 776px;">라파즈 한라</span>
+    </div>
+
+
+    <!--START map svg -->
+    <!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 2599.9 1768.6" class="state2-map-svg" xml:space="preserve">
 
     <g>
@@ -60,7 +60,7 @@
 	    </clipPath>
 
 	    <g class="st0">
-		<g id="서울특별시" class="g-seoul">
+		    <g id="서울특별시" class="g-seoul">
 			<path id="강동구" d="M1575.5,885v19.6l10.5,11.3l-2.3,9.8l9.8,15.8l17.3,5.3l3-13.6l34.6-25.6l-3-22.6L1638,870
 				l-33.1-3L1575.5,885"/>
 			<path id="송파구" d="M1575.5,904.6l-20.3,29.4l-30.1,3.8v22.6l25.6,20.3l9-0.7l6,9l10.5,8.3l11.3,22.6l33.9-41.4
@@ -113,7 +113,7 @@
 				l-19.8,14.7l-11.3-5.1l-0.6-14.7l-5.1-14.7l-6.8-7.3l-1.1-16.9l11.3-9.6l-10.7-22L1310.7,894.8z"/>
 		</g>
 
-		<g id="인천광역시" class="g-incheon">
+		    <g id="인천광역시" class="g-incheon">
 			<g id="강화군">
 				<path d="M894.2,567.4l-91.8-64.7l-19.6,16.6h-25.6l-37.6,37.6l7.5,66.2l-18.1,6l4.5,43.7l52.7,48.2l1.5,39.1
 					l-36.1,25.6l21.1,40.7l93.3,12l48.2,7.5l49.7-31.6l-7.5-22.6l-25.6-27.1l12-27.1l-13.6-31.6l7.5-27.1l-15.1-34.6l12-28.6
@@ -156,7 +156,7 @@
 			</g>
 		</g>
 
-    <g id="경기도">
+        <g id="경기도">
 			<path id="김포시" class="st2" d="M1213.4,811.3l-146-99.4l25.6-49.7l-16.6-34.6l-6-57.2l-28.6,3l-30.1,39.1l-57.2-4.5
 				l-16.6-19.6l-33.1,1.5l9,25.6l3,21.1l-4.5,7.5l9,48.2v24.1l7.5,30.1l-1.5,27.1l25.6,25.6v24.1l7.5,22.6l69.3-30.1l22.6-40.7
 				l97.9,72.3l60.2,6l15.1-28.6L1213.4,811.3z"/>
@@ -206,8 +206,7 @@
 				l-9.1-16.6l-10.5-43.7l-24.1-30.1l-24.1-1.5l-33.1,28.6l-28.6,3l-28.6,7.5l4.5,24.1l-15.1,21.1l-13.6-9l-54.2-3l-12,7.5
 				l14.2,26.3l17.4,32.4l-18.6,32.2l-14.5,25l-6,31.6l-40.7,36.1v21.1l22.6-3l36.1-22.6l10.5,16.6l25.6,6l4.5-33.1l45.2,16.6
 				l28.6,7.5l-1.5,99.4L1823.2,1291.5z"/>
-
-      <g id="성남시" class="g-seoungnam">
+      <g id="성남시" class="st2">
 				<polygon points="1537.5,1115.7 1561.9,1098.4 1576.2,1106.6 1580,1087.8 1576.2,1082.3 1580,1065.7 1604.8,1059.2
 					1624.4,1047.9 1631.2,1026.6 1639.5,1019.8 1641.6,1005.2 1641,1004 1630.4,1010 1601.8,1004 1586.8,1022.1 1559.7,1023.6
 					1522,1076.3 1499.4,1067.2 1490.4,1082.3 1485.2,1107.6 1530.3,1115.7 				"/>
@@ -217,7 +216,6 @@
 					1530.3,1115.7 1485.2,1107.6 1476.9,1148.5 1532.6,1177.1 1571.7,1208.7 1592.8,1208.7 1592.8,1187.7 1633.4,1151.5
 					1639.5,1119.9 1646.7,1107.4 1624.4,1094.6 				"/>
 			</g>
-
       <path id="과천시" class="st2" d="M1425.7,1104.9l64.7-22.6l9-15.1l-15.1-36.1l-55.7-4.5l-25.6,34.6v21.1L1425.7,1104.9z"/>
       <path id="의왕시" class="st2" d="M1413.6,1128.9l-12,48.2l-22.6,51.2l-9,19.6l31.6,4.5l9-28.6l28.6-16.6l25.6-25.6l12-33.1
 				l13.6-66.2l-64.7,22.6l-7.5,7.5L1413.6,1128.9z"/>
@@ -227,9 +225,11 @@
 				l22.6-42.2l25.6-18.1l-13.6-51.2l-73.8-6l-16.6-21.1l24.1-43.7L1522,1290l21.1-24.1l-28.6-6l-6-19.6l-19.6-6L1484.4,1198.2z"/>
 			<path id="안양시" class="st2" d="M1374.5,1144h-22.6l-21.5,20.7l-26.7-38.8l9-33.1l19.6-31.6l28.6-18.1l22.6,19.6l19.6-1.5
 				v21.1l22.6,22.6l-7.5,7.5l-14.1,55L1374.5,1144z"/>
-			<path id="부천시" class="st2" d="M1245,1010l-4.5,16.6l-42.2,1.5l-39.1-31.6l-3-39.1l19.6-13.6l6-48.2l57.2,22.6l13.6,43.7
+
+      <path id="부천시" class="g-bucheon" d="M1245,1010l-4.5,16.6l-42.2,1.5l-39.1-31.6l-3-39.1l19.6-13.6l6-48.2l57.2,22.6l13.6,43.7
 				l-18.1,15.1L1245,1010z"/>
-			<path id="광명시" class="st2" d="M1260.1,1032.6l-19.6-6l4.5-16.6l27.1-10.5l22.6-15.1l12,16.6l25.6,60.2l-19.6,31.6l-6,15.1
+
+      <path id="광명시" class="st2" d="M1260.1,1032.6l-19.6-6l4.5-16.6l27.1-10.5l22.6-15.1l12,16.6l25.6,60.2l-19.6,31.6l-6,15.1
 				l-33.1-4.5l-9-57.2L1260.1,1032.6z"/>
 			<path id="시흥시" class="st2" d="M1124.6,1157.6l-36.1,40.7l42.2,31.6l39.1-31.6l45.2-4.5l31.6-25.6l51.2-12l12.3-20.3
 				l-6.3-9.8l3-18.1l-33.1-4.5l-9-57.2l-4.5-13.6l-19.6-6l-42.2,1.5l-55.7,103.9L1124.6,1157.6z"/>
@@ -273,7 +273,7 @@
 
 		</g>
 
-		<g id="강원도">
+		    <g id="강원도">
 			<path id="철원군" class="st3" d="M2116.7-217h-34.6l-63.2,46.7l-34.6-3l-15.1-19.6h-27.1l-28.6-21.1l-58.7-6l-15.1,18.1
 				l-37.6-3l-18.1,21.1l-12-27.1h-39.1l-13.6-7.5l-55.7,30.1l-24.1-7.5l-15.1-16.6l-25.6,3l-15.1,42.2l-19.6,22.6v57.2l16.6,21.1
 				l31.6-16.6l19.6,48.2l19.6,31.6l-3,28.6l37.6,34.6l66.2-57.2l19.6,12l-13.6,76.8l37.6,9l18.1,31.6l13.6-13.6l33.1-24.1l49.7,18.1
@@ -358,7 +358,7 @@
 				l57.2,16.6l19.6,37.6l3,48.2l33.1,7.5L3927.9,1580.6z"/>
 		</g>
 
-    <g id="충청북도">
+        <g id="충청북도">
 			<path id="진천군" class="st3" d="M1803.6,1869.7l25.6,7.5l1.5,42.2l46.7,21.1l30.1,24.1l-3,25.6l17.7,19.2
 				c0,0-7.9,12.8-3.4,11.3s45.9-3.4,45.9-3.4l46.7-24.1l36.1,18.1l39.1-31.6l-24.1-42.2l22.6-7.5l3-61.7l12-15.1l-67.8-64.7
 				l-28.6-28.6l-22.6,9l-21.1-24.1l0.6-44.7l0.9-61.1l-33.9,27.1l-42.9,6.8l-2.3,35l13.6,16.9l-29.4,29l-57.6,1.5l-36.1,62.1
@@ -408,7 +408,7 @@
 				l12,27.1l-27.1,39.2l-7.5,31.6l-6,49.7l-58.7,19.6l-40.7,45.2l-34.6-16.6l-24.1,9l-67.8,21.1l-10.5-21.1l-46.7-12l-18.1-22.6
 				L2232.7,2992.8z"/>
 		</g>
-		<g id="충청남도">
+		    <g id="충청남도">
 			<path id="천안시" class="st3" d="M1462.6,2151.6l44-58.7l26-7.9c0,0,10.2-39.5,10.2-42.9s9-24.8,9-24.8l23.7-7.9l2.3-36.1
 				l-18.1-16.9l-7.9,12.4l-4.5-55.3l23.7-23.7l-3.4-23.7l-13.6-2.3l-12.4-98.2l3.4-18.1l29.4-35h24.8l59.8,28.2l32.7,36.1l32.7,5.6
 				l67.8,50.8l11.3,33.9l25.6,10.2l0.4,39.5l55.3,28.2l22.6,19.6l-1.1,19.9l15.8,24.8l-3.4,11.3l-19.2,7.9l-26-9l-29.4-2.3
@@ -475,23 +475,23 @@
 				l-30.5-11.3l-1.1-48.6l-80.2,5.6l-42.9-27.1l-31.6,16.9l-77.9,7.9l-23.7-23.7l-51.9,1.1l-11.3,31.6l-20.3,11.3l1.1,29.4
 				l23.7-13.6l39.5,16.9l27.1,5.6l44,46.3l24.8,2.3l-20.3,27.1l15.8,19.2l14.7,16.9l13.6,21.5l9,39.5L1109.1,3083.2z"/>
 		</g>
-		<g id="제주특별자치도">
-			<g id="제주시_1_">
+		    <g id="제주특별자치도">
+			    <g id="제주시_1_">
 				<path id="제주시" class="st3" d="M3468.7,5463.5l114.4-105.4l3-28.6l39.2-25.6l22.6-27.1l79.8-3l66.2-31.6l66.3-36.1h93.3
 					l51.2-22.6l57.2-18.1l79.8-3l25.6-22.6l81.3,3l18.1,43.7l55.7,15l25.6,1.5l4.5,36.1l-4.5,31.6l-103.9,52.7l-33.1,3l-28.6,33.1
 					h-78.3l-24.1,19.6l-31.6,4.5l-46.7,34.6l-76.8,1.5l-21.1,21.1l-99.4,4.5l-4.5,30.1l-75.3-9L3666,5477l-85.8,60.2l-19.6,24.1
 					l-55.7-34.6l-36.1,12.1L3468.7,5463.5L3468.7,5463.5z"/>
 				<path class="st3" d="M4403.7,5213.6l-13.6,28.6l18.1,21.1l13.6-10.5l7.5-30.1L4403.7,5213.6z"/>
 			</g>
-			<g id="서귀포시">
+			    <g id="서귀포시">
 				<path class="st3" d="M3488.3,5574.9l-19.6-36.1l36.1-12.1l55.7,34.6l19.6-24.1l82.8-61.7l57.2-9l79.8,9l4.5-30.1l99.4-4.5
 					l21.1-21.1l76.8-1.5l46.7-34.6l31.6-4.5l24.1-19.6h78.3l28.6-33.1l39.1-4.5l97.9-51.2l28.6,22.6l12.1,18.1l-21.1,25.6l12.1,19.6
 					l-36.1,34.6l-30.1,30.1l-52.7,72.3l-1.5,30.1l-67.8,7.5l-49.7,40.7c0,0-96.4-4.5-99.4,0c-3,4.5-54.2,57.2-54.2,57.2l-39.1-13.6
 					l-99.4,10.5l-45.2-4.5h-28.6l-24.1-12l-21.1,15l-81.3-6l-30.1,21.1l-4.5,28.6l-25.6-3l-51.2-54.2l-33.1-7.5L3488.3,5574.9z"/>
 				<path class="st3" d="M3589.2,5758.6l-4.5,31.6l13.6,3l12-21.1L3589.2,5758.6z"/>
 			</g>
-		</g>
-		<g id="경상북도">
+		    </g>
+		    <g id="경상북도">
 			<path id="문경시" class="st3" d="M2719,2210l36.1,22.6l70.8,33.1l10.5,64.7l49.7,3l6-25.6l25.6-6l-1.5-43.7l-21.1-40.7
 				l54.2-52.7l25.6,4.5l4.5-15.1l-27.1-33.1l18.1-93.3l30.1-3l-2.3-76.4l-20.3-19.2l-33.9-12.4l-58.7-68.9l-28.2-6.8l-31.2,27.1
 				l-1.5,48.2l-24.1,7.5l-61.7-26.4l-56.5,47.4l-12.4-14.7l-18.4-3.4l-12,48.2l-23.7,43.3l55.3,55.3l-31.6,9l-42.9-30.5l-18.1,15.8
@@ -588,7 +588,7 @@
 				<path class="st3" d="M4581.4,2672.2l-11.3,22.6l18.1,9l11.3-22.6L4581.4,2672.2z"/>
 			</g>
 		</g>
-		<g id="대구광역시">
+		    <g id="대구광역시">
 			<path id="동구_3_" class="st3" d="M3343.8,3245.8l-30.1,16.6l-12.1-16.6l15.1-28.6l6-25.6l-10.5-39.1l-27.1-66.3l30.1-37.6
 				l79.8,0l34.6,9.8l11.3,31.6l4.5,81.3l22.6,15.8l-3.8,67.8l-22.6,15.1l-60.2-6l-4.5-16.5L3343.8,3245.8z"/>
 			<path id="북구_2_" class="st3" d="M3286.6,3247.3l-24.1,3l-3-22.6l-28.6-4.5l-33.1,10.6l-24.1-12.1l21.1-37.6l7.5-37.7l-9-33.1
@@ -609,7 +609,7 @@
 					l-6,46.7l-82.8-9l6,42.2l40.7,40.7l3,43.6L3121,3590.6z"/>
 			</g>
 		</g>
-		<g id="울산광역시">
+		    <g id="울산광역시">
 			<path id="북구_1_" class="st3" d="M4152.3,3632h-30.5l-21.5,12.4l-4.5-64.4l2.3-31.6l65.5-42.9l92.6,38.4l11.3,40.7l19.2,27.1
 				l-2.3,30.5l-13.6,18.1l-27.1,6.8l-23.7,22.6v42.9l-57.6-42.9l-5.6-40.7L4152.3,3632z"/>
 			<path id="중구_3_" class="st3" d="M4144.4,3691.8l-40.7,1.1l-9,7.9l-19.2-12.4l-19.2-2.3l-3.4-30.5l29.4-13.6l18.1,2.3
@@ -624,7 +624,7 @@
 				l58.7,7.9l53.1,38.4l55.3,74.5l50.8-3.4l26,33.9l-18.1,33.9l47.4,6.8l21.5-7.9l22.6,19.2l3.4,51.9l16.9,14.7l42.9-35l23.7-5.6
 				L4177.1,3959.4z"/>
 		</g>
-		<g id="경상남도">
+		    <g id="경상남도">
 			<path id="거창군" class="st3" d="M2221.4,3410.6l42.9,31.6l4.5,27.1l45.2-13.6l31.6,36.1l42.9,36.1l33.9,36.1l27.1-6.8l2.3,70
 				l-36.1,58.7l38.4,20.3l11.3,38.4l79,27.1l20.3-54.2l27.1-56.5l15.8-72.3l51.9-54.2l33.9-9l-20.3-61l-20.3-67.8l-6.8-15.8
 				l56.5-65.5l-22.6-13.6l-67.8,14.3l-38.4-32.4l-50.4,2.3l-10.5-40.7l-48.2-16.5l-1.5-17.3l-27.1,6.8l-18.1,40.7l-63.2,42.9
@@ -715,7 +715,7 @@
 				<path class="st3" d="M2819.8,4903.4l-12,21.1l30.1,18.1l9-19.6L2819.8,4903.4z"/>
 			</g>
 		</g>
-		<g id="부산광역시">
+		    <g id="부산광역시">
 			<path id="기장군" class="st3" d="M4026.9,4205.6l-32.7-6.8l-41.8-18.1l-1.1-33.9l-31.6-36.1l-7.9-6.8v-46.3l-10.2-12.4
 				l13.6-85.8l21.5-1.1l23.7,19.2l27.1-18.1l11.3-33.9l44,6.8l19.2-4.5l24.8,15.8l3.4,47.4l16.9,19.2l-5.6,15.8l-20.3-10.2
 				l-16.9,29.4l13.6,16.9l-18.1,26l-12.4,11.3l16.9,13.6l-11.3,24.8l-7.9,20.3l-14.7,3.4L4026.9,4205.6z"/>
@@ -753,7 +753,7 @@
 			<path id="중구_2_" class="st3" d="M3821.4,4332.1v-15.8l-16.9,2.3l-11.3,18.1l14.7,12.4L3821.4,4332.1z"/>
 			<path id="영도구" class="st3" d="M3854.2,4345.6l-32.7,2.3l-4.5,20.3l41.8,33.9l14.7-7.9l-9-27.1l-1.1-14.7L3854.2,4345.6z"/>
 		</g>
-		<g id="전라북도">
+		    <g id="전라북도">
 			<path id="무주군" class="st3" d="M2104.7,3254.8l12-30.1l-33.1-40.7V3157l-27.1-58.7l9-73.8l90.3,52.7l15.1-40.7l-15.1-37.6
 				l19.6-19.6l33.1,37.6l24.1-24.1l27.1,43.7l51.2,10.5l10.5,21.1l91.8-30.1l34.6,16.6l4.5,30.1l46.7,66.2l-37.6,27.1l1.5,33.9
 				l-27.1,6.8l-18.1,40.7l-63.2,42.9l-58.7,6.8l-15.8,51.9l-27.9,15.8l-40.7-30.1l-43.7-4.5l-6-30.1l-21.1-49.7L2104.7,3254.8z"/>
@@ -817,7 +817,7 @@
 				<path class="st3" d="M754.2,3322.6l-4.5,45.2l27.1-13.6L754.2,3322.6z"/>
 			</g>
 		</g>
-		<g id="광주광역시">
+		    <g id="광주광역시">
 			<path id="광산구" class="st3" d="M1262.3,4174l-45.9,20.3l-55.7-26.3l-2.3-24.1h-20.3l-15.8,55.7l-39.9,5.3l-35.4,33.9
 				l13.6,24.8l-20.3,15.8c0,0-2.3,50.4,0,53.4c2.3,3,26.4,19.6,26.4,19.6l82.1-1.5l27.9,34.6l-5.3,20.3l49.7-38.4v-21.1l20.3-27.9
 				l22.6-67.8l16.6-9.8l-8.3-15.1l-2.3-45.2L1262.3,4174z"/>
@@ -831,7 +831,7 @@
 			<path id="서구_4_" class="st3" d="M1232.2,4333.6l10.5-17.3l18.8-51.2h37.6l34.6,20.3l-12.8,17.3l-1.5,25.6l-15.1,10.5
 				l-38.4,10.6l-21.8,18.1h-23.3v-21.1L1232.2,4333.6z"/>
 		</g>
-		<g id="전라남도">
+		    <g id="전라남도">
 			<path id="구례군" class="st3" d="M1927.8,4237.2l-51.9-4.5v-45.2l47.4-22.6l-31.6-54.2l2.3-41.8l57.6-77.9l62.1,2.3l63.2,40.7
 				l38.4,38.4l20.3,36.1l38.4,54.2l-6.8,79l-13.6,27.1l-6.8,54.2l-27.1,11.3l-40.7,27.1l-29.4-40.7h-15.8l-40.7-38.4l-33.9-27.1
 				L1927.8,4237.2z"/>
@@ -976,26 +976,26 @@
 					L435,4469.8z"/>
 			</g>
 		</g>
-		<path id="세종특별자치시" class="st3" d="M1759.5,2480.2l-48.6-31.3l-20.9-30.8l-10.7-44.5l5.6-48.1l1.2-46.2l-32.8-28.3
-			l-42.9-54.2l12.4-36.1l-5.6-48.6l-23.7-22.6l15.8-29.4l41.8-2.3l80.2,47.4l39.5-1.1l4.5,19.2h14.7l-4.5,35l-24.8,16.9l11.3,27.1
-			l18.1,21.5v36.1l30.5,12.4l47.9,16.3l15.7,18.6l-8.3,46.7l-6.8,37l-21.5-2.3l4.5,38.4l-4.5,30.5l-30.5,32.7l-40.7,3.4
-			L1759.5,2480.2z"/>
-	</g>
+		    <path id="세종특별자치시" class="st3" d="M1759.5,2480.2l-48.6-31.3l-20.9-30.8l-10.7-44.5l5.6-48.1l1.2-46.2l-32.8-28.3
+			    l-42.9-54.2l12.4-36.1l-5.6-48.6l-23.7-22.6l15.8-29.4l41.8-2.3l80.2,47.4l39.5-1.1l4.5,19.2h14.7l-4.5,35l-24.8,16.9l11.3,27.1
+			    l18.1,21.5v36.1l30.5,12.4l47.9,16.3l15.7,18.6l-8.3,46.7l-6.8,37l-21.5-2.3l4.5,38.4l-4.5,30.5l-30.5,32.7l-40.7,3.4
+			    L1759.5,2480.2z"/>
+	    </g>
     </g>
 
   </svg>
-  <!--END svg map-->
+    <!--END svg map-->
 
 
-  <!--title-->
-  <div class="absolute pt42 bfffff" style="left: 212px;top: 80px;width: 260px;">
-    NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
-  </div>
-  <div class="absolute pt42 bfffff" style="left: 1664px;top: 80px;width: 260px;">MAP ID</div>
+    <!--title-->
+    <div class="absolute pt42 bfffff" style="left: 212px;top: 80px;width: 260px;">
+      NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
+    </div>
+    <div class="absolute pt42 bfffff" style="left: 1664px;top: 80px;width: 260px;">MAP ID</div>
 
 
-  <img src="../assets/images/sector2_image/map_graph.png" style="position: absolute;left: 138px;bottom: 93px;"/>
-  <div id="resource-map" class="state2-graph" style="bottom: 80px;left: 138px;"></div>
+    <img src="../assets/images/sector2_image/map_graph.png" style="position: absolute;left: 138px;bottom: 93px;"/>
+    <div id="resource-map" class="state2-graph" style="bottom: 80px;left: 138px;"></div>
 
   </div>
 </div>
