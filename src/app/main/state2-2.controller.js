@@ -3,12 +3,14 @@
 
   angular
     .module('power-plant')
-    .controller('MainController', MainController);
+    .controller('State2_2Controller', State2_2Controller);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $scope, computedService) {
+  function State2_2Controller($log, $timeout, energyService, c3, $scope, computedService) {
     var vm = this;
     vm._ = _;
+
+    console.log("# ESS. state2-2 Controller.");
 
      var settings = {
       root: $(".zoomViewport"),
@@ -24,32 +26,6 @@
       $(".zoomTargeting").zoomTarget(settings);
     });
 
-
-    vm.zoomMap = function (site) {
-      switch (site) {
-        case 'seoul':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-seoul.png' ng-click='main.zoomoutMap()' /></div>");
-              break;
-
-        case 'ansan':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-ansan.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-        case 'bucheon':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-bucheon.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-        case 'incheon':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-incheon.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-      }
-
-      $('#mapselect').children('img').on('click', function(e) {
-        console.log(this);
-        this.remove();
-      })
-    };
 
 
     computedService.then(function(result) {
@@ -359,34 +335,6 @@
       )
     }
 
-
-    calcSmallRotate(270);
-
-    // 가용량
-    // 0 이면 12 부터 시작, +30 -> 한 칸 증가
-   function calcSmallRotate(degree) {
-        if(degree < 180 || degree == 360) {
-            $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '44px' , 'top': '128px'};
-        } else if (degree >= 180) {
-            $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '48px' , 'top': '130px'};
-        }
-    }
-
-    calcLargeRotate(4);
-    // 현재 출력
-   function calcLargeRotate(flag) {
-         if(flag == 0) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '696px' , 'top': '129px'};
-         } else if (flag == 1) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '693px' , 'top': '131px'};
-         } else if (flag == 2) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '693px' , 'top': '129px'};
-         } else if (flag == 3) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '693px' , 'top': '127px'};
-         } else if (flag == 4) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '696px' , 'top': '127px'};
-         }
-   }
 
     $log.log('MainController!');
     vm.consumerBeginNumber = 0;

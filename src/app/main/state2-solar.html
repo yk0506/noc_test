@@ -7,19 +7,19 @@
 
 <!--current="main.currentCompanyResources.dem_negawatt"-->
 <round-progress
-  max="400"
-  current="main.gageCurrentDevelop"
+  max="100"
+  current="state2_3.gageCurrentDevelop"
   color="#80ffff"
   bgcolor="#edfbff"
-  radius="210"
+  radius="230"
   stroke="50"
   rounded="true"
   clockwise="true"
   responsive="false"
-  duration="800"
+  duration="4000"
   animation="easeInOutQuart"
   animation-delay="0"
-  style="top: 255px;left: 890px;width: 470px;height: 470px;
+  style="top: 755px;left: 1336px;width: 470px;height: 470px;
   -ms-transform: rotate(180deg); /* IE 9 */
   -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
   transform: rotate(180deg);"></round-progress>
@@ -34,10 +34,10 @@
   <div class="absolute pt42 bfffff resource-dropdown" style="left: 2317px;top: 80px;width: 416px;">
     <span uib-dropdown on-toggle="toggled(open)">
       <a href id="simple-dropdown" uib-dropdown-toggle style="color: #bfffff;">
-        {{main.currentCompanyResources.res_name}}
+        국민발전소
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
-        <li ng-repeat="resource in main.companiesResources">
+        <li ng-repeat="resource in state2_3.companiesResources">
           <a href>{{resource.res_name}}</a>
         </li>
       </ul>
@@ -52,25 +52,25 @@
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
-      <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
+      <span class="pt20 bfffff">발전중 (태양광)</span><br/>
       <span
-        class="pt60 fffef2">{{main.currentCompanyResources.dem_cbl-main.currentCompanyResources.dem_watt|number:0}}</span>
+        class="pt60 fffef2">{{state2_3.solarDemandData.nega_watt|number:0}}</span>
       <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
 
     <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
       <span class="pt16 c-80ffff" style="margin-bottom: 6px;display: inline-block;">POWER OUTPUT</span><br/>
-      <span class="watt-off">Megawatt Mode</span><br/>
-      <span class="watt-on">Negawatt Mode</span>
+      <!--<span class="watt-off">Megawatt Mode</span><br/>-->
+      <span class="watt-on">에너지 자립 모드</span>
     </div>
 
-    <img src="../assets/images/sector2_image/high_line.png" style="position: absolute;left: 454px;top: 522px;" ng-show="main.gageCurrentDevelop == 270" />
-    <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="main.gageCurrentDevelop == 270" />
+    <img src="../assets/images/sector2_image/high_line.png" style="position: absolute;left: 454px;top: 522px;" ng-show="state2_3.gageCurrentDevelop == 270" />
+    <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="state2_3.gageCurrentDevelop == 270" />
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
-      <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
-      <span class="pt60 fffef2">{{main.currentCompanyMax|number:1}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt20 bfffff">MAX(최대발전출력)</span><br/>
+      <span class="pt60 fffef2">{{state2_3.solarDemandData.max_limit|number:1}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
@@ -78,7 +78,7 @@
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
-        <ul ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber">
+        <ul ng-repeat="con in state2_3.resourcesConsumers|limitTo:6:state2_3.consumerBeginNumber">
           <li style="overflow: hidden;
     height: 55px;
     text-overflow: ellipsis;
@@ -88,14 +88,15 @@
         </ul>
       </div>
       <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;">
-        <div ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber" style="">
+        <div ng-repeat="con in state2_3.resourcesConsumers|limitTo:6:state2_3.consumerBeginNumber" style="">
 
-          <div
-            style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"
-            ng-show="con.operateRatio < -1"></div>
-          <div
-            style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"
-            ng-show="con.operateRatio >= -1"></div>
+          <!-- 테양광은 마이너스 발전이 없음. 붉은 영역 제거 -->
+          <!--<div-->
+            <!--style="float: left;background-color: #ff0000;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"-->
+            <!--ng-show="con.operateRatio < -1"></div>-->
+          <!--<div-->
+            <!--style="float: left;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 10px;border-right: 1px solid #ff0000;"-->
+            <!--ng-show="con.operateRatio >= -1"></div>-->
 
           <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 310px;"
                ng-style="{width: con.operateRatio*310/100}"></div>
@@ -109,43 +110,41 @@
     <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
       <!--each-->
       <div class="bfffff graph-section-each"
-           ng-repeat="con in main.resourcesConsumers|limitTo:6:main.consumerBeginNumber">
+           ng-repeat="con in state2_3.resourcesConsumers|limitTo:6:state2_3.consumerBeginNumber">
         <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.cons_name}}</div>
-        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{main.currentTime}}</span>
+        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{state2_3.currentTime}}</span>
         </div>
 
-        <img src="../assets/images/sector2_image/plant_img.png" ng-show="con.cons_division == 'F'"
-             class="consumer-img"/>
-        <img src="../assets/images/sector2_image/building_img.png" ng-show="con.cons_division == 'B'"
+        <img src="../assets/images/sector2_image/solar.png"
              class="consumer-img"/>
 
         <!--빌딩 게이지 가동률로 변경-->
-        <div class="factory-bg" ng-style="{height: (con.dem_watt/con.dem_cbl)*208}"></div>
+        <div class="factory-bg" ng-style="{height: (con.ac/con.goal)*208}"></div>
         <!--height: con.operateRatio*335/100-->
 
-        <div class="absolute" style="top:167px;">
-          <div class="pt14">감축부하</div>
-          <div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>
-        </div>
+        <!--<div class="absolute" style="top:167px;">-->
+          <!--<div class="pt14">감축부하</div>-->
+          <!--<div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>-->
+        <!--</div>-->
         <div class="absolute" style="top:292px;">
-          <div class="pt14">현재부하</div>
-          <div class="pt20 fffbcc">{{con.dem_watt}}<span class="pt16">kW</span></div>
+          <div class="pt14">현재출력(AC)</div>
+          <div class="pt20 fffbcc">{{con.ac}}<span class="pt16">kW</span></div>
         </div>
-        <div class="absolute" style="top:430px;">
-          <div class="pt14">MAX</div>
-          <div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>
-        </div>
+        <!--<div class="absolute" style="top:430px;">-->
+          <!--<div class="pt14">MAX</div>-->
+          <!--<div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>-->
+        <!--</div>-->
 
         <div class="absolute" style="top:253px;left: 273px;z-index: 40;">
-          <span class="pt14">CBL</span>
-          <span class="pt20">{{con.dem_cbl}}<span class="pt16">kW</span></span>
+          <span class="pt14">목표출력</span>
+          <span class="pt20">{{con.goal}}<span class="pt16">kW</span></span>
         </div>
         <img src="../assets/images/sector2_image/factory_line.png"
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
 
         <div class="absolute" style="top:411px;left: 265px;z-index: 40;">
-          <span class="pt14">TARGET</span>
-          <span class="pt20">{{con.dem_cbl-con.cont_watt|number:0}}<span class="pt16">kW</span></span>
+          <span class="pt14">최소한계출력</span>
+          <span class="pt20">{{con.limit|number:0}}<span class="pt16">kW</span></span>
         </div>
         <!--line:: 바닥부터 cbl라인까지 높이 208px-->
         <img src="../assets/images/sector2_image/factory_line2.png"
@@ -156,24 +155,24 @@
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
-            <div class="pt14">가동률</div>
+            <div class="pt14">발전</div>
             <div class="pt60 ff7e47" style="text-align: center;">{{con.operateRatio|number:0}} %</div>
-            <div class="pt8 c-7ca6a6">가동률 =</div>
-            <div class="pt8 c-7ca6a6">현재감축량/최대감축가능량</div>
+            <div class="pt8 c-7ca6a6">발전 =</div>
+            <div class="pt8 c-7ca6a6">인버터출력값(AC)</div>
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
-            <div class="pt16 c-66ffff">현재부하</div>
-            <div class="pt16">CBL</div>
-            <div class="pt16 c-66ffff">감축부하</div>
-            <div class="pt16">TARGET</div>
-            <div class="pt16 c-66ffff">MAX TARGET</div>
+            <div class="pt16 c-66ffff">현재출력</div>
+            <div class="pt16">전압</div>
+            <div class="pt16 c-66ffff">전류</div>
+            <div class="pt16">일사량</div>
+            <div class="pt16 c-66ffff">당일 누적 발전량</div>
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
-            <div class="pt16 c-66ffff">{{con.dem_watt}}kW</div>
-            <div class="pt16">{{con.dem_cbl}}kW</div>
-            <div class="pt16 c-66ffff">{{con.con.dem_cbl-con.dem_watt|number:0}}kW</div>
-            <div class="pt16">{{con.dem_cbl-con.cont_watt|number:0}}kW</div>
-            <div class="pt16 c-66ffff">{{con.maxTarget|number:0}}kW</div>
+            <div class="pt16 c-66ffff">{{con.ac}}kW</div>
+            <div class="pt16">{{con.vtg}}V</div>
+            <div class="pt16 c-66ffff">{{con.crt}}A</div>
+            <div class="pt16">{{con.sl}}watt/m2</div>
+            <div class="pt16 c-66ffff">{{con.acc|number:0}}kWh</div>
           </div>
         </div>
 
@@ -189,5 +188,5 @@
 <!--consumer minus line-->
 <!--<div class="absolute" style="width: 0;height: 328px;top: 1011px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>-->
 
-<state2-nav></state2-nav>
-<state2-nav2></state2-nav2>
+<state2-nav-solar></state2-nav-solar>
+<state2-nav2-solar></state2-nav2-solar>
