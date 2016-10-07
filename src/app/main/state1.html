@@ -8,24 +8,24 @@
     <div class="sector1-title">
       <div style="line-height: 50px;">
         <span class="pt44 bfffff" style="margin-right: 50px;">NVPP</span>
-        <span class="pt38 fffef2" style="margin-right: 105px;">CPW</span>
+        <span class="pt38 fffef2" style="margin-right: 105px;">{{state1.apiData.sector1.nvppName}}</span>
         <span class="pt28 bfffff" style="margin-right: 50px;">발전소</span>
-        <span class="pt28 fffef2">490</span>
+        <span class="pt28 fffef2">{{state1.apiData.sector1.nvppCount}}</span>
       </div>
       <div style="margin-top: 17px;">
         <span class="pt28 bfffff">National Virtual Power Plant</span>
       </div>
       <div style="margin-top: 55px;">
       <span class="floatLeft" style="margin-right: 33px;">
-        <div class="pt28 bfffff">현재출력1</div>
+        <div class="pt28 bfffff">현재출력</div>
         <div class="pt20 c-7ca6a6">MW</div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="margin-right: 35px;line-height: 66px;">280</span>
+        <span class="pt70 fffef2 floatLeft" style="margin-right: 35px;line-height: 66px;">{{state1.apiData.sector1.power_mw}}</span>
       <span class="floatLeft" style="margin-right: 4px;line-height: 36px;">
         <div class="pt28 bfffff">일일누적</div>
         <div class="pt28 bfffff">공급량 <span class="pt20 c-7ca6a6">MWh</span> </div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;">280</span>
+        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;"> {{state1.apiData.sector1.power_acc_mw}}</span>
       </div>
     </div>
 
@@ -49,7 +49,7 @@
       </div>
       <div class="pt26" style="color: #80ffff;text-align: center;margin-top: 13px;">
         <div>ESS</div>
-        <div>100</div>
+        <div>{{state1.apiData.sector1.ess_power_mw}}</div>
       </div>
     </div>
 
@@ -73,7 +73,7 @@
       </div>
       <div class="pt26" style="color: #d9ffff;text-align: center;margin-top: 13px;">
         <div>신재생</div>
-        <div>50</div>
+        <div>{{state1.apiData.sector1.solar_power_mw}}</div>
       </div>
     </div>
 
@@ -97,7 +97,7 @@
       </div>
       <div class="pt26" style="color: #86bfbf;text-align: center;margin-top: 13px;">
         <div>수요자원</div>
-        <div>100</div>
+        <div>{{state1.apiData.sector1.dr_power_mw}}</div>
       </div>
     </div>
 

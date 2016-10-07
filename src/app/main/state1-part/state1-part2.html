@@ -23,8 +23,8 @@
 
   <div class="part2-current-value">
     <span class="pt26 bfffff" style="margin-right: 40px;">출력</span>
-    <span class="pt62 fffef2">1.9</span>
-    <span class="pt26 fffef2">kW</span>
+    <span class="pt62 fffef2">{{state1.apiData.sector3.total_nega_watt}}</span>
+    <span class="pt26 fffef2">MW</span>
   </div>
 
   <!---->
@@ -40,22 +40,22 @@
   </div>
   <div class="part2-gage-left2 pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff"><span>3 MW</span></div>
-      <div class="c-66ffff"><span>2.8 MW</span></div>
-      <div class="bfffff"><span>2.8 MW</span></div>
-      <div class="c-66ffff"><span>0 MW</span></div>
-      <div class="bfffff"><span>93 %</span></div>
+      <div class="bfffff"><span>{{state1.apiData.sector3.holding_acc}} MW</span></div>
+      <div class="c-66ffff"><span>{{state1.apiData.sector3.total_nega_watt_acc}} MW</span></div>
+      <div class="bfffff"><span>{{state1.apiData.sector3.solar_nega_watt_acc}} MW</span></div>
+      <div class="c-66ffff"><span>{{state1.apiData.sector3.wind_nega_watt_acc}} MW</span></div>
+      <div class="bfffff"><span>{{state1.apiData.sector3.avail_rate}} %</span></div>
     </div>
     <div class="bfffff"><span>18</span></div>
   </div>
 
   <div class="part2-gage-right pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff">1.9 MW</div>
-      <div class="c-66ffff">1.9 MW</div>
-      <div class="bfffff">0 MW</div>
-      <div class="c-66ffff">1.5 MW</div>
-      <div class="bfffff">52.6 %</div>
+      <div class="bfffff">{{state1.apiData.sector3.total_nega_watt}} MW</div>
+      <div class="c-66ffff">{{state1.apiData.sector3.solar_nega_watt}} MW</div>
+      <div class="bfffff">{{state1.apiData.sector3.wind_nega_watt}} MW</div>
+      <div class="c-66ffff">0 MW</div>
+      <div class="bfffff">0 %</div>
     </div>
     <div class="bfffff">18</div>
   </div>
