@@ -202,7 +202,7 @@
               var currentConsumer = vm.resourcesConsumers[i];
 
 
-
+                vm.resourcesConsumers[i].line2 = 442;
 
             }
 
