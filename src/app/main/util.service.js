@@ -35,18 +35,17 @@
         }else{
           buttonOnOff("R", false);
         }
-      },
 
-      /*
-       * @description : 페이지 이동버튼 켜고 끄기
-       * @author : Tim
-       * @param direction : 'L', 'R'
-       * @param onOff : true(on), false(off)
-       */
-      buttonOnOff : function(direction, onOff){
-        $(".sector2-button" + direction).css("background-image", 'url("/../assets/images/sector2_image/'+ direction +'_'+ (onOff ? 'on' : 'off') +'.png")');
+        /*
+         * @description : 페이지 이동버튼 켜고 끄기
+         * @author : Tim
+         * @param direction : 'L', 'R'
+         * @param onOff : true(on), false(off)
+         */
+        function buttonOnOff(direction, onOff){
+          $(".sector2-button" + direction).css("background-image", 'url("/../assets/images/sector2_image/'+ direction +'_'+ (onOff ? 'on' : 'off') +'.png")');
+        }
       }
-
 
     };
   }
