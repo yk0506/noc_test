@@ -46,7 +46,17 @@
 
         $log.info("#getConsumerList end.");
 
-        if('all' == drType) vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
+        if('all' == drType){
+          vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
+
+          vm.maxAvailNegaWatt = 0;
+
+          for(var i=0 ; i < resp.data.data.length ; i++){
+            if(resp.data.data[i].dem_cbl) vm.maxAvailNegaWatt += parseInt(resp.data.data[i].dem_cbl);
+          }
+
+          $log.debug("vm.maxAvailNegaWatt : " + vm.maxAvailNegaWatt);
+        }
         else getConsDetailList(vm.resourcesConsumers[0].cons_idx);    //수용가 동 리스트 호출
 
         //페이징
@@ -163,7 +173,7 @@
           }
         }
 
-        //빌딩 페이징
+        //빌딩 페이징 위해..
         vm.buildingsBeginNumber = 0;
 
         $log.info("#getConsDetailList end.");
