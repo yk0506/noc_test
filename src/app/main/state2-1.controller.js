@@ -6,7 +6,7 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope) {
     var vm = this;
     vm._ = _;
 
@@ -14,7 +14,7 @@
 
 
     /*
-     * @description : 수용가 리스트 호출
+     * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
      * @author : Tim
      * @param drType
      *  - all : 전체
@@ -27,6 +27,8 @@
     function getConsumerList(drType){
 
       $log.info("#getConsumerList start. drType : " + drType);
+
+      vm.drType = drType;
 
       var url;
       if('all' == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
@@ -47,6 +49,19 @@
         if('all' == drType) vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
         else getConsDetailList(vm.resourcesConsumers[0].cons_idx);    //수용가 동 리스트 호출
 
+        //페이징
+        vm.currentPage = 1;
+        if (vm.resourcesConsumers.length%6 != 0) vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
+        else vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        vm.existPrevPage = false;
+        vm.existNextPage = false;
+
+        if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
+
+        utilService.buttonCtrl(vm);
+
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
       });
@@ -55,6 +70,70 @@
     vm.drType = 'all';
     getConsumerList(vm.drType);
     drawLineChart(vm.drType);
+
+    vm.consumerBeginNumber = 0;
+
+    //화면 이동 R 처리
+    vm.clickedR = function () {
+      if (vm.currentPage < vm.consumerPageNum) { //다음 페이지가 있음
+        vm.consumerBeginNumber = vm.consumerBeginNumber+6;
+        vm.currentPage = vm.currentPage+1;
+        $rootScope.$broadcast('consumerBeginNumber-changedR', {
+          consumerBeginNumber: vm.consumerBeginNumber
+        });
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
+          vm.existPrevPage = true;
+          vm.existNextPage = true;
+        }else{
+          vm.existPrevPage = true;
+          vm.existNextPage = false;
+        }
+        //Tim
+
+      } else if (vm.currentPage == vm.consumerPageNum) { //없음
+        //alert
+        alert('last page!!');
+      }
+
+      // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+      utilService.buttonCtrl(vm);
+
+      //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
+      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+    };
+
+    //화면 이동 L 처리
+    vm.clickedL = function () {
+      if (vm.currentPage > 1) { //이전 페이지가 있음
+        vm.consumerBeginNumber = vm.consumerBeginNumber-6;
+        vm.currentPage = vm.currentPage-1;
+        $rootScope.$broadcast('consumerBeginNumber-changedL', {
+          consumerBeginNumber: vm.consumerBeginNumber
+        });
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        if(vm.currentPage > 1){  //또 이전 페이지가 있음
+          vm.existPrevPage = true;
+          vm.existNextPage = true;
+        }else{
+          vm.existPrevPage = false;
+          vm.existNextPage = true;
+        }
+        //Tim
+
+      } else if (vm.currentPage == 1) { //없음
+        //alert
+        alert('first page!!');
+      }
+
+      // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+      utilService.buttonCtrl(vm);
+
+      //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
+      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+    };
 
 
     /*
@@ -83,6 +162,9 @@
             if(consIdx == vm.resourcesConsumers[i].cons_idx) vm.consumersBuildings = [vm.resourcesConsumers[i]];
           }
         }
+
+        //빌딩 페이징
+        vm.buildingsBeginNumber = 0;
 
         $log.info("#getConsDetailList end.");
 
@@ -141,6 +223,7 @@
     }
 
 
+    vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
     /*
      * @description : drType별 상단 라인차트 그리기
@@ -175,90 +258,12 @@
           }
         }
 
-        var chart2 = c3.generate({
-          bindto: '#resource-graph',
-          data: {
-            x: vm.timeX[0],
-            xFormat:'%H:%M',
-            columns: [vm.timeX, cbl, watt]
-          },
-          grid: { //점선
-            x: {
-              show: false
-            },
-            y: {
-              show: false
-            }
-          },
-          axis: { //가로 세로줄
-            x: {
-              show: false,
-              type: 'timeseries',
-              tick: {
-                format: '%H:%M',
-                values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
-              }
-            },
-            y: {
-              show: false
-            }
-
-          },
-          point: {
-            show: false
-          },
-          tooltip: {
-            contents: function (d) {
-              // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
-
-              var data = 0;
-              for (var i=0; i<d.length; i++) {
-                if (d[i].id == "전력량") {
-                  data = d[i].value;
-                }
-              }
-
-              if (data != null) {
-                var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
-                  'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  data + '</div>'; // formatted html as you want
-              } else {
-                var dataHtml = '';
-              }
-
-              return dataHtml;
-
-            }
-          },
-          size: {
-            width: 1700,
-            height: 450
-          },
-          color: {
-            pattern: ['#608080', '#80ffff']
-          },
-          line: {
-            width: 10
-          },
-          legend: { //밑에 데이터 구분 테이블
-            hide: true
-          }
-        });
-
-        chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-        $("#resource-graph").mouseleave(function () {
-          chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-        });
+        utilService.drawTopLineChart('#resource-graph', cbl, watt, vm);
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
       });
     }
-
-
-
-
-
 
 
     computedService.then(function(result) {
@@ -299,22 +304,7 @@
 
     });
 
-    vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
 
-    vm.timeX = ['x',
-      '00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45',
-      '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45',
-      '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45',
-      '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45',
-      '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45',
-      '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45',
-      '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45',
-      '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45',
-      '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45',
-      '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45',
-      '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45',
-      '23:00', '23:15', '23:30', '23:45', '24:00', '24:15', '24:30', '24:45'
-    ];
 
     //getCompaniesResources();
     function getCompaniesResources() {
@@ -377,15 +367,16 @@
 
 
     $log.log('State2_1Controller!');
-    vm.consumerBeginNumber = 0;
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
+      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 
     $scope.$on('consumerBeginNumber-changedL', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
+      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 
