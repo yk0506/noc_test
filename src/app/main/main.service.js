@@ -15,20 +15,9 @@
     this.consumerBeginNumber = 0;
   }
 
-
   function energyService($log, $http, $q) {
     $log.info("START energyService!!");
     return {
-
-      /*getConsumerBeginNumber: function() {
-       return consumerBeginNumber;
-       },
-       setConsumerBeginNumber: function(data) {
-       consumerBeginNumber = data;
-       $log.debug('consumerBeginNumber:: ', consumerBeginNumber);
-       return consumerBeginNumber;
-       },*/
-
 
       energyResources: function () {
         var deferred = $q.defer();
