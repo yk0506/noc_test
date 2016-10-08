@@ -3,10 +3,10 @@
 
   angular
     .module('power-plant')
-    .controller('MainController', MainController);
+    .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $scope, computedService) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService) {
     var vm = this;
     vm._ = _;
 
@@ -328,6 +328,7 @@
             // CBL - (계약용량+추가용량)
             vm.resourcesConsumers[i].maxTarget =
               parseFloat(vm.resourcesConsumers[i].dem_cbl) - (parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt));
+
             // 가동률
             vm.resourcesConsumers[i].operateRatio =
               ((parseFloat(vm.resourcesConsumers[i].dem_cbl) - parseFloat(vm.resourcesConsumers[i].dem_watt))
@@ -388,7 +389,7 @@
          }
    }
 
-    $log.log('MainController!');
+    $log.log('State2_1Controller!');
     vm.consumerBeginNumber = 0;
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
