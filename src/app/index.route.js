@@ -17,8 +17,8 @@
       .state('state2', {
         url: '/state2',
         templateUrl: 'app/main/state2-map.html',
-        controller: 'MainController',
-        controllerAs: 'main'
+        controller: 'State2Controller',
+        controllerAs: 'state2'
       })
       .state('state2-1', { //DR
         url: '/state2-1',

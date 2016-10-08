@@ -328,6 +328,7 @@
             // CBL - (계약용량+추가용량)
             vm.resourcesConsumers[i].maxTarget =
               parseFloat(vm.resourcesConsumers[i].dem_cbl) - (parseFloat(vm.resourcesConsumers[i].cont_watt) + parseFloat(vm.resourcesConsumers[i].add_cont_watt));
+
             // 가동률
             vm.resourcesConsumers[i].operateRatio =
               ((parseFloat(vm.resourcesConsumers[i].dem_cbl) - parseFloat(vm.resourcesConsumers[i].dem_watt))
