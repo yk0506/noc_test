@@ -16,9 +16,14 @@
     $log.info("# State2MapController.");
 
 
-    var sitename = $stateParams.param1;
-    if (sitename) {
-      vm.site = '/assets/images/map/map-' + sitename + '.png';
+    if ($stateParams.param1) {
+      vm.sitename = $stateParams.param1;
+    } else {
+      vm.sitename = 'seoul';
+    }
+
+    if (vm.sitename) {
+      vm.site = '/assets/images/map/map-' + vm.sitename + '.png';
     } else {
       vm.site = '/assets/images/map/map-seoul.png';
     }
