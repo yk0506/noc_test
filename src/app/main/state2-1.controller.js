@@ -3,10 +3,10 @@
 
   angular
     .module('power-plant')
-    .controller('MainController', MainController);
+    .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function MainController($log, $timeout, energyService, c3, $scope, computedService) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService) {
     var vm = this;
     vm._ = _;
 
@@ -389,7 +389,7 @@
          }
    }
 
-    $log.log('MainController!');
+    $log.log('State2_1Controller!');
     vm.consumerBeginNumber = 0;
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
