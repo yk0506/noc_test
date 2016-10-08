@@ -6,9 +6,275 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope) {
     var vm = this;
     vm._ = _;
+
+    $log.info("# State2_1Controller.");
+
+
+    /*
+     * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
+     * @author : Tim
+     * @param drType
+     *  - all : 전체
+     *  - 0 : 기타자원
+     *  - 1 : DR1
+     *  - 2 : DR2
+     *  - 3 : DR3
+     *  - 4 : DR4
+     */
+    function getConsumerList(drType){
+
+      $log.info("#getConsumerList start. drType : " + drType);
+
+      vm.drType = drType;
+
+      var url;
+      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
+      else url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
+
+      $http({
+        method: 'GET',
+        url: url,
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+
+        vm.resourcesConsumers = resp.data.data;
+
+        $log.info("#getConsumerList end.");
+
+        if('all' == drType){
+          vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
+
+          vm.maxAvailNegaWatt = 0;
+
+          for(var i=0 ; i < resp.data.data.length ; i++){
+            if(resp.data.data[i].dem_cbl) vm.maxAvailNegaWatt += parseInt(resp.data.data[i].dem_cbl);
+          }
+
+          $log.debug("vm.maxAvailNegaWatt : " + vm.maxAvailNegaWatt);
+        }
+        else getConsDetailList(vm.resourcesConsumers[0].cons_idx);    //수용가 동 리스트 호출
+
+        //페이징
+        vm.currentPage = 1;
+        if (vm.resourcesConsumers.length%6 != 0) vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
+        else vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        vm.existPrevPage = false;
+        vm.existNextPage = false;
+
+        if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
+
+        utilService.buttonCtrl(vm);
+
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
+      });
+    }
+
+    vm.drType = 'all';
+    getConsumerList(vm.drType);
+    drawLineChart(vm.drType);
+
+    vm.consumerBeginNumber = 0;
+
+    //화면 이동 R 처리
+    vm.clickedR = function () {
+      if (vm.currentPage < vm.consumerPageNum) { //다음 페이지가 있음
+        vm.consumerBeginNumber = vm.consumerBeginNumber+6;
+        vm.currentPage = vm.currentPage+1;
+        $rootScope.$broadcast('consumerBeginNumber-changedR', {
+          consumerBeginNumber: vm.consumerBeginNumber
+        });
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
+          vm.existPrevPage = true;
+          vm.existNextPage = true;
+        }else{
+          vm.existPrevPage = true;
+          vm.existNextPage = false;
+        }
+        //Tim
+
+      } else if (vm.currentPage == vm.consumerPageNum) { //없음
+        //alert
+        alert('last page!!');
+      }
+
+      // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+      utilService.buttonCtrl(vm);
+
+      //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
+      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+    };
+
+    //화면 이동 L 처리
+    vm.clickedL = function () {
+      if (vm.currentPage > 1) { //이전 페이지가 있음
+        vm.consumerBeginNumber = vm.consumerBeginNumber-6;
+        vm.currentPage = vm.currentPage-1;
+        $rootScope.$broadcast('consumerBeginNumber-changedL', {
+          consumerBeginNumber: vm.consumerBeginNumber
+        });
+
+        // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+        if(vm.currentPage > 1){  //또 이전 페이지가 있음
+          vm.existPrevPage = true;
+          vm.existNextPage = true;
+        }else{
+          vm.existPrevPage = false;
+          vm.existNextPage = true;
+        }
+        //Tim
+
+      } else if (vm.currentPage == 1) { //없음
+        //alert
+        alert('first page!!');
+      }
+
+      // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+      utilService.buttonCtrl(vm);
+
+      //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
+      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+    };
+
+
+    /*
+     * @description : 수용가 동 리스트 호출
+     * @author : Tim
+     * @param consumer Idx
+     */
+    function getConsDetailList(consIdx){
+      vm.consIdx = consIdx;
+
+      $log.info("#getConsDetailList start. consIdx : " + consIdx);
+
+      $http({
+        method: 'GET',
+        url: 'http://api.ourwatt.com/nvpp/noc/'+ consIdx +'/buildinglist',
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+
+        vm.consumersBuildings = resp.data.data;
+
+        //수용가에 동 정보가 없을 경우 수용가 정보 자체를 동 정보로 사용
+        if(vm.consumersBuildings.length == 0){
+          for(var i=0 ; i < vm.resourcesConsumers.length ; i++){
+            if(consIdx == vm.resourcesConsumers[i].cons_idx) vm.consumersBuildings = [vm.resourcesConsumers[i]];
+          }
+        }
+
+        //빌딩 페이징 위해..
+        vm.buildingsBeginNumber = 0;
+
+        $log.info("#getConsDetailList end.");
+
+        $(".cons-btn").each(function(){
+          if(consIdx == $(this).attr("value")) changeConsBtnClass(this, true);
+          else changeConsBtnClass(this, false);
+        });
+
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
+      });
+    }
+
+
+    //상단 DR1,2,3,4,etc 클릭 이벤트 처리
+    vm.clickDR = function(drType){
+      $(".drType-btn").each(function(){
+        if(drType == $(this).attr("value")) changeBtnClass(this, true);
+        else changeBtnClass(this, false);
+      });
+
+      function changeBtnClass(obj, onOff){
+        if(onOff){
+          $(obj).addClass("state2-btn-dr-on");
+          $(obj).removeClass("state2-btn-dr");
+        }else{
+          $(obj).addClass("state2-btn-dr");
+          $(obj).removeClass("state2-btn-dr-on");
+        }
+      }
+
+      getConsumerList(drType);
+      drawLineChart(drType);
+    }
+
+
+    //수용가 리스트 클릭 처리
+    vm.clickConsumer = function(consIdx){
+      $(".cons-btn").each(function(){
+        if(consIdx == $(this).attr("value")) changeConsBtnClass(this, true);
+        else changeConsBtnClass(this, false);
+      });
+
+      getConsDetailList(consIdx);
+    }
+
+    //수용가 리스트 on, off
+    function changeConsBtnClass(obj, onOff){
+      if(onOff){
+        $(obj).addClass("consumer-on");
+        $(obj).removeClass("consumer-off");
+      }else{
+        $(obj).addClass("consumer-off");
+        $(obj).removeClass("consumer-on");
+      }
+    }
+
+
+    vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
+
+    /*
+     * @description : drType별 상단 라인차트 그리기
+     * @author : Tim
+     * @param drType
+     */
+    function drawLineChart(drType){
+
+      var url;
+      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/energy/resources/5';
+      else url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
+
+      $http({
+        method: 'GET',
+        url: url,
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+
+        vm.energyResources = resp.data.data;
+
+        var cbl = ['cbl'];
+        var watt = ['전력량'];
+
+        for (var i=0; i<vm.energyResources.length; i++) {
+          cbl.push(vm.energyResources[i].dem_cbl);
+          watt.push(vm.energyResources[i].dem_watt);
+
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
+            vm.currentXtime = vm.energyResources[i].dem_date;
+          }
+        }
+
+        utilService.drawTopLineChart('#resource-graph', cbl, watt, vm);
+
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
+      });
+    }
+
 
     computedService.then(function(result) {
       $log.info('computedResult:: ', result);
@@ -46,221 +312,11 @@
         vm.gageCurrentDevelop = 270;
       }
 
-
-
     });
 
-    vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
-
-    // vm.timeX = ['0','1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
-
-    vm.timeX = ['x',
-      '00:00', '00:15', '00:30', '00:45', '01:00', '01:15', '01:30', '01:45',
-      '02:00', '02:15', '02:30', '02:45', '03:00', '03:15', '03:30', '03:45',
-      '04:00', '04:15', '04:30', '04:45', '05:00', '05:15', '05:30', '05:45',
-      '06:00', '06:15', '06:30', '06:45', '07:00', '07:15', '07:30', '07:45',
-      '08:00', '08:15', '08:30', '08:45', '09:00', '09:15', '09:30', '09:45',
-      '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45',
-      '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45',
-      '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45',
-      '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45',
-      '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45',
-      '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45',
-      '23:00', '23:15', '23:30', '23:45', '24:00', '24:15', '24:30', '24:45'
-    ];
 
 
-    for (var i=0; i<9; i++) {
-      var sector3Graph = c3.generate({
-        bindto: '#sector3-graph'+i,
-        data: {
-          x: 'x',
-          columns: [
-            ['x', '15', '30', '35', '40'],
-            ['data1', 20, 15, 30, 45]
-          ],
-          type: 'bar'
-        },
-        bar: {
-          width: 10 // this makes bar width 100px
-        },
-        color: {
-          pattern: ['#bfffff', '#597c80', '#fffbcc', '#80ffff']
-        },
-        size: {
-          width: 160,
-          height: 200
-        },
-        legend: {
-          show: false
-        },
-        axis: {
-          x: {
-            type: 'categories',
-            show: true
-          },
-          y: {
-            show: false
-          }
-        }
-      });
-    }
-
-
-    getEnergyResources();
-    function getEnergyResources() {
-      energyService.energyResources().then(
-        function (resp) {
-          vm.energyResources = resp.energyResources;
-
-          var cbl = ['cbl'];
-          var watt = ['전력량'];
-
-          for (var i=0; i<vm.energyResources.length; i++) {
-            cbl.push(vm.energyResources[i].dem_cbl);
-            watt.push(vm.energyResources[i].dem_watt);
-
-            if(vm.energyResources[i].dem_watt != null){
-              vm.currentXtime = vm.energyResources[i].dem_date;
-            }
-          }
-          // $log.info('cbl: ',cbl, ', watt: ',watt);
-
-
-          var chart1 = c3.generate({
-            bindto: '#resource-map',
-            data: {
-              x: vm.timeX[0],
-              xFormat:'%H:%M',
-              columns: [vm.timeX, cbl, watt]
-            },
-            grid: { //점선
-              x: {
-                show: false
-              },
-              y: {
-                show: false
-              }
-            },
-            axis: { //가로 세로줄
-              x: {
-                show: false,
-                type: 'timeseries',
-                tick: {
-                  format: '%H:%M',
-                  values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-                    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
-                }
-              },
-              y: {
-                show: false
-              }
-
-            },
-            point: {
-              show: false
-            },
-            tooltip: {
-              show: false
-            },
-            size: {
-              width: 2530,
-              height: 300
-            },
-            color: {
-              pattern: ['#608080', '#c5bc6d']
-            },
-            line: {
-              width: 10
-            },
-            legend: { //밑에 데이터 구분 테이블
-              hide: true
-            }
-          });
-
-          var chart2 = c3.generate({
-            bindto: '#resource-graph',
-            data: {
-              x: vm.timeX[0],
-              xFormat:'%H:%M',
-              columns: [vm.timeX, cbl, watt]
-            },
-            grid: { //점선
-              x: {
-                show: false
-              },
-              y: {
-                show: false
-              }
-            },
-            axis: { //가로 세로줄
-              x: {
-                show: false,
-                type: 'timeseries',
-                tick: {
-                  format: '%H:%M',
-                  values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-                    '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
-                }
-              },
-              y: {
-                show: false
-              }
-
-            },
-            point: {
-              show: false
-            },
-            tooltip: {
-              contents: function (d) {
-                // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
-
-                var data = 0;
-                for (var i=0; i<d.length; i++) {
-                  if (d[i].id == "전력량") {
-                    data = d[i].value;
-                  }
-                }
-
-                if (data != null) {
-                  var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
-                    'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  data + '</div>'; // formatted html as you want
-                } else {
-                  var dataHtml = '';
-                }
-
-                return dataHtml;
-
-              }
-            },
-            size: {
-              width: 1700,
-              height: 450
-            },
-            color: {
-              pattern: ['#608080', '#80ffff']
-            },
-            line: {
-              width: 10
-            },
-            legend: { //밑에 데이터 구분 테이블
-              hide: true
-            }
-          });
-
-          chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-          $("#resource-graph").mouseleave(function () {
-            chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-          });
-
-          $timeout(getEnergyResources, 900000);
-
-        }
-      )
-    }
-
-
-    getCompaniesResources();
+    //getCompaniesResources();
     function getCompaniesResources() {
       energyService.companiesResources().then(
         function (resp) {
@@ -277,7 +333,7 @@
       )
     }
 
-    getResourcesConsumers();
+    //getResourcesConsumers();
     function getResourcesConsumers() {
       energyService.resourcesConsumers().then(
         function (resp) {
@@ -319,44 +375,18 @@
     }
 
 
-    calcSmallRotate(270);
-
-    // 가용량
-    // 0 이면 12 부터 시작, +30 -> 한 칸 증가
-   function calcSmallRotate(degree) {
-        if(degree < 180 || degree == 360) {
-            $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '44px' , 'top': '128px'};
-        } else if (degree >= 180) {
-            $scope.calcSmallRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '48px' , 'top': '130px'};
-        }
-    }
-
-    calcLargeRotate(4);
-    // 현재 출력
-   function calcLargeRotate(flag) {
-         if(flag == 0) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '696px' , 'top': '129px'};
-         } else if (flag == 1) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '693px' , 'top': '131px'};
-         } else if (flag == 2) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '693px' , 'top': '129px'};
-         } else if (flag == 3) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '693px' , 'top': '127px'};
-         } else if (flag == 4) {
-              $scope.calcLargeRotate = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '696px' , 'top': '127px'};
-         }
-   }
 
     $log.log('State2_1Controller!');
-    vm.consumerBeginNumber = 0;
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
+      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 
     $scope.$on('consumerBeginNumber-changedL', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
+      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 

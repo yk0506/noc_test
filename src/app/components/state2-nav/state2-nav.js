@@ -235,7 +235,7 @@
       vm.currentState = $state.current.name;
 
 
-      getResourcesConsumers();
+      //getResourcesConsumers();
       function getResourcesConsumers() {
         energyService.resourcesConsumers().then(
           function (resp) {

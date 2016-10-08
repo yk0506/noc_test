@@ -111,7 +111,7 @@
       <div class="bfffff graph-section-each"
            ng-repeat="con in state2_2.resourcesConsumers|limitTo:6:state2_2.consumerBeginNumber">
         <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.cons_name}}</div>
-        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{state2_2.currentTime}}</span>
+        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{con.curr_date_time}}</span>
         </div>
 
         <img src="../assets/images/sector2_image/ess.png"
