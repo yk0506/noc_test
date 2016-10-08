@@ -20,6 +20,15 @@
         controller: 'State2Controller',
         controllerAs: 'state2'
       })
+      .state('state2-map', {  //zoom map
+        url: '/state2-map',
+        params: {
+          param1: null
+        },
+        templateUrl: 'app/main/map/zoom-map.html',
+        controller: 'State2MapController',
+        controllerAs: 'map'
+      })
       .state('state2-1', { //DR
         url: '/state2-1',
         templateUrl: 'app/main/state2-dr.html',
