@@ -12,20 +12,6 @@
 
     console.log("# ESS. state2-2 Controller.");
 
-     var settings = {
-      root: $(".zoomViewport"),
-      // show debug points in element corners. helps
-      // at debugging when zoomooz positioning fails
-      debug: false,
-      // this specifies, that clicking an element that is zoomed to zooms
-      // back out
-      closeclick: true
-    };
-
-    $(document).ready(function() {
-      $(".zoomTargeting").zoomTarget(settings);
-    });
-
 
     getDemandData();
     function getDemandData(){
