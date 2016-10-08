@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.sector2-1-img {
+/*.sector2-1-img {
   background: url("/images/companywe_sector2-1.png");
   width: 3840px;
   height: 2160px;
@@ -25,7 +25,7 @@
   z-index: 31;
   opacity: 0.2;
   display: none;
-}
+}*/
 
 .sector2-map {
   position: absolute;
