@@ -6,7 +6,7 @@
     .controller('State2Controller', State2Controller);
 
   /** @ngInject */
-  function State2Controller($log, $timeout, energyService, c3, $scope, computedService) {
+  function State2Controller($log, $timeout, energyService, c3, $scope, $state) {
     var vm = this;
     vm._ = _;
 
@@ -28,29 +28,7 @@
 
 
     vm.zoomMap = function (site) {
-      switch (site) {
-        case 'seoul':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-seoul.png' ng-click='main.zoomoutMap()' /></div>");
-              break;
-
-        case 'ansan':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-ansan.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-        case 'bucheon':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-bucheon.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-        case 'incheon':
-          $('#mapselect').append("<img class='animated fadeIn zoomMap' src='/assets/images/map/map-incheon.png' ng-click='main.zoomoutMap()' /></div>");
-          break;
-
-      }
-
-      $('#mapselect').children('img').on('click', function(e) {
-        console.log(this);
-        this.remove();
-      })
+      $state.go('state2-map', {param1: site});
     };
 
 

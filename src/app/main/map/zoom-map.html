@@ -1,0 +1,50 @@
+<img class='zoomMap' src='{{map.site}}' ng-click="map.zoomoutMap()"/>
+
+<img class='zoomMap' src='/assets/images/map/sector2_map-grid.png' ng-click="map.zoomoutMap()"/>
+
+<div ng-show="map.sitename == 'seoul'">
+  <div class="zoomPin" style="left: 2450px;top: 1400px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>gs타워</div>
+  </div>
+  <div class="zoomPin" style="left: 2100px;top: 1100px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>광화문 타워</div>
+  </div>
+</div>
+
+<div ng-show="map.sitename == 'bucheon'">
+  <div class="zoomPin" style="left: 1900px;top: 850px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>부천1</div>
+  </div>
+  <div class="zoomPin" style="left: 2000px;top: 850px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>부천2</div>
+  </div>
+  <div class="zoomPin" style="left: 1900px;top: 900px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>부천3</div>
+  </div>
+  <div class="zoomPin" style="left: 2000px;top: 900px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>부천4</div>
+  </div>
+</div>
+
+<div ng-show="map.sitename == 'ansan'">
+  <div class="zoomPin" style="left: 1375px;top: 1000px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>안산시화공단</div>
+  </div>
+</div>
+
+<div ng-show="map.sitename == 'incheon'">
+  <div class="zoomPin" style="left: 2475px;top: 1700px;">
+    <img src="../assets/images/pindrop.svg"/>
+    <div>인천남동공단</div>
+  </div>
+</div>
+
+<state2-nav></state2-nav>
+<state2-nav2></state2-nav2>

@@ -79,4 +79,7 @@
 }
 
 
-.zoomMap {width: 2712px;height: 2160px;position: absolute;z-index: 40;}
+.zoomMap {width: 2712px;height: 2160px;position: absolute;left: 742px;}
+.zoomPin {position: absolute;}
+.zoomPin img {width: 150px;height: 150px;}
+.zoomPin div {font-size: 40px;text-align: center;}
