@@ -154,6 +154,9 @@
     function getConsDetailList(consIdx){
       vm.consIdx = consIdx;
 
+      //로딩중 이미지 보이기
+      vm.consumersBuildings = [];
+
       $log.info("#getConsDetailList start. consIdx : " + consIdx);
 
       $http({
