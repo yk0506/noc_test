@@ -6,11 +6,19 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval) {
     var vm = this;
     vm._ = _;
 
     $log.info("# State2_1Controller.");
+
+    $interval(function () {
+      vm.nowDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    }, 1000);
+    vm.currentDay = moment().format('YYYY.MM.DD');
+
+    vm.afterTime = moment().format('h:mm');
+    vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
 
     /*
@@ -83,9 +91,10 @@
       });
     }
 
-    vm.drType = 0;
-    getConsumerList(vm.drType);
-    drawLineChart(vm.drType);
+    vm.drType = 0;                //초기화면은 전체
+    getConsumerList(vm.drType);   //초기화면 수용가 리스트
+    drawLineChart(vm.drType);     //초기화면 상단 라인차트
+    getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
 
     vm.consumerBeginNumber = 0;
 
@@ -215,8 +224,14 @@
         }
       }
 
+      //수용가 리스트 호출
       getConsumerList(drType);
+
+      //상단 라인차트 그리기
       drawLineChart(drType);
+
+      //화면 좌측 데이터, 원그래프 정보 호출
+      getLeftData(drType);
     }
 
 
@@ -227,7 +242,32 @@
         else changeConsBtnClass(this, false);
       });
 
+      //수용가 상세정보(동정보) 호출
       getConsDetailList(consIdx);
+    }
+
+
+     /*
+     * @description : 우측 상단 DR Type 선택했을 때 왼쪽 화면정보 호출
+     * @author : Tim
+     * @param drType
+     */
+    function getLeftData(drType){
+      $http({
+        method: 'GET',
+        url: 'http://api.ourwatt.com/nvpp/noc/dr/left/5',
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+
+        vm.leftData = resp.data.data;
+
+
+
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
+      });
     }
 
     //수용가 리스트 on, off
@@ -251,9 +291,7 @@
      */
     function drawLineChart(drType){
 
-      var url;
-      if(0 == drType) url = 'http://api.ourwatt.com/nvpp/energy/resources/5';
-      else url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
+      var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
 
       $http({
         method: 'GET',
@@ -274,10 +312,15 @@
 
           if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
             vm.currentXtime = vm.energyResources[i].dem_date;
+            vm.currentXtime8 = vm.energyResources[i].dem_date;
           }
         }
 
+        //중앙상단 라인차트
         utilService.drawTopLineChart('#resource-graph', cbl, watt, vm);
+
+        //죄측상단 미니막대그래프 8개
+        utilService.drawMiniEightChart('#chartbar1', vm);
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);

@@ -8,7 +8,7 @@
     <div class="sector1-title">
       <div style="line-height: 50px;">
         <span class="pt44 bfffff" style="margin-right: 50px;">NVPP</span>
-        <span class="pt38 fffef2" style="margin-right: 105px;">{{state1.apiData.sector1.nvppName}}</span>
+        <span class="pt38 fffef2" style="margin-right: 105px;">{{state1.apiData.sector1.nvppName || 'CPW'}}</span>
         <span class="pt28 bfffff" style="margin-right: 50px;">발전소</span>
         <span class="pt28 fffef2">{{state1.apiData.sector1.nvppCount}}</span>
       </div>
@@ -20,12 +20,12 @@
         <div class="pt28 bfffff">현재출력</div>
         <div class="pt20 c-7ca6a6">MW</div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="margin-right: 35px;line-height: 66px;">{{state1.apiData.sector1.power_mw}}</span>
-      <span class="floatLeft" style="margin-right: 4px;line-height: 36px;">
-        <div class="pt28 bfffff">일일누적</div>
-        <div class="pt28 bfffff">공급량 <span class="pt20 c-7ca6a6">MWh</span> </div>
+        <span class="pt70 fffef2 floatLeft" style="margin-right: 35px;line-height: 66px;">{{state1.apiData.sector1.power_mw || '0.0'}}</span>
+      <span class="" style="margin-right: 4px;line-height: 36px; position:absolute; left:300px;">
+        <div class="pt28 bfffff">평균 가동율</div>
+        <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;"> {{state1.apiData.sector1.power_acc_mw}}</span>
+        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;position:absolute; left:460px;"> {{state1.avgOperRate}}</span>
       </div>
     </div>
 
@@ -111,9 +111,9 @@
 <!--gage bars : cause seperate layer in z-index -->
 <div class="sector1-gagebar">
   <!--todo: use ngstyle, height-->
-  <div class="sector1-ess" style="height: 154px;background-color: #80ffff;"></div>
-  <div class="sector1-new" style="height: 357px;background-color: #d9ffff;left: 222px;"></div>
-  <div class="sector1-con" style="height: 200px;background-color: #86bfbf;left: 443px;"></div>
+  <div class="sector1-ess" ng-style="{height:state1.apiData.sector1.ess_oper_rate * 554 / 100}" style="background-color: #80ffff;"></div>
+  <div class="sector1-new" ng-style="{height:state1.apiData.sector1.solar_oper_rate * 554 / 100}" style="background-color: #d9ffff;left: 222px;"></div>
+  <div class="sector1-con" ng-style="{height:state1.apiData.sector1.dr_oper_rate * 554 / 100}" style="background-color: #86bfbf;left: 443px;"></div>
 </div>
 
 <div class="energy-pool-block">
@@ -131,14 +131,14 @@
 <!--PART2 gage bars : cause seperate layer in z-index -->
 <div class="part2-gagebar">
   <!--todo: use ngstyle, height-->
-  <div style="height: 154px;"></div>
+  <div style="height: 0px;"></div>
   <div style="height: 200px;left: 112px;"></div>
 </div>
 
 <div class="part2-gagebar" style="left: 2275px;">
   <!--todo: use ngstyle, height-->
-  <div style="height: 400px;"></div>
-  <div style="height: 250px;left: 112px;"></div>
+  <div style="height: 150px;"></div>
+  <div style="height: 0px;left: 112px;"></div>
 </div>
 
 <div class="part2-gagebar" style="left: 3262px;">

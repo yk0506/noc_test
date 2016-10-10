@@ -25,6 +25,7 @@
       }).then(function(resp) {
 
         vm.apiData = resp.data;
+        vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
         $log.info("Api data load complete.");
 
@@ -38,12 +39,6 @@
 
     $scope.essSmallRotate = calcSmallRotate(180);
     $scope.essLargeRotate = calcLargeRotate(1);
-
-//    $scope.solarSmallRotate = calcSmallRotate(150);
-//    $scope.solarLargeRotate = calcSmallRotate(2);
-//
-//    $scope.drSmallRotate = calcSmallRotate(270);
-//    $scope.drLargeRotate = calcSmallRotate(3);
 
     // 가용량
     // 0 이면 12 부터 시작, +30 -> 한 칸 증가

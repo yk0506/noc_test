@@ -55,7 +55,7 @@
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
       <span
-        class="pt60 fffef2">{{state2_1.currentCompanyResources.dem_cbl-state2_1.currentCompanyResources.dem_watt|number:0}}</span>
+        class="pt60 fffef2">{{state2_1.leftData.nega_watt}}</span>
       <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
@@ -194,6 +194,8 @@
 <!--consumer minus line-->
 <!--<div class="absolute" style="width: 0;height: 328px;top: 1011px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>-->
 
-<state2-nav></state2-nav>
+<!-- Tim 수정. API가 변경되어 include하고 state2-1Controller에서 데이터 제어 -->
+<!--<state2-nav></state2-nav>-->
+<div ng-include="'app/components/state2-nav/state2-nav.html'"></div>
 <!--<state2-nav2></state2-nav2>-->
 <div ng-include="'app/components/state2-nav/state2-nav2.html'"></div>

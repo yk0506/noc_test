@@ -146,6 +146,74 @@
         $("#resource-graph").mouseleave(function () {
           chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
         });
+      },
+
+
+      /*
+       * @description : DR 발전상세 화면에서 좌측상단 미니 막대그래프 8개 그리기
+       * @author : Tim
+       * @param selector : DOM 선택자
+       * @param cbl : cbl Array
+       * @param watt : watt Array
+       * @param vm : scope
+       */
+      drawMiniEightChart : function(selector, vm){
+
+        var watt = [];
+        //vm.currentXtime = [];
+        vm.currentXtime8Mini = [];
+
+        for (var i=0; i<vm.energyResources.length; i++) {
+          if(vm.energyResources[i].dem_watt != null){
+            watt.push(parseInt(vm.energyResources[i].dem_watt));
+            vm.currentXtime8Mini.push(vm.energyResources[i].dem_date);
+          }
+        }
+        watt = watt.splice(watt.length-8, 8);
+        vm.currentXtime8Mini = vm.currentXtime8Mini.splice(vm.currentXtime8Mini.length-8, 8); //최근 8개 시간만
+
+        var watt8 = ['전력량'];
+        watt8 = watt8.concat(watt);
+        var currentXtime8 = ['x'];
+        currentXtime8 = currentXtime8.concat(vm.currentXtime8Mini);
+
+        var chartbar1 = c3.generate({
+          bindto: selector,
+          data: {
+            x: 'x',
+            columns: [
+              currentXtime8, watt8
+              /*['x', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00'],
+              ['data1', 2, 2, 30, 30, 34, 45, 80, 80]*/
+            ],
+            type: 'bar'
+          },
+          bar: {
+            width: 10 // this makes bar width 100px
+          },
+          size: {
+            width: 300,
+            height: 120
+          },
+          color: {
+            pattern: ['#bfffff']
+          },
+          legend: {
+            show: false
+          },
+          axis: {
+            x: {
+              type: 'categories',
+              tick: {
+                rotate: 90
+              },
+              show: false
+            },
+            y: {
+              show: false
+            }
+          }
+        });
       }
 
     };

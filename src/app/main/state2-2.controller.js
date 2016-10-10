@@ -44,8 +44,6 @@
         vm.generator = vm.essDemandData.generator;
 
         vm.gageCurrentDevelop = vm.essDemandData.generator_rate;
-        console.log("!!!!!!!!!!!!!!!" + vm.essDemandData.generator_rate);
-
 
       }, function errorCallback(response) {
         $log.debug('ERRORS:: ', response);

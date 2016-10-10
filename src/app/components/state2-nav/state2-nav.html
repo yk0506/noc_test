@@ -11,8 +11,8 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.currentCompanyNegawattSum}} kW</div>
-  <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.nowDateTime}}</div>
+  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{state2_1.leftData.nega_watt}} kW</div>
+  <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{state2_1.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
   <img src="../assets/images/sector2_image/administrator.png"
@@ -23,7 +23,7 @@
 
   <div id="chartbar1"></div>
   <div class="absolute bfffff pt12" style="left: 383px;top: 548px;">
-    <ul ng-repeat="t in vm.currentXtime" style="float: left;width: 37px;margin-top: 10px;
+    <ul ng-repeat="t in state2_1.currentXtime8Mini" style="float: left;width: 37px;margin-top: 10px;
     -ms-transform: rotate(90deg); /* IE 9 */
     -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
     transform: rotate(90deg);">
