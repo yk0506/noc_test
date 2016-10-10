@@ -28,7 +28,10 @@
 
 
     vm.zoomMap = function (site) {
-      $state.go('state2-map', {param1: site});
+
+      console.log("site : " + site);
+
+      $state.go('state2-map', {"param1": site});
     };
 
 

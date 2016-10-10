@@ -31,7 +31,7 @@
 
     vm.zoomoutMap = function () {
       $state.go('state2');
-    };
+    }
 
   }
 })();
