@@ -79,7 +79,7 @@
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
         <!-- Tim. 로딩중 이미지 추가 -->
-        <img src="../assets/images/loading_img.gif" ng-show="!state2_1.resourcesConsumers || state2_1.resourcesConsumers.length == 0" style="width:150px; height:150px; position: absolute;top: 130px;left: 175px;"/>
+        <img src="../assets/images/loading_img.gif" ng-show="!state2_3.resourcesConsumers || state2_3.resourcesConsumers.length == 0" style="width:150px; height:150px; position: absolute;top: 130px;left: 175px;"/>
         <ul ng-repeat="con in state2_3.resourcesConsumers|limitTo:6:state2_3.consumerBeginNumber">
           <li style="overflow: hidden;
     height: 55px;
@@ -111,7 +111,7 @@
 
     <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
       <!-- Tim. 로딩중 이미지 추가 -->
-      <img src="../assets/images/loading_img.gif" ng-show="!state2_1.resourcesConsumers || state2_1.resourcesConsumers.length == 0" style="width:300px; height:300px; position: absolute;top: 322.5px;left: 895px;"/>
+      <img src="../assets/images/loading_img.gif" ng-show="!state2_3.resourcesConsumers || state2_3.resourcesConsumers.length == 0" style="width:300px; height:300px; position: absolute;top: 322.5px;left: 895px;"/>
       <!--each-->
       <div class="bfffff graph-section-each"
            ng-repeat="con in state2_3.resourcesConsumers|limitTo:6:state2_3.consumerBeginNumber">

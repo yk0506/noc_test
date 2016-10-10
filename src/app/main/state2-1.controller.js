@@ -17,12 +17,12 @@
      * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
      * @author : Tim
      * @param drType
-     *  - all : 전체
-     *  - 0 : 기타자원
+     *  - 0 : 전체
      *  - 1 : DR1
      *  - 2 : DR2
      *  - 3 : DR3
      *  - 4 : DR4
+     *  - 5 : 기타자원
      */
     function getConsumerList(drType){
 
@@ -30,8 +30,14 @@
 
       vm.drType = drType;
 
+      //로딩중 이미지 보이기
+      vm.resourcesConsumers = [];
+      vm.consumersBuildings = [];
+
+      vm.consumerBeginNumber = 0;
+
       var url;
-      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
+      if(0 == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
       else url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
 
       $http({
@@ -46,7 +52,7 @@
 
         $log.info("#getConsumerList end.");
 
-        if('all' == drType){
+        if(0 == drType){
           vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
 
           vm.maxAvailNegaWatt = 0;
@@ -77,7 +83,7 @@
       });
     }
 
-    vm.drType = 'all';
+    vm.drType = 0;
     getConsumerList(vm.drType);
     drawLineChart(vm.drType);
 
@@ -111,7 +117,7 @@
       utilService.buttonCtrl(vm);
 
       //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
-      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+      if(vm.drType != 0) getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
     };
 
     //화면 이동 L 처리
@@ -142,7 +148,7 @@
       utilService.buttonCtrl(vm);
 
       //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
-      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+      if(vm.drType != 0) getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
     };
 
 
@@ -246,7 +252,7 @@
     function drawLineChart(drType){
 
       var url;
-      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/energy/resources/5';
+      if(0 == drType) url = 'http://api.ourwatt.com/nvpp/energy/resources/5';
       else url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
 
       $http({
@@ -383,13 +389,13 @@
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
-      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
+      if(vm.drType == 0) vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 
     $scope.$on('consumerBeginNumber-changedL', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
-      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
+      if(vm.drType == 0) vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 

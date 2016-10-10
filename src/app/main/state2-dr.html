@@ -43,12 +43,12 @@
     </span>
   </div>
 
-  <div class="drType-btn" value="all" ng-click="state2_1.clickDR('all')" ng-class="state2_1.drType == 'all' ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">전체</div>
+  <div class="drType-btn" value="0" ng-click="state2_1.clickDR(0)" ng-class="state2_1.drType == 0 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">전체</div>
   <div class="drType-btn" value="1" ng-click="state2_1.clickDR(1)" ng-class="state2_1.drType == 1 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">DR1</div>
   <div class="drType-btn" value="2" ng-click="state2_1.clickDR(2)" ng-class="state2_1.drType == 2 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">DR2</div>
   <div class="drType-btn" value="3" onclick="javascript:alert('준비중입니다');" ng-class="state2_1.drType == 3 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">DR3</div>
   <div class="drType-btn" value="4" onclick="javascript:alert('준비중입니다');" ng-class="state2_1.drType == 4 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">DR4</div>
-  <div class="drType-btn" value="0" ng-click="state2_1.clickDR(0)" ng-class="state2_1.drType == 0 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">DR etc.</div>
+  <div class="drType-btn" value="5" ng-click="state2_1.clickDR(5)" ng-class="state2_1.drType == 5 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">DR etc.</div>
 
   <!--section-->
   <div class="sector2-map">
@@ -82,8 +82,8 @@
         <!-- Tim. 로딩중 이미지 추가 -->
         <img src="../assets/images/loading_img.gif" ng-show="!state2_1.resourcesConsumers || state2_1.resourcesConsumers.length == 0" style="width:150px; height:150px; position: absolute;top: 130px;left: 175px;"/>
         <ul ng-repeat="con in state2_1.resourcesConsumers|limitTo:6:state2_1.consumerBeginNumber">
-          <!-- 자원선택이 전체(drType == 'all')일때 동 상세보기 하면 너무 꼬임.. 일단 전체에서는 수용가 클릭 금지 -->
-          <li class="cons-btn consumer-off" ng-value="con.cons_idx" ng-click=" (state2_1.drType != 'all') && state2_1.clickConsumer(con.cons_idx)">{{con.cons_name}}
+          <!-- 자원선택이 전체(drType == 0)일때 동 상세보기 하면 너무 꼬임.. 일단 전체에서는 수용가 클릭 금지 -->
+          <li class="cons-btn consumer-off" ng-value="con.cons_idx" ng-click=" (state2_1.drType != 0) && state2_1.clickConsumer(con.cons_idx)">{{con.cons_name}}
           </li>
         </ul>
       </div>
