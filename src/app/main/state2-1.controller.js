@@ -259,7 +259,7 @@
     function getLeftData(drType){
       $http({
         method: 'GET',
-        url: 'http://api.ourwatt.com/nvpp/noc/dr/left/5',
+        url: 'http://api.ourwatt.com/nvpp/noc/dr/left/5/' + drType,
         headers: {
           api_key: 'smartgrid'
         }
