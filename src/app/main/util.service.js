@@ -214,10 +214,84 @@
             }
           }
         });
+      },
+
+      /*
+       * @description : 오늘 발전 계획 차트 그리기
+       * @author : Tim
+       * @param selector : DOM 선택자
+       */
+      drawDevelopPlanChart : function(selector){
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/devlop/5/plan',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          var developPlan = resp.data.data[0];
+
+          var chart2Value = ['발전량'];
+          for(var i=1; i<10; i++) {
+            chart2Value.push(developPlan['0'+i+':00']);
+          }
+          for(var i=10; i<25; i++) {
+            chart2Value.push(developPlan[i+':00']);
+          }
+
+          var chartbar2 = c3.generate({
+            bindto: selector,
+            data: {
+              x: 'x',
+              columns: [
+                ['x', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00',' 11:00', '12:00',
+                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
+                chart2Value
+              ],
+              type: 'bar'
+            },
+            bar: {
+              width: 3 // this makes bar width 100px
+            },
+            size: {
+              width: 280,
+              height: 70
+            },
+            color: {
+              pattern: ['#bfffff']
+            },
+            legend: {
+              show: false
+            },
+            axis: {
+              x: {
+                type: 'categories',
+                show: false
+              },
+              y: {
+                show: false
+              }
+            }
+          });
+
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
       }
+
+
+
+
+
+
+
 
     };
   }
+
+
+
 
 
 

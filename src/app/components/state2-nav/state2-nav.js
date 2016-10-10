@@ -40,7 +40,7 @@
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
 
-      //getEnergyResources();
+      getEnergyResources();
       function getEnergyResources() {
         energyService.energyResources().then(
           function (resp) {

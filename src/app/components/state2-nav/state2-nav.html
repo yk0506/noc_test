@@ -34,23 +34,23 @@
   <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
     <span class="state2-btn-active">급전지시</span>
     <!--여기부터-->
-    <span class="absolute" style="width: 180px;left: 190px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
+    <span class="absolute" style="width: 180px;left: 190px;">{{state2_1.emergencyStartime}} ~ {{state2_1.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:180px;left: 370px;">{{vm.currentCompanyResources.cont_watt}} kWh</span>
+    <span class="absolute" style="width:180px;left: 370px;">{{state2_1.leftData.goal}} kWh</span>
   </div>
 
-  <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
-    <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
+  <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{state2_1.emergencyStartDate}}
+    <span style="margin-left: 10px;">{{state2_1.emergencyStartime}} ~ {{state2_1.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.currentWatt*1.8 + 95}">현재 발전출력</div>
-  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:vm.currentWatt*1.8 + 116}" />
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:state2_1.currentWatt*1.8 + 95}">현재 발전출력</div>
+  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:state2_1.currentWatt*1.8 + 116}" />
 
   <!--all: 180px-->
   <div style="background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;max-width: 180px;"
-       ng-style="{width: vm.maxAvailable*0.18}"></div>
+       ng-style="{width: state2_1.maxAvailable*0.18}"></div>
   <div style="background-color: #fffbcc;height: 7px;top: 916px;position: absolute;"
-       ng-style="{width: 180 - (vm.maxAvailable*0.18), left:124 + (vm.maxAvailable*0.18)}"></div>
+       ng-style="{width: 180 - (state2_1.maxAvailable*0.18), left:124 + (state2_1.maxAvailable*0.18)}"></div>
 
   <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">현재 최대 발전가능출력</div>
   <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">발전용량</div>
@@ -60,19 +60,19 @@
   <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
     <tr>
       <td>목표</td>
-      <td>{{vm.currentCompanyResources.cont_watt|number:0}}</td>
+      <td>{{state2_1.leftData.goal|number:0}}</td>
     </tr>
     <tr>
       <td>CBL</td>
-      <td>{{vm.currentCompanyResources.dem_cbl|number:0}}</td>
+      <td>{{state2_1.leftData.cbl|number:0}}</td>
     </tr>
     <tr>
       <td>부하</td>
-      <td>{{vm.currentCompanyResources.dem_watt|number:0}}</td>
+      <td>{{state2_1.leftData.watt|number:0}}</td>
     </tr>
     <tr>
       <td>발전</td>
-      <td>{{vm.currentCompanyResources.dem_negawatt|number:0}}</td>
+      <td>{{state2_1.leftData.nega_watt|number:0}}</td>
     </tr>
   </table>
 
@@ -84,24 +84,24 @@
   <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">대기</div>
   <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">탈락</div>
 
-  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.consumersStatus.success_cont}}</div>
-  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.consumersStatus.warning_cont}}</div>
-  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">{{vm.consumersStatus.danger_cont}}</div>
+  <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{state2_1.leftData.ing}}</div>
+  <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{state2_1.leftData.standby}}</div>
+  <div class="pt31 c-7ca6a6 absolute" style="left: 575px;top: 1150px;">{{state2_1.leftData.fail}}</div>
 
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1267px;">F-DR</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1300px;">DR</div>
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1329px;">S-DR</div>
 
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1267px;">0 kW</div>
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.currentCompanyResources.cont_watt}} kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{state2_1.currentCompanyResources.cont_watt}} kW</div>
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
   <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
-  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">{{vm.currentCompanyResources.c_zone}}</div>
+  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">수원시 영통구</div>
   <img src="../assets/images/sector2_image/in_icon.png" style="position: absolute;left: 560px;top: 1433px;"/>
 
   <div class="absolute state2-btn-active pt24" style="left: 100px;top: 1646px;width: 190px;">통신상태 : 정상</div>
-  <div class="absolute pt28 bfffff" style="left: 344px;top: 1644px;">VTN IP: 61.29.74.123</div>
+  <div class="absolute pt28 bfffff" style="left: 344px;top: 1644px;">VTN IP: 61.39.74.123</div>
 
   <div class="absolute pt28 c-7ca6a6" style="left: 133px;top: 1733px;text-align: center;">
     COMMAND<br/>

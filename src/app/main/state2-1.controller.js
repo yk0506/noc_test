@@ -6,11 +6,22 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment) {
     var vm = this;
     vm._ = _;
 
     $log.info("# State2_1Controller.");
+
+    /*
+     *  초기화면 셋팅
+     */
+    vm.drType = 0;                //초기화면은 전체
+    getConsumerList(vm.drType);   //초기화면 수용가 리스트
+    drawLineChart(vm.drType);     //초기화면 상단 라인차트
+    getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
+    drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
+
+    vm.consumerBeginNumber = 0;
 
     $interval(function () {
       vm.nowDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -90,13 +101,6 @@
         $log.error('ERRORS:: ', response);
       });
     }
-
-    vm.drType = 0;                //초기화면은 전체
-    getConsumerList(vm.drType);   //초기화면 수용가 리스트
-    drawLineChart(vm.drType);     //초기화면 상단 라인차트
-    getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
-
-    vm.consumerBeginNumber = 0;
 
     //화면 이동 R 처리
     vm.clickedR = function () {
@@ -263,11 +267,28 @@
 
         vm.leftData = resp.data.data;
 
+        //급전지시 시간
+        if(vm.leftData.event){
+          vm.emergencyStartDate = moment(vm.leftData.event.event_start).format('YYYY.MM.DD');
+          vm.emergencyStartime = moment(vm.leftData.event.event_start).format('HH:mm');
+          vm.emargencyEndtime = moment(vm.leftData.event.event_start).add(vm.leftData.event.event_duration, 'h').format('HH:mm');
+        }
 
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
       });
+    }
+
+
+
+    /*
+     * @description : 좌측하단 오늘 발전 계획 차트
+     * @author : Tim
+     * @param drType
+     */
+    function drawDevelopPlanChart(){
+      utilService.drawDevelopPlanChart("#chartbar2");
     }
 
     //수용가 리스트 on, off
