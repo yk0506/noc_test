@@ -164,7 +164,7 @@
         vm.currentXtime8Mini = [];
 
         for (var i=0; i<vm.energyResources.length; i++) {
-          if(vm.energyResources[i].dem_watt != null){
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
             watt.push(parseInt(vm.energyResources[i].dem_watt));
             vm.currentXtime8Mini.push(vm.energyResources[i].dem_date);
           }
