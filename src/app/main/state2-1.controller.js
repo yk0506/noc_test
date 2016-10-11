@@ -329,7 +329,7 @@
 
         for (var i=0; i<vm.energyResources.length; i++) {
           cbl.push(vm.energyResources[i].dem_cbl);
-          watt.push(vm.energyResources[i].dem_watt);
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0) watt.push(vm.energyResources[i].dem_watt);
 
           if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
             vm.currentXtime = vm.energyResources[i].dem_date;
