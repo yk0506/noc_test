@@ -6,7 +6,7 @@
     .controller('State2_2Controller', State2_2Controller);
 
   /** @ngInject */
-  function State2_2Controller($log, $timeout, energyService, c3, $scope, computedService, $http) {
+  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http) {
     var vm = this;
     vm._ = _;
 

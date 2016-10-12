@@ -310,7 +310,7 @@
      * @author : Tim
      * @param drType
      */
-    function drawLineChart(drType){
+    function drawLineChart(drType) {
 
       var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
 
@@ -349,8 +349,10 @@
     }
 
 
+
     computedService.then(function(result) {
       $log.info('computedResult:: ', result);
+
 
       if(result.status == false) {
         switch(result.code) {
@@ -358,25 +360,25 @@
             vm.gageCurrentDevelop = 0;
             break;
           case 'CRITICAL':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 11;
             break;
           case 'CRITICALZEROBALANCE':
-            vm.gageCurrentDevelop = 67.5;
+            vm.gageCurrentDevelop = 18;
             break;
           case 'ZERO balance':
-            vm.gageCurrentDevelop = 90;
+            vm.gageCurrentDevelop = 23;
             break;
           case 'MIN':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 36;
             break;
           case 'TARGET NORMAL':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 48;
             break;
           case 'TARGET HIGH':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 60;
             break;
           case 'MAX':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 90;
             break;
           default:
             vm.gageCurrentDevelop = 0;

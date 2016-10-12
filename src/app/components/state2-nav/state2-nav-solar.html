@@ -43,8 +43,8 @@
     <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.currentWatt*1.8 + 95}">현재 발전출력</div>
-  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:vm.currentWatt*1.8 + 116}" />
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.currentWatt*1.8 + 95 || 150}">현재 발전출력</div>
+  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:vm.currentWatt*1.8 + 116 || 150}" />
 
   <!--all: 180px-->
   <div style="background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;max-width: 180px;"
