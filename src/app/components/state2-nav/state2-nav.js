@@ -26,20 +26,73 @@
     return directive;
 
     /** @ngInject */
-    function state2NavController(moment, $interval, $state, energyService, $timeout, $log) {
+    function state2NavController(moment, $interval, $state, energyService, $timeout, $log, utilService, $http) {
       var vm = this;
       vm.currentState = $state.current.name;
 
-      $interval(function () {
-        vm.nowDateTime = moment().format('YYYY-MM-DD h:mm:ss');
-        // vm.currentTime = moment().format('h:mm:ss');
-      }, 1000);
+
       vm.currentDay = moment().format('YYYY.MM.DD');
 
       vm.afterTime = moment().format('h:mm');
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
 
+      drawLineChart();
+      function drawLineChart() {
+
+        var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/0';
+
+        $http({
+          method: 'GET',
+          url: url,
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          vm.energyResources = resp.data.data;
+
+          //죄측상단 미니막대그래프 8개
+          utilService.drawMiniEightChart('#chartbar1', vm);
+
+        }, function errorCallback(response) {
+          $log.error('ERRORS:: ', response);
+        });
+      }
+
+      getLeftData();
+      function getLeftData() {
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/noc/dr/left/5/0',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          vm.leftData = resp.data.data;
+
+          //급전지시 시간
+          if(vm.leftData.event){
+            vm.emergencyStartDate = moment(vm.leftData.event.event_start).format('YYYY.MM.DD');
+            vm.emergencyStartime = moment(vm.leftData.event.event_start).format('HH:mm');
+            vm.emargencyEndtime = moment(vm.leftData.event.event_start).add(vm.leftData.event.event_duration, 'h').format('HH:mm');
+          }
+
+
+        }, function errorCallback(response) {
+          $log.error('ERRORS:: ', response);
+        });
+      }
+
+
+      drawDevelopPlanChart();
+      function drawDevelopPlanChart(){
+          utilService.drawDevelopPlanChart("#chartbar2");
+      }
+
+
+/*
       getEnergyResources();
       function getEnergyResources() {
         energyService.energyResources().then(
@@ -70,8 +123,10 @@
                 x: 'x',
                 columns: [
                   currentXtime8, watt8
-                  /*['x', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00'],
-                  ['data1', 2, 2, 30, 30, 34, 45, 80, 80]*/
+                  */
+/*['x', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00'],
+                  ['data1', 2, 2, 30, 30, 34, 45, 80, 80]*//*
+
                 ],
                 type: 'bar'
               },
@@ -207,6 +262,7 @@
           }
         )
       }
+*/
 
 
 

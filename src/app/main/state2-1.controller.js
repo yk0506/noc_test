@@ -283,7 +283,7 @@
 
 
     /*
-     * @description : 좌측하단 오늘 발전 계획 차트
+     * @description : 좌측하단 오늘 발전 계획 차트 gb
      * @author : Tim
      * @param drType
      */
