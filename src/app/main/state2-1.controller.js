@@ -54,9 +54,7 @@
 
       vm.consumerBeginNumber = 0;
 
-      var url;
-      if(0 == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
-      else url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
+      var url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
 
       $http({
         method: 'GET',
