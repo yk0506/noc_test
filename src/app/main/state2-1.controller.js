@@ -31,7 +31,6 @@
     vm.afterTime = moment().format('h:mm');
     vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
-
     /*
      * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
      * @author : Tim
@@ -99,6 +98,9 @@
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
+        vm.error = response;
+        utilService.buttonCtrl(vm);
+
       });
     }
 
@@ -207,12 +209,16 @@
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
+        vm.error = response;
+        utilService.buttonCtrl(vm);
+
       });
     }
 
 
     //상단 DR1,2,3,4,etc 클릭 이벤트 처리
     vm.clickDR = function(drType){
+      vm.error = null;
       $(".drType-btn").each(function(){
         if(drType == $(this).attr("value")) changeBtnClass(this, true);
         else changeBtnClass(this, false);

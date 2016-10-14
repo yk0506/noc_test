@@ -24,17 +24,28 @@
           - vm에 vm.existPrevPage, vm.existNextPage 존재 해야 함
        */
       buttonCtrl: function (vm) {
-        if(vm.existPrevPage){
-          buttonOnOff("L", true);
-        }else{
-          buttonOnOff("L", false);
+
+
+        if(vm.error) {
+           buttonOnOff("L", false);
+           buttonOnOff("R", false);
+        } else {
+          if(vm.existPrevPage){
+            buttonOnOff("L", true);
+          }else{
+            buttonOnOff("L", false);
+          }
+
+          if(vm.existNextPage){
+            buttonOnOff("R", true);
+          }else{
+            buttonOnOff("R", false);
+          }
         }
 
-        if(vm.existNextPage){
-          buttonOnOff("R", true);
-        }else{
-          buttonOnOff("R", false);
-        }
+
+
+
 
         /*
          * @description : 페이지 이동버튼 켜고 끄기
@@ -278,11 +289,7 @@
         }, function errorCallback(response) {
           $log.debug('ERRORS:: ', response);
         });
-      }
-
-
-
-
+      },
 
 
 

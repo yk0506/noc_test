@@ -30,7 +30,9 @@
       var vm = this;
       vm.currentState = $state.current.name;
 
-
+      $interval(function () {
+          vm.nowDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+      }, 1000);
       vm.currentDay = moment().format('YYYY.MM.DD');
 
       vm.afterTime = moment().format('h:mm');
@@ -289,6 +291,7 @@
       $log.log('state2Nav2Controller!');
 
       vm.currentState = $state.current.name;
+
 
 
       //getResourcesConsumers();

@@ -6,7 +6,7 @@
     .controller('State2_2Controller', State2_2Controller);
 
   /** @ngInject */
-  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http) {
+  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http, utilService) {
     var vm = this;
     vm._ = _;
 
@@ -199,13 +199,14 @@
 
               var currentConsumer = vm.resourcesConsumers[i];
 
-
               vm.resourcesConsumers[i].line2 = 442;
 
             }
 
           }, function errorCallback(response) {
             $log.debug('ERRORS:: ', response);
+            vm.error = response;
+            utilService.buttonCtrl(vm);
           });
 
           $timeout(getEssConsumers, 900000);
