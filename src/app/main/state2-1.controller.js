@@ -277,8 +277,6 @@
           vm.emergencyStartime = moment(vm.leftData.event.event_start).format('HH:mm');
           vm.emargencyEndtime = moment(vm.leftData.event.event_start).add(vm.leftData.event.event_duration, 'h').format('HH:mm');
         }
-
-
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
       });
@@ -392,8 +390,6 @@
       }
 
     });
-
-
 
     //getCompaniesResources();
     function getCompaniesResources() {

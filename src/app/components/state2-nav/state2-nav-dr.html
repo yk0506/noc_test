@@ -11,7 +11,7 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{state2_1.leftData.nega_watt}} kW</div>
+  <div class="absolute pt44 fffef2" ng-style="state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || state2_1.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" style="left: 428px;top: 233px;">{{state2_1.leftData.nega_watt | number:1}} kW</div>
   <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{state2_1.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 

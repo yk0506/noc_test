@@ -20,7 +20,7 @@
         <div class="pt28 bfffff">현재출력</div>
         <div class="pt20 c-7ca6a6">MW</div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="margin-right: 35px;line-height: 66px;">{{state1.apiData.sector1.power_mw || '0.0'}}</span>
+        <span class="pt70 fffef2 floatLeft" ng-style="state1.apiData.sector1.power_mw >= 1000 && {'font-size':'40px'} || state1.apiData.sector1.power_mw >= 100 && {'font-size':'50px'} || state1.apiData.sector1.power_mw >= 10 && {'font-size':'60px'}" style="margin-right: 35px;line-height: 66px;">{{(state1.apiData.sector1.power_mw|number:1) || '0.0'}}</span>
       <span class="" style="margin-right: 4px;line-height: 36px; position:absolute; left:300px;">
         <div class="pt28 bfffff">평균 가동율</div>
         <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
