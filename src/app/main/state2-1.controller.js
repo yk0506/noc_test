@@ -11,17 +11,25 @@
     vm._ = _;
 
     $log.info("# State2_1Controller.");
+    console.log(vm.drType);
 
     /*
      *  초기화면 셋팅
      */
-    vm.drType = 0;                //초기화면은 전체
-    getConsumerList(vm.drType);   //초기화면 수용가 리스트
-    drawLineChart(vm.drType);     //초기화면 상단 라인차트
-    getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
-    drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
+    vm.drType = 0;   //초기화면은 전체
+    vm.consumerBeginNumber = 0;   //수용가 페이징 위한 변수
 
-    vm.consumerBeginNumber = 0;
+
+    //init
+    init();
+    function init(){
+      getConsumerList(vm.drType);   //초기화면 수용가 리스트
+      drawLineChart(vm.drType);     //초기화면 상단 라인차트
+      getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
+      drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
+
+      $timeout(init, 600000);
+    }
 
     $interval(function () {
       vm.nowDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
