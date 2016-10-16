@@ -118,7 +118,7 @@
            }
 
 
-      getConsumersStatus();
+      //getConsumersStatus();
       function getConsumersStatus() {
         energyService.consumersStatus().then(
           function (resp) {

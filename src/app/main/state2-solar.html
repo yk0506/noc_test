@@ -144,7 +144,7 @@
         <!--</div>-->
         <div class="absolute" style="top:292px;">
           <div class="pt14">현재 출력(AC)</div>
-          <div class="pt20 fffbcc">{{con.ac|number:0}}<span class="pt16">kW</span></div>
+          <div class="pt20 fffbcc">{{con.ac|number:1}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
           <!--<div class="pt14">MAX</div>-->
@@ -153,14 +153,14 @@
 
         <div class="absolute" style="top:253px;left: 273px;z-index: 40;">
           <span class="pt14">목표 출력</span>
-          <span class="pt20">{{con.goal|number:0}}<span class="pt16">kW</span></span>
+          <span class="pt20">{{con.goal|number:1}}<span class="pt16">kW</span></span>
         </div>
         <img src="../assets/images/sector2_image/factory_line.png"
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
 
         <div class="absolute" style="top:411px;left: 265px;z-index: 40;">
           <span class="pt14">최소 한계 출력</span>
-          <span class="pt20">{{con.limit|number:0}}<span class="pt16">kW</span></span>
+          <span class="pt20">{{con.limit|number:1}}<span class="pt16">kW</span></span>
         </div>
         <!--line:: 바닥부터 cbl라인까지 높이 208px-->
         <img src="../assets/images/sector2_image/factory_line2.png"
@@ -172,7 +172,7 @@
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
             <div class="pt14">발전</div>
-            <div class="pt60 ff7e47" style="text-align: center;">{{con.ac_rate|number:0}} %</div>
+            <div class="pt50 ff7e47" style="text-align: center;" ng-style="con.ac >= 1000 && {'font-size' : '35px'} || con.ac >= 100 && {'font-size' : '40px'}">{{con.ac|number:1}} kW</div>
             <div class="pt8 c-7ca6a6">발전 =</div>
             <div class="pt8 c-7ca6a6">인버터출력값(AC)</div>
           </div>
@@ -184,11 +184,11 @@
             <div class="pt16 c-66ffff">당일 누적 발전량</div>
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
-            <div class="pt16 c-66ffff">{{con.ac|number:0}}kW</div>
-            <div class="pt16">{{con.vtg|number:0}}V</div>
-            <div class="pt16 c-66ffff">{{con.crt|number:0}}A</div>
-            <div class="pt16">{{con.sl|number:0}}watt/m²</div>
-            <div class="pt16 c-66ffff">{{con.acc|number:0}}kWh</div>
+            <div class="pt16 c-66ffff">{{con.ac|number:1}}kW</div>
+            <div class="pt16">{{con.vtg|number:1}}V</div>
+            <div class="pt16 c-66ffff">{{con.crt|number:1}}A</div>
+            <div class="pt16">{{con.sl|number:1}}watt/m²</div>
+            <div class="pt16 c-66ffff">{{con.acc|number:1}}kWh</div>
           </div>
         </div>
 
