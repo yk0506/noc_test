@@ -36,7 +36,7 @@
     <!--여기부터-->
     <span class="absolute" style="width:180px;left: 160px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 330px;">{{vm.currentCompanyResources.cont_watt}} kW (모의)</span>
+    <span class="absolute" style="width:250px;left: 330px;">{{vm.solarDemandData.event.goal|number:1}} kW (모의)</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
@@ -68,7 +68,7 @@
     </tr>
     <tr>
       <td>충전</td>
-      <td>출력</td>
+      <td></td>
     </tr>
     <tr>
       <td>방전</td>
@@ -93,7 +93,7 @@
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1329px;">S-DR</div>
 
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1267px;">0 kW</div>
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.currentCompanyResources.cont_watt}} kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.currentCompanyResources.cont_watt | number:1 || 0}} kW</div>
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
   <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
