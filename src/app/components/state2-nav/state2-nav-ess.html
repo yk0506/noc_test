@@ -11,7 +11,7 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.currentGenerator}} kW</div>
+  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.currentGenerator|number:1}} kW</div>
   <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
@@ -60,11 +60,11 @@
   <table class="pt18 bfffff absolute state2-table" style="left: 375px;top: 850px;">
     <tr>
       <td>보유량</td>
-      <td >{{vm.holding_acc_mw}}</td>
+      <td >{{vm.holding_acc_mw|number:1}}</td>
     </tr>
     <tr>
       <td>충전량</td>
-      <td>{{vm.meter_acc_mw}}</td>
+      <td>{{vm.meter_acc_mw|number:1}}</td>
     </tr>
     <tr>
       <td>충전</td>

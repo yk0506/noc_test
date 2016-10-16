@@ -11,7 +11,8 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;">{{vm.leftData.nega_watt}} kW</div>
+  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;"
+       ng-style="vm.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || vm.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" >{{vm.leftData.nega_watt |number:1}} kW</div>
   <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
@@ -36,7 +37,7 @@
     <!--여기부터-->
     <span class="absolute" style="width: 180px;left: 170px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}} </span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 350px;">{{vm.leftData.goal}} kW (모의)</span>
+    <span class="absolute" style="width:250px;left: 350px;">{{vm.leftData.goal|number:1}} kW (모의)</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
@@ -95,15 +96,15 @@
   <div class="absolute pt18 c-7ca6a6" style="left: 373px;top: 1329px;">S-DR</div>
 
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1267px;">0 kW</div>
-  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.leftData.goal|number:0}} kW</div>
+  <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.leftData.goal|number:1}} kW</div>
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
   <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
-  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">{{vm.currentCompanyResources.c_zone}}</div>
+  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">수원시 영통구</div>
   <img src="../assets/images/sector2_image/in_icon.png" style="position: absolute;left: 560px;top: 1433px;"/>
 
   <div class="absolute state2-btn-active pt24" style="left: 100px;top: 1646px;width: 190px;">통신상태 : 정상</div>
-  <div class="absolute pt28 bfffff" style="left: 344px;top: 1644px;">VTN IP: 61.29.74.123</div>
+  <div class="absolute pt28 bfffff" style="left: 344px;top: 1644px;">VTN IP: 61.39.74.123</div>
 
   <div class="absolute pt28 c-7ca6a6" style="left: 133px;top: 1733px;text-align: center;">
     COMMAND<br/>
