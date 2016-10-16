@@ -6,14 +6,22 @@
     .controller('State2_3Controller', State2_3Controller);
 
   /** @ngInject */
-  function State2_3Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope) {
+  function State2_3Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope, $interval) {
     var vm = this;
     vm._ = _;
 
     console.log("# Solar. state2-3 Controller.");
 
-    vm.consumerBeginNumber = 0;
+    $interval(function () {
+      vm.nowDateTime = moment().format('YYYY-MM-DD h:mm:ss');
+      // vm.currentTime = moment().format('h:mm:ss');
+    }, 1000);
+    vm.currentDay = moment().format('YYYY.MM.DD');
 
+    vm.afterTime = moment().format('h:mm');
+    vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
+
+    vm.consumerBeginNumber = 0;
 
 
     getDemandData();
@@ -32,7 +40,11 @@
         //중앙 원형 그래프 %
         vm.gageCurrentDevelop = vm.solarDemandData.nega_watt_rate;
 
-
+        if (vm.solarDemandData.event.event_status == 'A') {
+          vm.emergencyStartDate = moment(vm.solarDemandData.event.event_start).format('YYYY.MM.DD');
+          vm.emergencyStartime = moment(vm.solarDemandData.event.event_start).format('hh:mm');
+          vm.emargencyEndtime = moment(vm.solarDemandData.event.event_start).add(vm.solarDemandData.event.event_duration, 'h').format('hh:mm');
+        }
 
 
       }, function errorCallback(response) {
@@ -82,83 +94,15 @@
 
           if(vm.energyResources[i].dem_watt != null){
             vm.currentXtime = vm.energyResources[i].dem_date;
+            vm.currentXtime8 = vm.energyResources[i].dem_date;
           }
         }
 
-        var chart2 = c3.generate({
-          bindto: '#resource-graph',
-          data: {
-            x: vm.timeX[0],
-            xFormat:'%H:%M',
-            columns: [vm.timeX, avg, watt]
-          },
-          grid: { //점선
-            x: {
-              show: false
-            },
-            y: {
-              show: false
-            }
-          },
-          axis: { //가로 세로줄
-            x: {
-              show: false,
-              type: 'timeseries',
-              tick: {
-                format: '%H:%M',
-                values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
-                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
-              }
-            },
-            y: {
-              show: false
-            }
+        //죄측상단 미니막대그래프 8개
+        utilService.drawMiniEightChart('#chartbar1', vm);
 
-          },
-          point: {
-            show: false
-          },
-          tooltip: {
-            contents: function (d) {
-              // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
-
-              var data = 0;
-              for (var i=0; i<d.length; i++) {
-                if (d[i].id == "발전량") {
-                  data = d[i].value;
-                }
-              }
-
-              if (data != null) {
-                var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
-                  'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  data + '</div>'; // formatted html as you want
-              } else {
-                var dataHtml = '';
-              }
-
-              return dataHtml;
-
-            }
-          },
-          size: {
-            width: 1700,
-            height: 450
-          },
-          color: {
-            pattern: ['#608080', '#80ffff']
-          },
-          line: {
-            width: 10
-          },
-          legend: { //밑에 데이터 구분 테이블
-            hide: true
-          }
-        });
-
-        chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-        $("#resource-graph").mouseleave(function () {
-          chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-        });
+        //중앙상단 라인차트
+        utilService.drawTopLineChart('#resource-graph', avg, watt, vm);
 
       }, function errorCallback(response) {
         $log.debug('ERRORS:: ', response);

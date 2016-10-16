@@ -130,51 +130,57 @@
 
 
       getCompaniesResources();
-            function getCompaniesResources() {
-              $http({
-                method: 'GET',
-                url: 'http://api.ourwatt.com/nvpp/noc/ess/vision/5',
-                headers: {
-                  api_key: 'smartgrid'
-                }
-              }).then(function(resp) {
-
-                vm.solarDemandData = resp.data.list;
-                vm.currentGenerator = vm.solarDemandData.generator;
-                vm.generator =  vm.solarDemandData.generator * 100 / vm.solarDemandData.max_limit;
-
-                vm.holding_acc_mw = vm.solarDemandData.holding_acc_mw;
-                vm.m_ing_cnt = vm.solarDemandData.m_ing_cnt;
-                vm.g_ing_cnt = vm.solarDemandData.g_ing_cnt;
-                vm.mtnc = vm.solarDemandData.mtnc;
-                vm.meter_acc_mw = vm.solarDemandData.meter_acc_mw;
-                vm.rest_meter_acc_mw = vm.solarDemandData.rest_meter_acc_mw;
-
-
-              }, function errorCallback(response) {
-                $log.debug('ERRORS:: ', response);
-              });
-
-              /*
-               * 급전지시, RESOURCE POOL, COMMUNICATION ZONE
-               */
-              energyService.companiesResources().then(
-                function (resp) {
-                  vm.companiesResources = resp.companiesResources;
-                  vm.currentCompanyResources = vm.companiesResources[0];
-
-                  for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
-                    if (vm.currentCompanyResources.events[i].event_status == 'A') {
-                      vm.emergencyStartDate = moment(vm.currentCompanyResources.event_start).format('YYYY.MM.DD');
-                      vm.emergencyStartime = moment(vm.currentCompanyResources.event_start).format('hh:mm');
-                      vm.emargencyEndtime = moment(vm.currentCompanyResources.event_start).add(vm.currentCompanyResources.events[i].event_duration, 'h').format('hh:mm');
-                    }
-                  }
-                }
-              );
-
-              $timeout(getCompaniesResources, 900000);
+        function getCompaniesResources() {
+          $http({
+            method: 'GET',
+            url: 'http://api.ourwatt.com/nvpp/noc/ess/vision/5',
+            headers: {
+              api_key: 'smartgrid'
             }
+          }).then(function(resp) {
+
+            vm.solarDemandData = resp.data.list;
+            vm.currentGenerator = vm.solarDemandData.generator;
+            vm.generator =  vm.solarDemandData.generator * 100 / vm.solarDemandData.max_limit;
+
+            vm.holding_acc_mw = vm.solarDemandData.holding_acc_mw;
+            vm.m_ing_cnt = vm.solarDemandData.m_ing_cnt;
+            vm.g_ing_cnt = vm.solarDemandData.g_ing_cnt;
+            vm.mtnc = vm.solarDemandData.mtnc;
+            vm.meter_acc_mw = vm.solarDemandData.meter_acc_mw;
+            vm.rest_meter_acc_mw = vm.solarDemandData.rest_meter_acc_mw;
+
+            if (vm.solarDemandData.event.event_status == 'A') {
+              vm.emergencyStartDate = moment(vm.solarDemandData.event.event_start).format('YYYY.MM.DD');
+              vm.emergencyStartime = moment(vm.solarDemandData.event.event_start).format('hh:mm');
+              vm.emargencyEndtime = moment(vm.solarDemandData.event.event_start).add(vm.solarDemandData.event.event_duration, 'h').format('hh:mm');
+            }
+
+
+          }, function errorCallback(response) {
+            $log.debug('ERRORS:: ', response);
+          });
+
+          /*
+           * 급전지시, RESOURCE POOL, COMMUNICATION ZONE
+           */
+//          energyService.companiesResources().then(
+//            function (resp) {
+//              vm.companiesResources = resp.companiesResources;
+//              vm.currentCompanyResources = vm.companiesResources[0];
+//
+//              for (var i=0; i<vm.currentCompanyResources.events.length; i++) {
+//                if (vm.currentCompanyResources.events[i].event_status == 'A') {
+//                  vm.emergencyStartDate = moment(vm.currentCompanyResources.event_start).format('YYYY.MM.DD');
+//                  vm.emergencyStartime = moment(vm.currentCompanyResources.event_start).format('hh:mm');
+//                  vm.emargencyEndtime = moment(vm.currentCompanyResources.event_start).add(vm.currentCompanyResources.events[i].event_duration, 'h').format('hh:mm');
+//                }
+//              }
+//            }
+//          );
+
+          $timeout(getCompaniesResources, 900000);
+        }
 
 
       getDevelopPlan();

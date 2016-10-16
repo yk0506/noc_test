@@ -52,7 +52,7 @@
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
-      <span class="pt20 bfffff">방전중 (ESS)</span><br/>
+      <span class="pt20 bfffff">{{state2_2.generator > 0 ? '방전중' : '충전중'}} (ESS)</span><br/>
       <span
         class="pt60 fffef2">{{state2_2.generator|number:0}}</span>
       <span class="pt24 fffef2"> kW</span><br/>
