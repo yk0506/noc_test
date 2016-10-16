@@ -142,11 +142,12 @@
 
         <div class="absolute" style="top:167px;">
           <div class="pt14">감축부하</div>
-          <div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>
+          <div class="pt24 ff7e47"
+               ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:1}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:292px;">
           <div class="pt14">현재부하</div>
-          <div class="pt20 fffbcc">{{con.dem_watt}}<span class="pt16">kW</span></div>
+          <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
           <!--<div class="pt14">MAX</div>-->
@@ -186,8 +187,8 @@
             <div class="pt16 c-66ffff">MAX TARGET</div>
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
-            <div class="pt16 c-66ffff">{{con.dem_watt}}kW</div>
-            <div class="pt16">{{con.dem_cbl}}kW</div>
+            <div class="pt16 c-66ffff">{{con.dem_watt|number:1}}kW</div>
+            <div class="pt16">{{con.dem_cbl|number:1}}kW</div>
             <div class="pt16 c-66ffff">{{con.dem_cbl-con.dem_watt|number:0}}kW</div>
             <div class="pt16" style="color:#7ca6a6;">0 kW</div>
             <div class="pt16 c-66ffff"  style="color:#7ca6a6;">0 kW</div>

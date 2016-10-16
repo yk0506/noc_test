@@ -31,20 +31,20 @@
     </ul>
   </div>
 
-  <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
+  <div class="absolute pt21" style="left: 95px;top: 746px;text-align: center; font-size:22px;">
     <span class="state2-btn-active">급전지시</span>
     <!--여기부터-->
     <span class="absolute" style="width: 180px;left: 190px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:180px;left: 370px;">{{vm.currentCompanyResources.cont_watt}} kWh</span>
+    <span class="absolute" style="width:180px;left: 370px;">{{vm.currentCompanyResources.cont_watt}} kW (모의)</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
     <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.generator*1.8 + 95 || 150}">현재 배터리 출력 (방전)</div>
-  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:vm.generator*1.8 + 116 || 150}" />
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.generator*1.8 + 95 || 116}">현재 배터리 출력 (방전)</div>
+  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="vm.generator*1.8 + 116 > 296 && {left:297} || {left:vm.generator*1.8 + 116 || 116}" />
 
   <!--all: 180px-->
   <div style="background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;max-width: 180px;"
@@ -97,7 +97,7 @@
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
   <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
-  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">{{vm.currentCompanyResources.c_zone}}</div>
+  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">수원시 영통구</div>
   <img src="../assets/images/sector2_image/in_icon.png" style="position: absolute;left: 560px;top: 1433px;"/>
 
   <div class="absolute state2-btn-active pt24" style="left: 100px;top: 1646px;width: 190px;">통신상태 : 정상</div>

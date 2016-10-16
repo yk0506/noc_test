@@ -43,8 +43,8 @@
     <span style="margin-left: 10px;">{{state2_1.emergencyStartime}} ~ {{state2_1.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:180 * state2_1.leftData.nega_watt / state2_1.leftData.peak + 95 || 150 }">현재 발전출력</div>
-  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="{left:180 * state2_1.leftData.nega_watt / state2_1.leftData.peak + 116 ||  150}" />
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:180 * state2_1.leftData.nega_watt / state2_1.leftData.peak + 95 || 116}">현재 발전출력</div>
+  <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="180 * state2_1.leftData.nega_watt / state2_1.leftData.peak + 116 > 296 && {left:297} || {left:180 * state2_1.leftData.nega_watt / state2_1.leftData.peak + 116 || 116}" />
 
   <!--all: 180px-->
   <div style="background-color: #86bfbf;height: 7px;left:124px;top: 916px;position: absolute;max-width: 180px;"
