@@ -6,12 +6,16 @@
     .controller('State2_3Controller', State2_3Controller);
 
   /** @ngInject */
-  function State2_3Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope, $interval) {
+  function State2_3Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope, $interval, $window) {
     var vm = this;
     vm._ = _;
 
     console.log("# Solar. state2-3 Controller.");
 
+
+     vm.back = function () {
+          $window.history.back();
+     };
     $interval(function () {
       vm.nowDateTime = moment().format('YYYY-MM-DD h:mm:ss');
       // vm.currentTime = moment().format('h:mm:ss');

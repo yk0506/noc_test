@@ -52,10 +52,10 @@
 
   <!--section-->
   <div class="sector2-map">
-    <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
+    <div class="absolute" style="left: 250px;top: 453px;width: 230px;text-align: center;">
       <span class="pt20 bfffff">발전중 (수요감축)</span><br/>
       <span
-        class="pt60 fffef2" ng-style="state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '30px'} || state2_1.leftData.nega_watt >= 100000 && {'font-size' : '40px'}">{{state2_1.leftData.nega_watt | number:1}}</span>
+        class="pt60 fffef2" ng-style="state2_1.leftData.nega_watt >= 10000000 && {'font-size' : '50px'} || state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '55px'}">{{state2_1.leftData.nega_watt | number:1}}</span>
       <span class="pt24 fffef2">kW</span><br/>
       <span class="pt20 c-7ca6a6">for 수요자원</span>
     </div>
@@ -71,7 +71,7 @@
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
-      <span class="pt60 fffef2" ng-style="state2_1.maxAvailNegaWatt >= 1000000 && {'font-size' : '45px'}  ">{{state2_1.maxAvailNegaWatt | number:1}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt60 fffef2" ng-style="state2_1.maxAvailNegaWatt >= 1000000 && {'font-size' : '45px'}">{{state2_1.maxAvailNegaWatt | number:1}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
