@@ -6,23 +6,49 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment) {
     var vm = this;
     vm._ = _;
 
     $log.info("# State2_1Controller.");
+    console.log(vm.drType);
 
+    /*
+     *  초기화면 셋팅
+     */
+    vm.drType = 0;   //초기화면은 전체
+    vm.consumerBeginNumber = 0;   //수용가 페이징 위한 변수
+
+
+    //init
+    init();
+    function init(){
+      getConsumerList(vm.drType);   //초기화면 수용가 리스트
+      drawLineChart(vm.drType);     //초기화면 상단 라인차트
+      getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
+      drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
+
+      $timeout(init, 600000);
+    }
+
+    $interval(function () {
+      vm.nowDateTime = moment().format('YYYY-MM-DD HH:mm:ss');
+    }, 1000);
+    vm.currentDay = moment().format('YYYY.MM.DD');
+
+    vm.afterTime = moment().format('h:mm');
+    vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
     /*
      * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
      * @author : Tim
      * @param drType
-     *  - all : 전체
-     *  - 0 : 기타자원
+     *  - 0 : 전체
      *  - 1 : DR1
      *  - 2 : DR2
      *  - 3 : DR3
      *  - 4 : DR4
+     *  - 5 : 기타자원
      */
     function getConsumerList(drType){
 
@@ -30,9 +56,13 @@
 
       vm.drType = drType;
 
-      var url;
-      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/noc/dr/resources/5/consumers';
-      else url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
+      //로딩중 이미지 보이기
+      vm.resourcesConsumers = [];
+      vm.consumersBuildings = [];
+
+      vm.consumerBeginNumber = 0;
+
+      var url = 'http://api.ourwatt.com/nvpp/noc/5/drtype/'+ drType +'/consumers';
 
       $http({
         method: 'GET',
@@ -46,7 +76,7 @@
 
         $log.info("#getConsumerList end.");
 
-        if('all' == drType){
+        if(0 == drType){
           vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
 
           vm.maxAvailNegaWatt = 0;
@@ -74,14 +104,11 @@
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
+        vm.error = response;
+        utilService.buttonCtrl(vm);
+
       });
     }
-
-    vm.drType = 'all';
-    getConsumerList(vm.drType);
-    drawLineChart(vm.drType);
-
-    vm.consumerBeginNumber = 0;
 
     //화면 이동 R 처리
     vm.clickedR = function () {
@@ -111,7 +138,7 @@
       utilService.buttonCtrl(vm);
 
       //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
-      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+      if(vm.drType != 0) getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
     };
 
     //화면 이동 L 처리
@@ -142,7 +169,7 @@
       utilService.buttonCtrl(vm);
 
       //페이지 이동시 이동된 페이지의 첫번째 수용가 상세정보(동 정보) 호출
-      if(vm.drType != 'all') getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
+      if(vm.drType != 0) getConsDetailList(vm.resourcesConsumers[vm.consumerBeginNumber].cons_idx);
     };
 
 
@@ -153,6 +180,9 @@
      */
     function getConsDetailList(consIdx){
       vm.consIdx = consIdx;
+
+      //로딩중 이미지 보이기
+      vm.consumersBuildings = [];
 
       $log.info("#getConsDetailList start. consIdx : " + consIdx);
 
@@ -185,12 +215,16 @@
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
+        vm.error = response;
+        utilService.buttonCtrl(vm);
+
       });
     }
 
 
     //상단 DR1,2,3,4,etc 클릭 이벤트 처리
     vm.clickDR = function(drType){
+      vm.error = null;
       $(".drType-btn").each(function(){
         if(drType == $(this).attr("value")) changeBtnClass(this, true);
         else changeBtnClass(this, false);
@@ -206,8 +240,14 @@
         }
       }
 
+      //수용가 리스트 호출
       getConsumerList(drType);
+
+      //상단 라인차트 그리기
       drawLineChart(drType);
+
+      //화면 좌측 데이터, 원그래프 정보 호출
+      getLeftData(drType);
     }
 
 
@@ -218,7 +258,47 @@
         else changeConsBtnClass(this, false);
       });
 
+      //수용가 상세정보(동정보) 호출
       getConsDetailList(consIdx);
+    }
+
+
+     /*
+     * @description : 우측 상단 DR Type 선택했을 때 왼쪽 화면정보 호출
+     * @author : Tim
+     * @param drType
+     */
+    function getLeftData(drType){
+      $http({
+        method: 'GET',
+        url: 'http://api.ourwatt.com/nvpp/noc/dr/left/5/' + drType,
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+
+        vm.leftData = resp.data.data;
+
+        //급전지시 시간
+        if(vm.leftData.event){
+          vm.emergencyStartDate = moment(vm.leftData.event.event_start).format('YYYY.MM.DD');
+          vm.emergencyStartime = moment(vm.leftData.event.event_start).format('HH:mm');
+          vm.emargencyEndtime = moment(vm.leftData.event.event_start).add(vm.leftData.event.event_duration, 'h').format('HH:mm');
+        }
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
+      });
+    }
+
+
+
+    /*
+     * @description : 좌측하단 오늘 발전 계획 차트 gb
+     * @author : Tim
+     * @param drType
+     */
+    function drawDevelopPlanChart(){
+      utilService.drawDevelopPlanChart("#chartbar2");
     }
 
     //수용가 리스트 on, off
@@ -240,11 +320,9 @@
      * @author : Tim
      * @param drType
      */
-    function drawLineChart(drType){
+    function drawLineChart(drType) {
 
-      var url;
-      if('all' == drType) url = 'http://api.ourwatt.com/nvpp/energy/resources/5';
-      else url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
+      var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
 
       $http({
         method: 'GET',
@@ -261,14 +339,19 @@
 
         for (var i=0; i<vm.energyResources.length; i++) {
           cbl.push(vm.energyResources[i].dem_cbl);
-          watt.push(vm.energyResources[i].dem_watt);
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0) watt.push(vm.energyResources[i].dem_watt);
 
           if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
             vm.currentXtime = vm.energyResources[i].dem_date;
+            vm.currentXtime8 = vm.energyResources[i].dem_date;
           }
         }
 
+        //중앙상단 라인차트
         utilService.drawTopLineChart('#resource-graph', cbl, watt, vm);
+
+        //죄측상단 미니막대그래프 8개
+        utilService.drawMiniEightChart('#chartbar1', vm);
 
       }, function errorCallback(response) {
         $log.error('ERRORS:: ', response);
@@ -276,8 +359,10 @@
     }
 
 
+
     computedService.then(function(result) {
       $log.info('computedResult:: ', result);
+
 
       if(result.status == false) {
         switch(result.code) {
@@ -285,25 +370,25 @@
             vm.gageCurrentDevelop = 0;
             break;
           case 'CRITICAL':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 11;
             break;
           case 'CRITICALZEROBALANCE':
-            vm.gageCurrentDevelop = 67.5;
+            vm.gageCurrentDevelop = 18;
             break;
           case 'ZERO balance':
-            vm.gageCurrentDevelop = 90;
+            vm.gageCurrentDevelop = 23;
             break;
           case 'MIN':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 36;
             break;
           case 'TARGET NORMAL':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 48;
             break;
           case 'TARGET HIGH':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 60;
             break;
           case 'MAX':
-            vm.gageCurrentDevelop = 45;
+            vm.gageCurrentDevelop = 90;
             break;
           default:
             vm.gageCurrentDevelop = 0;
@@ -313,8 +398,6 @@
       }
 
     });
-
-
 
     //getCompaniesResources();
     function getCompaniesResources() {
@@ -380,13 +463,13 @@
 
     $scope.$on('consumerBeginNumber-changedR', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
-      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
+      if(vm.drType == 0) vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 
     $scope.$on('consumerBeginNumber-changedL', function(event, args) {
       vm.consumerBeginNumber = args.consumerBeginNumber;
-      if(vm.drType == 'all') vm.buildingsBeginNumber = vm.consumerBeginNumber;
+      if(vm.drType == 0) vm.buildingsBeginNumber = vm.consumerBeginNumber;
       $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
     });
 

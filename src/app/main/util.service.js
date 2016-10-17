@@ -24,17 +24,28 @@
           - vm에 vm.existPrevPage, vm.existNextPage 존재 해야 함
        */
       buttonCtrl: function (vm) {
-        if(vm.existPrevPage){
-          buttonOnOff("L", true);
-        }else{
-          buttonOnOff("L", false);
+
+
+        if(vm.error) {
+           buttonOnOff("L", false);
+           buttonOnOff("R", false);
+        } else {
+          if(vm.existPrevPage){
+            buttonOnOff("L", true);
+          }else{
+            buttonOnOff("L", false);
+          }
+
+          if(vm.existNextPage){
+            buttonOnOff("R", true);
+          }else{
+            buttonOnOff("R", false);
+          }
         }
 
-        if(vm.existNextPage){
-          buttonOnOff("R", true);
-        }else{
-          buttonOnOff("R", false);
-        }
+
+
+
 
         /*
          * @description : 페이지 이동버튼 켜고 끄기
@@ -69,7 +80,7 @@
                   '16:00', '16:15', '16:30', '16:45', '17:00', '17:15', '17:30', '17:45',
                   '18:00', '18:15', '18:30', '18:45', '19:00', '19:15', '19:30', '19:45',
                   '20:00', '20:15', '20:30', '20:45', '21:00', '21:15', '21:30', '21:45',
-                  '23:00', '23:15', '23:30', '23:45', '24:00', '24:15', '24:30', '24:45'
+                  '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45'
                 ];
 
         var chart2 = c3.generate({
@@ -128,7 +139,7 @@
             }
           },
           size: {
-            width: 1700,
+            width: 1634,
             height: 450
           },
           color: {
@@ -143,13 +154,151 @@
         });
 
         chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
-        $("#resource-graph").mouseleave(function () {
+        $(selector).mouseleave(function () {
           chart2.tooltip.show({x:d3.time.format('%H:%M').parse(vm.currentXtime)});
         });
-      }
+      },
+
+
+      /*
+       * @description : DR 발전상세 화면에서 좌측상단 미니 막대그래프 8개 그리기
+       * @author : Tim
+       * @param selector : DOM 선택자
+       * @param cbl : cbl Array
+       * @param watt : watt Array
+       * @param vm : scope
+       */
+      drawMiniEightChart : function(selector, vm){
+
+        var watt = [];
+        //vm.currentXtime = [];
+        vm.currentXtime8Mini = [];
+
+        for (var i=0; i<vm.energyResources.length; i++) {
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
+            watt.push(parseInt(vm.energyResources[i].dem_watt));
+            vm.currentXtime8Mini.push(vm.energyResources[i].dem_date);
+          }
+        }
+        watt = watt.splice(watt.length-8, 8);
+        vm.currentXtime8Mini = vm.currentXtime8Mini.splice(vm.currentXtime8Mini.length-8, 8); //최근 8개 시간만
+
+        var watt8 = ['전력량'];
+        watt8 = watt8.concat(watt);
+        var currentXtime8 = ['x'];
+        currentXtime8 = currentXtime8.concat(vm.currentXtime8Mini);
+
+        var chartbar1 = c3.generate({
+          bindto: selector,
+          data: {
+            x: 'x',
+            columns: [
+              currentXtime8, watt8
+              /*['x', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00'],
+              ['data1', 2, 2, 30, 30, 34, 45, 80, 80]*/
+            ],
+            type: 'bar'
+          },
+          bar: {
+            width: 10 // this makes bar width 100px
+          },
+          size: {
+            width: 300,
+            height: 120
+          },
+          color: {
+            pattern: ['#bfffff']
+          },
+          legend: {
+            show: false
+          },
+          axis: {
+            x: {
+              type: 'categories',
+              tick: {
+                rotate: 90
+              },
+              show: false
+            },
+            y: {
+              show: false
+            }
+          }
+        });
+      },
+
+      /*
+       * @description : 오늘 발전 계획 차트 그리기
+       * @author : Tim
+       * @param selector : DOM 선택자
+       */
+      drawDevelopPlanChart : function(selector){
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/devlop/5/plan',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+
+          var developPlan = resp.data.data[0];
+
+          var chart2Value = ['발전량'];
+          for(var i=1; i<10; i++) {
+            chart2Value.push(developPlan['0'+i+':00']);
+          }
+          for(var i=10; i<25; i++) {
+            chart2Value.push(developPlan[i+':00']);
+          }
+
+          var chartbar2 = c3.generate({
+            bindto: selector,
+            data: {
+              x: 'x',
+              columns: [
+                ['x', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00',' 11:00', '12:00',
+                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00'],
+                chart2Value
+              ],
+              type: 'bar'
+            },
+            bar: {
+              width: 3 // this makes bar width 100px
+            },
+            size: {
+              width: 280,
+              height: 70
+            },
+            color: {
+              pattern: ['#bfffff']
+            },
+            legend: {
+              show: false
+            },
+            axis: {
+              x: {
+                type: 'categories',
+                show: false
+              },
+              y: {
+                show: false
+              }
+            }
+          });
+
+        }, function errorCallback(response) {
+          $log.debug('ERRORS:: ', response);
+        });
+      },
+
+
+
 
     };
   }
+
+
+
 
 
 

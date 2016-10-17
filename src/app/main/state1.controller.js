@@ -6,7 +6,7 @@
     .controller('State1Controller', State1Controller);
 
   /** @ngInject */
-  function State1Controller($log, $timeout, energyService, c3, $scope, computedService, $http) {
+  function State1Controller($log, $timeout, energyService, c3, $scope, $http) {
     var vm = this;
     vm._ = _;
 
@@ -25,6 +25,7 @@
       }).then(function(resp) {
 
         vm.apiData = resp.data;
+        vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
         $log.info("Api data load complete.");
 
@@ -36,14 +37,63 @@
     }
 
 
+     drawGraph();
+     function drawGraph(){
+        // ess 하단 그래프
+        $http({
+             method: 'GET',
+             url: 'http://api.ourwatt.com/nvpp/noc/ess/resources/5/consumers',
+             headers: {
+               api_key: 'smartgrid'
+             }
+           }).then(function(resp) {
+             vm.resourcesConsumersEss = resp.data.list;
+
+
+           }, function errorCallback(response) {
+             $log.debug('ERRORS:: ', response);
+           });
+
+
+        // solar 하단 그래프
+        $http({
+             method: 'GET',
+             url: 'http://api.ourwatt.com/nvpp/noc/solar/resources/5/consumers',
+             headers: {
+               api_key: 'smartgrid'
+             }
+           }).then(function(resp) {
+             vm.resourcesConsumersSolar = resp.data.list;
+
+
+           }, function errorCallback(response) {
+             $log.debug('ERRORS:: ', response);
+           });
+
+
+        // dr 하단 그래프
+        $http({
+             method: 'GET',
+             url: 'http://api.ourwatt.com/nvpp/noc/5/drtype/2/consumers',
+             headers: {
+               api_key: 'smartgrid'
+             }
+           }).then(function(resp) {
+             vm.resourcesConsumersDR = resp.data.data;
+
+
+           }, function errorCallback(response) {
+             $log.debug('ERRORS:: ', response);
+           });
+
+
+           $timeout(drawGraph, 900000);
+      }
+
+
+
     $scope.essSmallRotate = calcSmallRotate(180);
     $scope.essLargeRotate = calcLargeRotate(1);
-
-//    $scope.solarSmallRotate = calcSmallRotate(150);
-//    $scope.solarLargeRotate = calcSmallRotate(2);
-//
-//    $scope.drSmallRotate = calcSmallRotate(270);
-//    $scope.drLargeRotate = calcSmallRotate(3);
 
     // 가용량
     // 0 이면 12 부터 시작, +30 -> 한 칸 증가

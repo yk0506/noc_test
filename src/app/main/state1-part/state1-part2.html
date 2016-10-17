@@ -79,7 +79,7 @@
 
   <div class="part2-box pt26">
     <span class="bfffff" style="margin-right: 50px;">현재가동율</span>
-    <span class="ff7e47">93 %</span>
+    <span class="ff7e47" ng-style="state1.apiData.sector3.solar_oper_rate >= 10 && {'font-size':'23px'}">{{state1.apiData.sector3.solar_oper_rate}} %</span>
   </div>
 
   <div class="part2-table pt16 bfffff">
@@ -101,44 +101,44 @@
 
   <!--todo:: width!!-->
   <div class="part2-sourcebar">
-    <div style="width: 100%;background-color: #597c80;"></div>
-    <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
-    <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
-    <div style="width: 100%; top: 60px;background-color: #ccffff;"></div>
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersSolar[0].ac_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
-    <span class="pt16 bfffff absolute" style="top: 120px;">으뜸태양광발전소</span>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersSolar[0].cons_name}}</span>
   </div>
   <div class="part2-sourcebar" style="left: 234px;">
-    <div style="width: 100%;background-color: #597c80;"></div>
-    <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
-    <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
-    <div style="width: 100%; top: 60px;background-color: #ccffff;"></div>
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersSolar[1].ac_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
-    <span class="pt16 bfffff absolute" style="top: 120px;">무안ROOT</span>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersSolar[1].cons_name}}</span>
   </div>
   <div class="part2-sourcebar" style="left: 398px;">
-    <div style="width: 100%;background-color: #597c80;"></div>
-    <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
-    <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
-    <div style="width: 100%; top: 60px;background-color: #ccffff;"></div>
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersSolar[2].ac_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
-    <span class="pt16 bfffff absolute" style="top: 120px;">강화농업기술센터</span>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersSolar[2].cons_name}}</span>
   </div>
   <div class="part2-sourcebar" style="left: 562px;">
-    <div style="width: 100%;background-color: #597c80;"></div>
-    <div style="width: 100%; top: 20px;background-color: #80ffff;"></div>
-    <div style="width: 100%; top: 40px;background-color: #fffef7;"></div>
-    <div style="width: 100%; top: 60px;background-color: #ccffff;"></div>
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersSolar[3].ac_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
-    <span class="pt16 bfffff absolute" style="top: 120px;">일광태양광발전소</span>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersSolar[3].cons_name}}</span>
   </div>
   <div class="part2-sourcebar" style="left: 726px;">
-    <div style="width: 2%;background-color: #597c80;"></div>
-    <div style="width: 2%; top: 20px;background-color: #80ffff;"></div>
-    <div style="width: 2%; top: 40px;background-color: #fffef7;"></div>
-    <div style="width: 2%; top: 60px;background-color: #ccffff;"></div>
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersSolar[4].ac_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
-    <span class="pt16 bfffff absolute" style="top: 120px;">자원 5</span>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersSolar[4].cons_name}}</span>
   </div>
 
 </div>

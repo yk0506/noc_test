@@ -11,7 +11,6 @@
   angular
     .module('power-plant')
     .directive('state2NavSolar', state2NavSolar)
-    .directive('state2Nav2Solar', state2Nav2Solar);
 
   /** @ngInject */
   function state2NavSolar() {
@@ -224,115 +223,6 @@
   }
 
 
-  /*
-   * 화면 우측 전체
-   */
-  function state2Nav2Solar(utilService) {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'app/components/state2-nav/state2-nav2.html',
-      scope: {
-        creationDate: '='
-      },
-      controller: state2Nav2Controller,
-      controllerAs: 'vm',
-      bindToController: true
-    };
 
-    return directive;
-
-    /** @ngInject */
-    function state2Nav2Controller($state, energyService, $timeout, $log, $rootScope, $http) {
-      var vm = this;
-
-      vm.currentState = $state.current.name;
-
-
-      getResourcesConsumers();
-      function getResourcesConsumers() {
-
-        $http({
-          method: 'GET',
-          url: 'http://api.ourwatt.com/nvpp/noc/solar/resources/5/consumers',
-          headers: {
-            api_key: 'smartgrid'
-          }
-        }).then(function(resp) {
-          vm.resourcesConsumers = resp.data.list;
-
-          vm.currentPage = 1;
-          if (vm.resourcesConsumers.length%6 != 0) {
-            vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
-          } else if(vm.resourcesConsumers.length%6 == 0) {
-            vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
-          }
-
-          vm.existPrevPage = false;
-          vm.existNextPage = false;
-
-          if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
-
-          utilService.buttonCtrl(vm);
-
-        }, function errorCallback(response) {
-          $log.debug('ERRORS:: ', response);
-        });
-
-        $timeout(getResourcesConsumers, 900000);
-      }
-
-      vm.consumerBeginNumber = 0;
-
-      vm.clickedR = function () {
-        if (vm.currentPage < vm.consumerPageNum) {  //다음 페이지가 있음
-          vm.consumerBeginNumber = vm.consumerBeginNumber+6;
-          vm.currentPage = vm.currentPage+1;
-          $rootScope.$broadcast('consumerBeginNumber-changedR', {
-            consumerBeginNumber: vm.consumerBeginNumber
-          });
-
-          if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
-            vm.existPrevPage = true;
-            vm.existNextPage = true;
-          }else{
-            vm.existPrevPage = true;
-            vm.existNextPage = false;
-          }
-
-        } else if (vm.currentPage == vm.consumerPageNum) { //없음
-          //alert
-          alert('last page!!');
-        }
-
-        utilService.buttonCtrl(vm);
-
-      };
-
-      vm.clickedL = function () {
-        if (vm.currentPage > 1) { //이전 페이지가 있음
-          vm.consumerBeginNumber = vm.consumerBeginNumber-6;
-          vm.currentPage = vm.currentPage-1;
-          $rootScope.$broadcast('consumerBeginNumber-changedL', {
-            consumerBeginNumber: vm.consumerBeginNumber
-          });
-
-          if(vm.currentPage > 1){  //또 이전 페이지가 있음
-            vm.existPrevPage = true;
-            vm.existNextPage = true;
-          }else{
-            vm.existPrevPage = false;
-            vm.existNextPage = true;
-          }
-
-        } else if (vm.currentPage == 1) { //없음
-          //alert
-          alert('first page!!');
-        }
-
-        utilService.buttonCtrl(vm);
-      };
-
-    }
-  }
 
 })();
