@@ -25,7 +25,7 @@
         <div class="pt28 bfffff">평균 가동율</div>
         <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;position:absolute; left:460px;"> {{(state1.avgOperRate|number:1) || '0.0'}}</span>
+        <span class="fffef2 floatLeft" ng-style="state1.avgOperRate >= 100 && {'font-size':'45px'} || state1.avgOperRate >= 10 && {'font-size':'60px'}" style="line-height: 66px;position:absolute; left:445px; font-size:70px;"> {{(state1.avgOperRate|number:1) || '0.0'}}</span>
       </div>
     </div>
 
