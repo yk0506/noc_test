@@ -2,7 +2,7 @@
      style="position: absolute;width: 744px;height: 2160px;z-index: 20;"/>
 
 <div class="sector2-nav1">
-  <img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite" />
+  <img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite"/>
   <div class="absolute bfffff pt24" style="left: 123px;top: 276px;">R3
     <span class="c-86bfbf pt38">수요자원</span>
   </div>
@@ -11,8 +11,7 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" style="left: 428px;top: 233px;"
-       ng-style="vm.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || vm.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" >{{vm.leftData.nega_watt |number:1}} kW</div>
+  <div class="absolute pt44 fffef2" ng-style="vm.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || vm.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" style="width:300px; text-align:center; left: 365px;top: 233px;">{{vm.leftData.nega_watt |number:1}} kW</div>
   <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
@@ -32,12 +31,12 @@
     </ul>
   </div>
 
-  <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
+  <div class="absolute pt26" style="left: 95px;top: 746px;text-align: center; font-size:22px;">
     <span class="state2-btn-active">급전지시</span>
     <!--여기부터-->
-    <span class="absolute" style="width: 180px;left: 170px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}} </span>
+    <span class="absolute" style="width: 180px;left: 160px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}} </span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 350px;">{{vm.leftData.goal|number:1}} kW (모의)</span>
+    <span class="absolute" style="width:250px;left: 330px;">{{vm.leftData.goal|number:1}} kW (모의)</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
@@ -60,22 +59,22 @@
 
   <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">감축이행율 <span class="pt18">%</span></div>
 
-  <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
+  <table class="bfffff absolute state2-table" style="left: 385px;top: 850px; font-size: 18px;">
     <tr>
       <td>목표</td>
-      <td>{{vm.leftData.goal|number:0}}</td>
+      <td ng-style="vm.leftData.goal >= 100000 && {'font-size' : '15px'}">{{vm.leftData.goal|number:0}}</td>
     </tr>
     <tr>
       <td>CBL</td>
-      <td>{{vm.leftData.cbl|number:0}}</td>
+      <td ng-style="vm.leftData.cbl >= 100000 && {'font-size' : '15px'}">{{vm.leftData.cbl|number:0}}</td>
     </tr>
     <tr>
       <td>부하</td>
-      <td>{{vm.leftData.watt|number:0}}</td>
+      <td ng-style="vm.leftData.watt >= 100000 && {'font-size' : '15px'}">{{vm.leftData.watt|number:0}}</td>
     </tr>
     <tr>
       <td>발전</td>
-      <td>{{vm.leftData.nega_watt|number:0}}</td>
+      <td ng-style="vm.leftData.nega_watt >= 100000 && {'font-size' : '15px'}">{{vm.leftData.nega_watt|number:0}}</td>
     </tr>
   </table>
 

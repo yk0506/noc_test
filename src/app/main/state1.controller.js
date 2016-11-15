@@ -25,6 +25,8 @@
       }).then(function(resp) {
 
         vm.apiData = resp.data;
+
+
         vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
         $log.info("Api data load complete.");

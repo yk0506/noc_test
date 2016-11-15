@@ -2,7 +2,7 @@
      style="position: absolute;width: 744px;height: 2160px;z-index: 20;"/>
 
 <div class="sector2-nav1">
-<img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite" />
+<img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite" ng-click="state2_1.back()" />
   <div class="absolute bfffff pt24" style="left: 123px;top: 276px;">R3
     <span class="c-86bfbf pt38">수요자원</span>
   </div>
@@ -11,7 +11,7 @@
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
-  <div class="absolute pt44 fffef2" ng-style="state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || state2_1.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" style="left: 428px;top: 233px;">{{state2_1.leftData.nega_watt | number:1}} kW</div>
+  <div class="absolute pt44 fffef2" ng-style="state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '28px'} || state2_1.leftData.nega_watt >= 100000 && {'font-size' : '35px'}" style="width:300px; text-align:center; left: 365px;top: 233px;">{{state2_1.leftData.nega_watt | number:1}} kW</div>
   <div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{state2_1.nowDateTime}}</div>
   <!--<div class="absolute pt26 bfffff" style="left: 388px;top: 292px;">{{vm.currentCompanyResources.cont_start_date.substring(0, 19)}}</div>-->
 
@@ -57,22 +57,22 @@
 
   <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">감축이행율 <span class="pt18">%</span></div>
 
-  <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
+  <table class="bfffff absolute state2-table" style="left: 383px;top: 850px; font-size: 18px;">
     <tr>
       <td>목표</td>
-      <td>{{state2_1.leftData.goal|number:0}}</td>
+      <td ng-style="state2_1.leftData.goal >= 100000 && {'font-size' : '15px'}">{{state2_1.leftData.goal|number:0}}</td>
     </tr>
     <tr>
       <td>CBL</td>
-      <td>{{state2_1.leftData.cbl|number:0}}</td>
+      <td ng-style="state2_1.leftData.cbl >= 100000 && {'font-size' : '15px'}">{{state2_1.leftData.cbl|number:0}}</td>
     </tr>
     <tr>
       <td>부하</td>
-      <td>{{state2_1.leftData.watt|number:0}}</td>
+      <td ng-style="state2_1.leftData.watt >= 100000 && {'font-size' : '15px'}">{{state2_1.leftData.watt|number:0}}</td>
     </tr>
     <tr>
       <td>발전</td>
-      <td>{{state2_1.leftData.nega_watt|number:0}}</td>
+      <td ng-style="state2_1.leftData.nega_watt >= 100000 && {'font-size' : '15px'}">{{state2_1.leftData.nega_watt|number:0}}</td>
     </tr>
   </table>
 

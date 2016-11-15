@@ -24,7 +24,7 @@
 
         $http({
           method: 'GET',
-          url: 'http://api.ourwatt.com/nvpp/energy/resources/5',
+          url: 'http://api.ourwatt.com/nvpp/noc/5/energy/0',
           headers: {
             api_key: 'smartgrid'
           }

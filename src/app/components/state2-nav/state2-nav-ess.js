@@ -28,7 +28,7 @@
 
 
 
-    function state2NavESSController(moment, $interval, $state, energyService, $timeout, $log, $http) {
+    function state2NavESSController(moment, $interval, $state, energyService, $timeout, $log, $http, $window) {
       var vm = this;
       vm.currentState = $state.current.name;
 
@@ -41,6 +41,9 @@
       vm.afterTime = moment().format('h:mm');
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
+         vm.back = function () {
+                $window.history.back();
+              };
 
 
       // 좌측 상단 막대 8개

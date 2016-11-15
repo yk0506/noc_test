@@ -6,7 +6,7 @@
     .controller('State2_1Controller', State2_1Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment) {
+  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment, $window) {
     var vm = this;
     vm._ = _;
 
@@ -19,6 +19,10 @@
     vm.drType = 0;   //초기화면은 전체
     vm.consumerBeginNumber = 0;   //수용가 페이징 위한 변수
 
+    vm.back = function () {
+      $window.history.back();
+
+    };
 
     //init
     init();
@@ -323,6 +327,7 @@
     function drawLineChart(drType) {
 
       var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
+
 
       $http({
         method: 'GET',

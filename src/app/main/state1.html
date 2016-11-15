@@ -25,7 +25,7 @@
         <div class="pt28 bfffff">평균 가동율</div>
         <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
       </span>
-        <span class="pt70 fffef2 floatLeft" style="line-height: 66px;position:absolute; left:460px;"> {{state1.avgOperRate}}</span>
+        <span class="pt70 fffef2 floatLeft" ng-style="state1.avgOperRate >= 100 && {'font-size':'45px'} || state1.avgOperRate >= 10 && {'font-size':'60px'}" style="line-height: 66px;position:absolute; left:445px; "> {{(state1.avgOperRate|number:1) || '0.0'}}</span>
       </div>
     </div>
 
@@ -127,12 +127,12 @@
 <div class="sector1-part3" ng-include="'app/main/state1-part/state1-part2.html'" ui-sref="state2-3" style="z-index:99;"></div>
 <div class="sector1-part4" ng-include="'app/main/state1-part/state1-part3.html'" ui-sref="state2-1" style="z-index:99;"></div>
 
-
+<!---->
 <!--PART2 gage bars : cause seperate layer in z-index -->
 <div class="part2-gagebar">
   <!--todo: use ngstyle, height-->
   <div style="height: 0px;"></div>
-  <div style="height: 200px;left: 112px;"></div>
+  <div ng-show="state1.apiData.sector2.generator == 0" style="height: 200px;left: 112px;"></div>
 </div>
 
 <div class="part2-gagebar" style="left: 2275px;">
