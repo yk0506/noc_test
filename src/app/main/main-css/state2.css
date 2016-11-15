@@ -69,15 +69,16 @@
   background-color: #ff7e47;
   border-radius: 6px;
   text-align: center;
-  cursor:pointer;
   margin-bottom: 25px;
+  line-height: 46px;
+  width: 150px;
 }
 
 .consumer-off {
   overflow: hidden;
   color: #bfffff;
-  cursor:pointer;
-  padding:5px;
+  cursor: pointer;
+  padding: 5px;
   height: 55px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -85,8 +86,9 @@
   background-color: #2e3c40;
   border-radius: 6px;
   text-align: center;
-  cursor:pointer;
   margin-bottom: 25px;
+  line-height: 46px;
+  width: 150px;
 }
 
 
