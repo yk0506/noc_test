@@ -192,6 +192,6 @@
 }
 .map-pindrop span {
   position: absolute;
-  z-index: 20;
+  z-index: 30;
   color: #2d3b40;
 }
