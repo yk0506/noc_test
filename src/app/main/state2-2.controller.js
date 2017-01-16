@@ -6,7 +6,7 @@
     .controller('State2_2Controller', State2_2Controller);
 
   /** @ngInject */
-  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http, utilService) {
+  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope) {
     var vm = this;
     vm._ = _;
 
@@ -26,6 +26,7 @@
       $(".zoomTargeting").zoomTarget(settings);
     });
 
+    vm.consumerBeginNumber = 0;
 
     getDemandData();
     function getDemandData(){
@@ -186,6 +187,7 @@
         getEssConsumers();
         function getEssConsumers() {
 
+          vm.consumerBeginNumber = 0;
           $http({
             method: 'GET',
             url: 'http://api.ourwatt.com/nvpp/noc/ess/resources/5/consumers',
@@ -203,6 +205,20 @@
 
             }
 
+
+          //페이징
+          vm.currentPage = 1;
+          if (vm.resourcesConsumers.length%6 != 0) vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6 +1);
+          else vm.consumerPageNum = parseInt(vm.resourcesConsumers.length/6);
+
+          // Tim 수정. 이전페이지 다음페이지가 있을 경우에만 클릭동작, 버튼 on 작업
+          vm.existPrevPage = false;
+          vm.existNextPage = false;
+
+          if(vm.resourcesConsumers.length > 6)vm.existNextPage = true;
+
+          utilService.buttonCtrl(vm);
+
           }, function errorCallback(response) {
             $log.debug('ERRORS:: ', response);
             vm.error = response;
@@ -213,7 +229,58 @@
         }
 
 
-        vm.consumerBeginNumber = 0;
+
+
+      vm.clickedR = function () {
+            if (vm.currentPage < vm.consumerPageNum) {  //다음 페이지가 있음
+              vm.consumerBeginNumber = vm.consumerBeginNumber+6;
+              vm.currentPage = vm.currentPage+1;
+              $rootScope.$broadcast('consumerBeginNumber-changedR', {
+                consumerBeginNumber: vm.consumerBeginNumber
+              });
+
+              if(vm.currentPage < vm.consumerPageNum){  //또 다음 페이지가 있음
+                vm.existPrevPage = true;
+                vm.existNextPage = true;
+              }else{
+                vm.existPrevPage = true;
+                vm.existNextPage = false;
+              }
+
+            } else if (vm.currentPage == vm.consumerPageNum) { //없음
+              //alert
+              alert('last page!!');
+            }
+
+            utilService.buttonCtrl(vm);
+
+          };
+
+          vm.clickedL = function () {
+            if (vm.currentPage > 1) { //이전 페이지가 있음
+              vm.consumerBeginNumber = vm.consumerBeginNumber-6;
+              vm.currentPage = vm.currentPage-1;
+              $rootScope.$broadcast('consumerBeginNumber-changedL', {
+                consumerBeginNumber: vm.consumerBeginNumber
+              });
+
+              if(vm.currentPage > 1){  //또 이전 페이지가 있음
+                vm.existPrevPage = true;
+                vm.existNextPage = true;
+              }else{
+                vm.existPrevPage = false;
+                vm.existNextPage = true;
+              }
+
+            } else if (vm.currentPage == 1) { //없음
+              //alert
+              alert('first page!!');
+            }
+
+            utilService.buttonCtrl(vm);
+          };
+
+
 
         $scope.$on('consumerBeginNumber-changedR', function(event, args) {
           vm.consumerBeginNumber = args.consumerBeginNumber;
@@ -224,6 +291,7 @@
           vm.consumerBeginNumber = args.consumerBeginNumber;
           $log.debug('vm.consumerBeginNumber:', vm.consumerBeginNumber);
         });
+
 
 
       }
