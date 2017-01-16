@@ -4,7 +4,7 @@
 <div class="sector2-nav1">
   <img src="../assets/images/sector2_image/energyicon_demand.gif" class="energyicon-gif" loof="infinite"/>
   <div class="absolute bfffff pt24" style="left: 123px;top: 276px;">R3
-    <span class="c-86bfbf pt38">demand source</span>
+    <span class="c-86bfbf pt38">demand <!--source--></span>
   </div>
 
   <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">generation</div>
@@ -55,9 +55,9 @@
        ng-style="{width: 180 - (vm.leftData.cbl * 180 / vm.leftData.peak), left:124 + (vm.leftData.cbl * 180 / vm.leftData.peak)}"></div>
 
   <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">current max generation available output</div>
-  <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">generating capacity</div>
+  <div class="absolute pt10 fffbcc" style="left: 240px;top: 938px;">generating capacity</div>
 
-  <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">reduction fulfillment rate <span class="pt18">%</span></div>
+  <div class="pt18 bfffff absolute" style="left: 100px;top: 950px;">reduction fulfillment rate <span class="pt18">%</span></div>
 
   <table class="bfffff absolute state2-table" style="left: 385px;top: 850px; font-size: 18px;">
     <tr>
@@ -73,7 +73,7 @@
       <td ng-style="vm.leftData.watt >= 100000 && {'font-size' : '15px'}">{{vm.leftData.watt|number:0}}</td>
     </tr>
     <tr>
-      <td>generation</td>
+      <td>run</td>
       <td ng-style="vm.leftData.nega_watt >= 100000 && {'font-size' : '15px'}">{{vm.leftData.nega_watt|number:0}}</td>
     </tr>
   </table>
@@ -82,9 +82,9 @@
   <div class="bfffff pt28 absolute" style="left: 100px;top: 1270px;">RESOURCE<br/> POOL</div>
   <div class="bfffff pt26 absolute" style="left: 100px;top: 1437px;">COMMUNICATION<br/> ZONE</div>
 
-  <div class="pt24 ff7e47 absolute" style="left: 300px;top: 1035px;">generation</div>
-  <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">waiting</div>
-  <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">rejected</div>
+  <div class="pt24 ff7e47 absolute" style="left: 250px;top: 1035px;">generation</div>
+  <div class="pt24 fffef2 absolute" style="left: 250px;top: 1095px;">waiting</div>
+  <div class="pt24 c-7ca6a6 absolute" style="left: 250px;top: 1155px;">rejected</div>
 
   <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.leftData.ing}}</div>
   <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.leftData.standby}}</div>
@@ -110,7 +110,7 @@
     <span class="bfffff">waiting until 14</span>
   </div>
 
-  <div class="absolute pt28 bfffff" style="left: 457px;top: 1733px;">generation scheduling</div>
+  <div class="absolute pt28 bfffff" style="left: 457px;top: 1733px;"><!--generation -->scheduling</div>
   <div id="chartbar2" style="left:395px;top:1776px;position: absolute;"></div>
 
   <div class="absolute pt38" style="color: #597c80;left: 243px;top: 1892px;">OFF <br/>GRID</div>
