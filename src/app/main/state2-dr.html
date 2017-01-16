@@ -33,7 +33,7 @@
   <div class="absolute pt42 bfffff resource-dropdown" style="left: 2317px;top: 80px;width: 416px;">
     <span uib-dropdown on-toggle="toggled(open)">
       <a href id="simple-dropdown" uib-dropdown-toggle style="color: #bfffff;">
-        국민발전소
+        power plant
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
         <li ng-repeat="resource in state2_1.companiesResources">
@@ -43,7 +43,7 @@
     </span>
   </div>
 
-  <div class="drType-btn" value="0" ng-click="state2_1.clickDR(0)" ng-class="state2_1.drType == 0 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">전체</div>
+  <div class="drType-btn" value="0" ng-click="state2_1.clickDR(0)" ng-class="state2_1.drType == 0 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">total</div>
   <div class="drType-btn" value="1" ng-click="state2_1.clickDR(1)" ng-class="state2_1.drType == 1 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">DR1</div>
   <div class="drType-btn" value="2" ng-click="state2_1.clickDR(2)" ng-class="state2_1.drType == 2 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">DR2</div>
   <div class="drType-btn" value="3" ng-click="state2_1.clickDR(3)" ng-class="state2_1.drType == 3 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">DR3</div>
@@ -53,11 +53,11 @@
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 250px;top: 453px;width: 230px;text-align: center;">
-      <span class="pt20 bfffff">developing (수요감축)</span><br/>
+      <span class="pt20 bfffff">generation (demand reduction)</span><br/>
       <span
         class="pt60 fffef2" ng-style="state2_1.leftData.nega_watt >= 10000000 && {'font-size' : '50px'} || state2_1.leftData.nega_watt >= 1000000 && {'font-size' : '55px'}">{{state2_1.leftData.nega_watt | number:1}}</span>
       <span class="pt24 fffef2">kW</span><br/>
-      <span class="pt20 c-7ca6a6">for 수요자원</span>
+      <span class="pt20 c-7ca6a6">for demand source</span>
     </div>
 
     <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
@@ -70,12 +70,12 @@
     <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="state2_1.gageCurrentDevelop == 270" />
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
-      <span class="pt20 bfffff">MAX(최대감축가능량)</span><br/>
+      <span class="pt20 bfffff">MAX(MAX availability reduction amount)</span><br/>
       <span class="pt60 fffef2" ng-style="state2_1.maxAvailNegaWatt >= 1000000 && {'font-size' : '45px'}">{{state2_1.maxAvailNegaWatt | number:1}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
-    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px; font-size:34px;">수용가별 전력 사용률</div>
+    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px; font-size:34px;">customer electric power use</div>
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
@@ -128,7 +128,7 @@
       <div class="bfffff graph-section-each"
            ng-repeat="con in state2_1.consumersBuildings|limitTo:6:state2_1.buildingsBeginNumber">
         <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.st_name || con.cons_name}}</div>
-        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{con.dateTime}}</span>
+        <div class="absolute pt24" style="top: 80px;">criteria time <span style="margin-left: 20px;">{{con.dateTime}}</span>
         </div>
 
         <img src="../assets/images/sector2_image/plant_img.png" ng-show="con.cons_division == 'F'"
@@ -141,12 +141,12 @@
         <!--height: con.operateRatio*335/100-->
 
         <div class="absolute" style="top:167px;">
-          <div class="pt14">감축부하</div>
+          <div class="pt14">reduction load</div>
           <div class="pt24 ff7e47"
                ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:1}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:292px;">
-          <div class="pt14">현재부하</div>
+          <div class="pt14">current load</div>
           <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
@@ -174,15 +174,15 @@
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
-            <div class="pt14">사용량</div>
+            <div class="pt14">use</div>
             <div class="pt60 ff7e47" style="text-align: center;">{{con.dem_rate|number:0}} %</div>
-            <div class="pt8 c-7ca6a6">사용량 =</div>
-            <div class="pt8 c-7ca6a6">현재부하 / CBL</div>
+            <div class="pt8 c-7ca6a6">use =</div>
+            <div class="pt8 c-7ca6a6">current load / CBL</div>
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
-            <div class="pt16 c-66ffff">현재부하</div>
+            <div class="pt16 c-66ffff">current load</div>
             <div class="pt16">CBL</div>
-            <div class="pt16 c-66ffff">감축부하</div>
+            <div class="pt16 c-66ffff">reduction load</div>
             <div class="pt16">TARGET</div>
             <div class="pt16 c-66ffff">MAX TARGET</div>
           </div>

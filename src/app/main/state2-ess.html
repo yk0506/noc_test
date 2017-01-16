@@ -34,7 +34,7 @@
   <div class="absolute pt42 bfffff resource-dropdown" style="left: 2317px;top: 80px;width: 416px;">
     <span uib-dropdown on-toggle="toggled(open)">
       <a href id="simple-dropdown" uib-dropdown-toggle style="color: #bfffff;">
-        국민발전소
+        power plant
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
         <li ng-repeat="resource in state2_2.companiesResources">
@@ -52,7 +52,7 @@
   <!--section-->
   <div class="sector2-map">
     <div class="absolute" style="left: 288px;top: 453px;width: 148px;text-align: center;">
-      <span class="pt20 bfffff">{{state2_2.generator > 0 ? '방전중' : '충전중'}} (ESS)</span><br/>
+      <span class="pt20 bfffff">{{state2_2.generator > 0 ? 'discharging' : 'generation'}} (ESS)</span><br/>
       <span
         class="pt60 fffef2">{{state2_2.generator|number:0}}</span>
       <span class="pt24 fffef2"> kW</span><br/>
@@ -62,19 +62,19 @@
     <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
       <span class="pt16 c-80ffff" style="margin-bottom: 6px;display: inline-block;">POWER OUTPUT</span><br/>
       <!--<span class="watt-off">Megawatt Mode</span><br/>-->
-      <span class="watt-on">충전 모드</span>
+      <span class="watt-on">charge mode</span>
     </div>
 
     <img src="../assets/images/sector2_image/high_line.png" style="position: absolute;left: 454px;top: 522px;" ng-show="state2_2.gageCurrentDevelop == 270" />
     <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="state2_2.gageCurrentDevelop == 270" />
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
-      <span class="pt20 bfffff">MAX(최대송전)</span><br/>
+      <span class="pt20 bfffff">MAX(max transmission power)</span><br/>
       <span class="pt60 fffef2">{{state2_2.max_limit|number:1}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
-    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">수용가별 발전현황</div>
+    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 320px;">customer generation status</div>
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
@@ -127,7 +127,7 @@
       <div class="bfffff graph-section-each"
            ng-repeat="con in state2_2.resourcesConsumers|limitTo:6:state2_2.consumerBeginNumber">
         <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.cons_name}}</div>
-        <div class="absolute pt24" style="top: 80px;">기준시간 <span style="margin-left: 20px;">{{con.curr_date_time}}</span>
+        <div class="absolute pt24" style="top: 80px;">criteria time <span style="margin-left: 20px;">{{con.curr_date_time}}</span>
         </div>
 
         <img src="../assets/images/sector2_image/ess.png"
@@ -143,7 +143,7 @@
           <!--<div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>-->
         </div>
         <div class="absolute" style="top:292px;">
-          <div class="pt14">현재방전</div>
+          <div class="pt14">current discharge</div>
           <div class="pt20 fffbcc">{{con.generator | number:1}}<span class="pt16"> kW</span></div>
         </div>
         <div class="absolute" style="top:430px;">
@@ -152,7 +152,7 @@
         </div>
 
         <div class="absolute" style="top:238px;left: 273px;z-index: 40;">
-          <span class="pt14">현재충전량</span>
+          <span class="pt14">current charge amount</span>
           <br>
           <span class="pt20">{{con.meter_acc | number:1}}<span class="pt16"> kWh</span></span>
         </div>
@@ -160,7 +160,7 @@
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
 
         <div class="absolute" style="top:390px;left: 273px;z-index: 40;">
-          <span class="pt14">방전한계량</span>
+          <span class="pt14">discharge limit amount</span>
           <br>
           <span class="pt20">{{con.generator_limit | number:1}}<span class="pt16"> kWh</span></span>
         </div>
@@ -173,17 +173,17 @@
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
-            <div class="pt14">발전</div>
+            <div class="pt14">generation</div>
             <div class="pt50 ff7e47" style="text-align: center;"
               ng-style="con.generator >= 1000 && {'font-size' : '35px'} || con.generator >= 100 && {'font-size' : '40px'}">{{con.generator | number:1}} kW</div>
-            <div class="pt8 c-7ca6a6">발전(방전), 감축(충전)</div>
+            <div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
-            <div class="pt16 c-66ffff">현재방전(AC)</div>
-            <div class="pt16">현재충전(AC)</div>
-            <div class="pt16 c-66ffff">배터리용량</div>
-            <div class="pt16">충전량</div>
-            <div class="pt16 c-66ffff">잔여시각</div>
+            <div class="pt16 c-66ffff">current discharge(AC)</div>
+            <div class="pt16">current charge(AC)</div>
+            <div class="pt16 c-66ffff">battery capacity</div>
+            <div class="pt16">charge amount</div>
+            <div class="pt16 c-66ffff">remaining time</div>
           </div>
           <div class="absolute" style="width:100px; top:156px;left: 127px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.generator | number:1}} kW</div>

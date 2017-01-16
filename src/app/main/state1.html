@@ -9,7 +9,7 @@
       <div style="line-height: 50px;">
         <span class="pt44 bfffff" style="margin-right: 50px;">NVPP</span>
         <span class="pt38 fffef2" style="margin-right: 105px;">{{state1.apiData.sector1.nvppName || 'CPW'}}</span>
-        <span class="pt28 bfffff" style="margin-right: 50px;">발전소</span>
+        <span class="pt28 bfffff" style="margin-right: 50px;">power plant</span>
         <span class="pt28 fffef2">{{state1.apiData.sector1.nvppCount}}</span>
       </div>
       <div style="margin-top: 17px;">
@@ -17,12 +17,12 @@
       </div>
       <div style="margin-top: 55px;">
       <span class="floatLeft" style="margin-right: 33px;">
-        <div class="pt28 bfffff">현재출력</div>
+        <div class="pt28 bfffff">current output</div>
         <div class="pt20 c-7ca6a6">MW</div>
       </span>
         <span class="pt70 fffef2 floatLeft" ng-style="state1.apiData.sector1.power_mw >= 1000 && {'font-size':'40px'} || state1.apiData.sector1.power_mw >= 100 && {'font-size':'50px'} || state1.apiData.sector1.power_mw >= 10 && {'font-size':'60px'}" style="margin-right: 35px;line-height: 66px;">{{(state1.apiData.sector1.power_mw|number:1) || '0.0'}}</span>
       <span class="" style="margin-right: 4px;line-height: 36px; position:absolute; left:300px;">
-        <div class="pt28 bfffff">평균 가동율</div>
+        <div class="pt28 bfffff">average utilization rate</div>
         <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
       </span>
         <span class="pt70 fffef2 floatLeft" ng-style="state1.avgOperRate >= 100 && {'font-size':'45px'} || state1.avgOperRate >= 10 && {'font-size':'60px'}" style="line-height: 66px;position:absolute; left:445px; "> {{(state1.avgOperRate|number:1) || '0.0'}}</span>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="pt26" style="color: #d9ffff;text-align: center;margin-top: 13px;">
-        <div>신재생</div>
+        <div>new regeneration</div>
         <div>{{state1.apiData.sector1.solar_power_mw}}</div>
       </div>
     </div>
@@ -96,7 +96,7 @@
         </div>
       </div>
       <div class="pt26" style="color: #86bfbf;text-align: center;margin-top: 13px;">
-        <div>수요자원</div>
+        <div>demand source</div>
         <div>{{state1.apiData.sector1.dr_power_mw}}</div>
       </div>
     </div>

@@ -7,7 +7,7 @@
     <span class="c-86bfbf pt38">ESS</span>
   </div>
 
-  <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">{{vm.solarDemandData.generator > 0 ? '방전중' : '충전중'}}</div>
+  <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">{{vm.solarDemandData.generator > 0 ? 'discharging' : 'generation'}}</div>
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
@@ -18,8 +18,8 @@
   <img src="../assets/images/sector2_image/administrator.png"
        style="position: absolute;left: 88px;top: 350px;width: 247px;height: 247px;" />
 
-  <div class="state2-btn-inactive" style="left: 370px;top: 355px;">관리자정보</div>
-  <div class="state2-btn-active" style="left: 522px;top: 355px;">출력</div>
+  <div class="state2-btn-inactive" style="left: 370px;top: 355px;">Admin Info</div>
+  <div class="state2-btn-active" style="left: 522px;top: 355px;">output</div>
 
   <div id="chartbar1"></div>
   <div class="absolute bfffff pt12" style="left: 383px;top: 550px;">
@@ -32,18 +32,18 @@
   </div>
 
   <div class="absolute pt21" style="left: 95px;top: 746px;text-align: center; font-size:22px;">
-    <span class="state2-btn-active">급전지시</span>
+    <span class="state2-btn-active">Feeding instruction</span>
     <!--여기부터-->
     <span class="absolute" style="width:180px;left: 160px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 330px;">{{vm.solarDemandData.event.goal|number:1}} kW (모의)</span>
+    <span class="absolute" style="width:250px;left: 330px;">{{vm.solarDemandData.event.goal|number:1}} kW (imitation)</span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}
     <span style="margin-left: 10px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
   </div>
 
-  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.generator*1.8 + 95 || 116}">현재 배터리 출력 (방전)</div>
+  <div class="ff7e47 pt10" style="position: absolute;top: 883px;" ng-style="{left:vm.generator*1.8 + 95 || 116}">current battery output (discharge)</div>
   <img src="../assets/images/sector2_image/reduction.png" style="top: 900px;position: absolute;" ng-style="vm.generator*1.8 + 116 > 296 && {left:297} || {left:vm.generator*1.8 + 116 || 116}" />
 
   <!--all: 180px-->
@@ -52,26 +52,26 @@
   <div style="background-color: #fffbcc;height: 7px;top: 916px;position: absolute;"
        ng-style="{width: 180 - (vm.rest_meter_acc_mw/ vm.meter_acc_mw*180), left:124 + (vm.rest_meter_acc_mw/ vm.meter_acc_mw*180)}"></div>
 
-  <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">보유량</div>
-  <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">충전량</div>
+  <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">hold</div>
+  <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">charge</div>
 
-  <div class="pt24 bfffff absolute" style="left: 130px;top: 950px;">ESS 출력(방전) <span class="pt18">%</span></div>
+  <div class="pt24 bfffff absolute" style="left: 130px;top: 950px;">ESS output(discharge) <span class="pt18">%</span></div>
 
   <table class="pt18 bfffff absolute state2-table" style="left: 375px;top: 850px;">
     <tr>
-      <td>보유량</td>
+      <td>hold</td>
       <td >{{vm.holding_acc_mw|number:1}}</td>
     </tr>
     <tr>
-      <td>충전량</td>
+      <td>charge amount</td>
       <td>{{vm.meter_acc_mw|number:1}}</td>
     </tr>
     <tr>
-      <td>충전</td>
+      <td>charge</td>
       <td></td>
     </tr>
     <tr>
-      <td>방전</td>
+      <td>discharge</td>
       <td></td>
     </tr>
   </table>
@@ -80,9 +80,9 @@
   <div class="bfffff pt28 absolute" style="left: 100px;top: 1270px;">RESOURCE<br/> POOL</div>
   <div class="bfffff pt26 absolute" style="left: 100px;top: 1437px;">COMMUNICATION<br/> ZONE</div>
 
-  <div class="pt24 ff7e47 absolute" style="left: 300px;top: 1035px;">충전중</div>
-  <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">방전중</div>
-  <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">유지보수</div>
+  <div class="pt24 ff7e47 absolute" style="left: 300px;top: 1035px;">generation</div>
+  <div class="pt24 fffef2 absolute" style="left: 300px;top: 1095px;">discharging</div>
+  <div class="pt24 c-7ca6a6 absolute" style="left: 300px;top: 1155px;">maintenance</div>
 
   <div class="pt31 ff7e47 absolute" style="left: 575px;top: 1030px;">{{vm.m_ing_cnt}}</div>
   <div class="pt31 fffef2 absolute" style="left: 575px;top: 1090px;">{{vm.g_ing_cnt}}</div>
@@ -96,19 +96,19 @@
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1300px;">{{vm.solarDemandData.event.goal|number:1}} kW</div>
   <div class="absolute pt18 bfffff" style="left: 438px;top: 1329px;">0 kW</div>
 
-  <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">수도권</div>
-  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">수원시 영통구</div>
+  <div class="absolute pt18 bfffff" style="left: 372px;top: 1446px;">metropolitan area</div>
+  <div class="absolute pt18 c-7ca6a6" style="left: 372px;top: 1478px;">California</div>
   <img src="../assets/images/sector2_image/in_icon.png" style="position: absolute;left: 560px;top: 1433px;"/>
 
-  <div class="absolute state2-btn-active pt24" style="left: 100px;top: 1646px;width: 190px;">통신상태 : 정상</div>
+  <div class="absolute state2-btn-active pt24" style="left: 100px;top: 1646px;width: 190px;">status : on</div>
   <div class="absolute pt28 bfffff" style="left: 344px;top: 1644px;">VTN IP: 61.39.74.123</div>
 
   <div class="absolute pt28 c-7ca6a6" style="left: 133px;top: 1733px;text-align: center;">
     COMMAND<br/>
-    <span class="bfffff">14시까지 대기</span>
+    <span class="bfffff">waiting until 14</span>
   </div>
 
-  <div class="absolute pt28 bfffff" style="left: 457px;top: 1733px;">오늘 발전 계획</div>
+  <div class="absolute pt28 bfffff" style="left: 457px;top: 1733px;">generation scheduling</div>
   <div id="chartbar2" style="left:395px;top:1776px;position: absolute;"></div>
 
   <div class="absolute pt38" style="color: #597c80;left: 243px;top: 1892px;">OFF <br/>GRID</div>

@@ -2,9 +2,9 @@
   <div class="part2-title">
     <span class="bfffff pt26" style="margin-right: 10px;">R1</span>
     <span class="c-80ffff pt75" style="margin-right: 143px;">ESS</span>
-    <span class="bfffff pt26" style="margin-right: 10px;">자원</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">resource</span>
     <span class="fffef2 pt75" style="margin-right: 60px;">6</span>
-    <span class="bfffff pt26" style="margin-right: 10px;">발전소</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">power plant</span>
     <span class="fffef2 pt75">6</span>
   </div>
 
@@ -15,14 +15,14 @@
 
 
   <div class="part2-measure">
-    <span class="pt26 bfffff" style="margin-right: 517px;">가용량 <span class="pt16 bfffff">MWh</span></span>
+    <span class="pt26 bfffff" style="margin-right: 517px;">availability amount <span class="pt16 bfffff">MWh</span></span>
     <img src="../../../assets/images/icon2.png"  ng-style="essSmallRotate;"/>
-    <span class="pt26 bfffff">현재출력 <span class="pt16 bfffff">MW</span></span>
+    <span class="pt26 bfffff">current output <span class="pt16 bfffff">MW</span></span>
     <img src="../../../assets/images/icon2.png" ng-style="essLargeRotate;"/>
   </div>
 
   <div class="part2-current-value">
-    <span class="pt26 bfffff" style="margin-right: 40px;">출력</span>
+    <span class="pt26 bfffff" style="margin-right: 40px;">output</span>
     <span class="pt62 fffef2">{{state1.apiData.sector2.generator}}</span>
     <span class="pt26 fffef2">MW</span>
   </div>
@@ -30,12 +30,12 @@
   <!---->
   <div class="part2-gage-left pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff">보유량</div>
-      <div class="c-66ffff">충전량</div>
-      <div class="bfffff">가용량</div>
-      <div class="c-66ffff">가용률</div>
+      <div class="bfffff">hold</div>
+      <div class="c-66ffff">charge amount</div>
+      <div class="bfffff">availability amount</div>
+      <div class="c-66ffff">availability ratio</div>
     </div>
-    <div class="bfffff">전체 ESS수</div>
+    <div class="bfffff">total ESS</div>
   </div>
   <div class="part2-gage-left2 pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
@@ -51,36 +51,36 @@
     <div style="line-height: 40px;margin-bottom: 36px;">
       <div class="bfffff">{{state1.apiData.sector2.max_generator_limit}} MW</div>
       <div class="c-66ffff">{{state1.apiData.sector2.generator}} MW</div>
-      <div class="bfffff">{{state1.apiData.sector2.rest_generator_minutes}} 분</div>
+      <div class="bfffff">{{state1.apiData.sector2.rest_generator_minutes}} min</div>
       <div class="c-66ffff">{{state1.apiData.sector2.ess_oper_rate}} %</div>
     </div>
     <div class="bfffff">6</div>
   </div>
   <div class="part2-gage-right2 pt20">
     <div style="line-height: 40px;margin-bottom: 36px;">
-      <div class="bfffff">최대가능출력</div>
-      <div class="c-66ffff">현재출력</div>
-      <div class="bfffff">잔여시간</div>
-      <div class="c-66ffff">가동률</div>
+      <div class="bfffff">max possible output</div>
+      <div class="c-66ffff">current output</div>
+      <div class="bfffff">remaining time</div>
+      <div class="c-66ffff">uilization rate</div>
     </div>
-    <div>가용 ESS수</div>
+    <div>availability ESS</div>
   </div>
   <!---->
 
   <div class="part2-gage-bottom pt18 bfffff">
-    <span style="margin-right: 38px;">신재생충전</span>
-    <span>계통충전</span>
+    <span style="margin-right: 38px;">new reheneration charge</span>
+    <span>from grid</span>
   </div>
 
   <div class="part2-box pt26">
-    <span class="bfffff" style="margin-right: 40px;">현재가동율</span>
+    <span class="bfffff" style="margin-right: 40px;">current operating</span>
     <span class="ff7e47" ng-style="state1.apiData.sector2.ess_oper_rate >= 10 && {'font-size':'23px'}">{{state1.apiData.sector2.ess_oper_rate}} %</span>
   </div>
 
   <div class="part2-table pt16 bfffff">
     <div><span class="c-80ffff" style="margin-right: 10px;">Y</span>200MW</div>
     <div class="part2-0">0</div>
-    <div class="part2-1000">100대 <span class="c-80ffff" style="margin-left: 5px;">X</span></div>
+    <div class="part2-1000">100unit <span class="c-80ffff" style="margin-left: 5px;">X</span></div>
   </div>
   <div class="part2-table-block">
     <!--todo: img location -->
@@ -88,10 +88,10 @@
   </div>
 
   <div class="part2-bar">
-    <div style="color: #597c80;"><span class="pt8">MWh</span> <span class="pt12">보유량</span></div>
-    <div style="color: #80ffff;"><span class="pt8">MWh</span> <span class="pt12">충전량</span></div>
-    <div style="color: #fffef7;"><span class="pt8">MWh</span> <span class="pt12">가용량</span></div>
-    <div style="color: #ccffff;"><span class="pt8">MW</span> <span class="pt12">현재출력</span></div>
+    <div style="color: #597c80;"><span class="pt8">MWh</span> <span class="pt12">hold</span></div>
+    <div style="color: #80ffff;"><span class="pt8">MWh</span> <span class="pt12">charge amount</span></div>
+    <div style="color: #fffef7;"><span class="pt8">MWh</span> <span class="pt12">availability amount</span></div>
+    <div style="color: #ccffff;"><span class="pt8">MW</span> <span class="pt12">current output</span></div>
   </div>
 
   <!--todo:: width!!-->
