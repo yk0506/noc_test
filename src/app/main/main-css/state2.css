@@ -96,14 +96,14 @@
   position: absolute;
   font-size: 14px;
   color: #80ffff;
-  background: url("/images/sector2_image/watt_on.png") no-repeat;
+  background: url("/assets/images/sector2_image/watt_on.png") no-repeat;
   text-indent: 20px;
 }
 .watt-off {
   position: absolute;
   font-size: 14px;
   color: #2e3c50;
-  background: url("/images/sector2_image/watt_off.png") no-repeat;
+  background: url("/assets/images/sector2_image/watt_off.png") no-repeat;
   text-indent: 20px;
 }
 
