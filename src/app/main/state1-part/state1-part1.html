@@ -15,7 +15,7 @@
 
 
   <div class="part2-measure">
-    <span class="pt26 bfffff" style="margin-right: 517px;">availability amount <span class="pt16 bfffff">MWh</span></span>
+    <span class="pt26 bfffff" style="margin-right: 468px;">availability <br/>amount <span class="pt16 bfffff">MWh</span></span>
     <img src="../../../assets/images/icon2.png"  ng-style="essSmallRotate;"/>
     <span class="pt26 bfffff">current output <span class="pt16 bfffff">MW</span></span>
     <img src="../../../assets/images/icon2.png" ng-style="essLargeRotate;"/>
@@ -68,12 +68,12 @@
   <!---->
 
   <div class="part2-gage-bottom pt18 bfffff">
-    <span style="margin-right: 38px;">new reheneration charge</span>
+    <span style="margin-right: 38px;text-align: center;">renewable <!--<br/>energy charge--></span>
     <span>from grid</span>
   </div>
 
   <div class="part2-box pt26">
-    <span class="bfffff" style="margin-right: 40px;">current operating</span>
+    <span class="bfffff" style="margin-right: 40px;">current oper<!--ating--></span>
     <span class="ff7e47" ng-style="state1.apiData.sector2.ess_oper_rate >= 10 && {'font-size':'23px'}">{{state1.apiData.sector2.ess_oper_rate}} %</span>
   </div>
 
@@ -87,7 +87,7 @@
     <img src="../../../assets/images/icon1.png" class="absolute" style="top: 105%; left: 10%;"/>
   </div>
 
-  <div class="part2-bar">
+  <div class="part2-bar" style="left: -80px;">
     <div style="color: #597c80;"><span class="pt8">MWh</span> <span class="pt12">hold</span></div>
     <div style="color: #80ffff;"><span class="pt8">MWh</span> <span class="pt12">charge amount</span></div>
     <div style="color: #fffef7;"><span class="pt8">MWh</span> <span class="pt12">availability amount</span></div>

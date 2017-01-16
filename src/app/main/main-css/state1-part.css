@@ -15,8 +15,8 @@
 }
 .part2-measure {
   position: absolute;
-  top: 508px;
-  left: 60px;
+  top: 463px;
+  left: 35px;
 }
 .part2-current-value {
   position: absolute;
@@ -60,7 +60,7 @@
 .part2-box {
   position: absolute;
   top: 1326px;
-  left: 324px;
+  left: 310px;
 }
 .part2-table {
   position: absolute;

@@ -104,9 +104,9 @@
       var result;
 
       if(degree < 180 || degree == 360) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '44px' , 'top': '128px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '74px' , 'top': '164px'};
       } else if (degree >= 180) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '48px' , 'top': '130px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate('+degree+'deg)' ,'left' : '74px' , 'top': '164px'};
       }
 
       return result;
@@ -118,15 +118,15 @@
       var result;
 
       if(flag == 0) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '696px' , 'top': '129px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(180deg)' ,'left' : '717px' , 'top': '176px'};
       } else if (flag == 1) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '693px' , 'top': '131px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(253deg)' ,'left' : '717px' , 'top': '176px'};
       } else if (flag == 2) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '693px' , 'top': '129px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(318deg)' ,'left' : '717px' , 'top': '176px'};
       } else if (flag == 3) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '693px' , 'top': '127px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(42deg)' ,'left' : '717px' , 'top': '176px'};
       } else if (flag == 4) {
-        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '696px' , 'top': '127px'};
+        result = { 'position' : 'absolute' , '-webkit-transform' : 'rotate(108deg)' ,'left' : '717px' , 'top': '176px'};
       }
 
       return result;
