@@ -195,3 +195,25 @@
   z-index: 30;
   color: #2d3b40;
 }
+
+
+.map-ccc {
+  position: absolute;
+  width: 2600px;
+  left: 158px;
+  top: 68px;
+}
+.map-ccc img {
+  width: 300px;
+  height: 200px;
+  position: absolute;
+  z-index: 30;
+}
+.map-ccc span {
+  position: absolute;
+  z-index: 30;
+  color: #fff;
+  font-weight: 600;
+  font-size: 30px;
+  margin-top:154px;
+}
