@@ -7,7 +7,7 @@
     <span class="c-86bfbf pt38">ESS</span>
   </div>
 
-  <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">{{vm.solarDemandData.generator > 0 ? 'discharging' : 'generation'}}</div>
+  <div class="absolute pt50 ff7e47" style="left: 340px;top: 112px;">{{vm.solarDemandData.generator > 0 ? 'DISCHARGING' : 'GENERATION'}}</div>
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
@@ -32,11 +32,11 @@
   </div>
 
   <div class="absolute pt21" style="left: 95px;top: 746px;text-align: center; font-size:22px;">
-    <span class="state2-btn-active">Feeding instruction</span>
+    <span class="state2-btn-active"><!--urgent -->instruction</span>
     <!--여기부터-->
     <span class="absolute" style="width:180px;left: 160px;">{{vm.emergencyStartime}} ~ {{vm.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 330px;">{{vm.solarDemandData.event.goal|number:1}} kW (imitation)</span>
+    <span class="absolute" style="width:250px;left: 330px;">{{vm.solarDemandData.event.goal|number:1}} kW<!-- (imitation)--></span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{vm.emergencyStartDate}}

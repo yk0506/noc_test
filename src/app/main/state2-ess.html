@@ -143,7 +143,7 @@
           <!--<div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>-->
         </div>
         <div class="absolute" style="top:292px;">
-          <div class="pt14">current discharge</div>
+          <div class="pt14">current <br/>discharge</div>
           <div class="pt20 fffbcc">{{con.generator | number:1}}<span class="pt16"> kW</span></div>
         </div>
         <div class="absolute" style="top:430px;">
@@ -152,7 +152,7 @@
         </div>
 
         <div class="absolute" style="top:238px;left: 273px;z-index: 40;">
-          <span class="pt14">current charge amount</span>
+          <span class="pt14">current charge <!--amount--></span>
           <br>
           <span class="pt20">{{con.meter_acc | number:1}}<span class="pt16"> kWh</span></span>
         </div>
@@ -160,7 +160,7 @@
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
 
         <div class="absolute" style="top:390px;left: 273px;z-index: 40;">
-          <span class="pt14">discharge limit amount</span>
+          <span class="pt14">discharge limit<!-- amount--></span>
           <br>
           <span class="pt20">{{con.generator_limit | number:1}}<span class="pt16"> kWh</span></span>
         </div>
@@ -179,13 +179,13 @@
             <div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
-            <div class="pt16 c-66ffff">current discharge(AC)</div>
-            <div class="pt16">current charge(AC)</div>
+            <div class="pt16 c-66ffff"><!--current -->discharge(AC)</div>
+            <div class="pt16"><!--current -->charge(AC)</div>
             <div class="pt16 c-66ffff">battery capacity</div>
             <div class="pt16">charge amount</div>
             <div class="pt16 c-66ffff">remaining time</div>
           </div>
-          <div class="absolute" style="width:100px; top:156px;left: 127px;line-height: 31px;">
+          <div class="absolute" style="width:100px; top:156px;left: 136px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.generator | number:1}} kW</div>
             <div class="pt16">{{con.meter | number:1}} kW</div>
             <div class="pt16 c-66ffff">{{con.battery | number:1}} kWh</div>

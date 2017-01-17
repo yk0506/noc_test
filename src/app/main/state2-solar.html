@@ -143,7 +143,7 @@
           <!--<div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>-->
         <!--</div>-->
         <div class="absolute" style="top:292px;">
-          <div class="pt14">current output(AC)</div>
+          <div class="pt14">current <br/>output(AC)</div>
           <div class="pt20 fffbcc">{{con.ac|number:1}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
@@ -151,15 +151,15 @@
           <!--<div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>-->
         <!--</div>-->
 
-        <div class="absolute" style="top:253px;left: 273px;z-index: 40;">
-          <span class="pt14">goal output</span>
+        <div class="absolute" style="top:262px;left: 273px;z-index: 40;">
+          <span class="pt14">goal output</span><br/>
           <span class="pt20">{{con.goal|number:1}}<span class="pt16">kW</span></span>
         </div>
         <img src="../assets/images/sector2_image/factory_line.png"
              style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
 
-        <div class="absolute" style="top:411px;left: 265px;z-index: 40;">
-          <span class="pt14">min limit output</span>
+        <div class="absolute" style="top:421px;left: 265px;z-index: 40;">
+          <span class="pt14">min limit output</span><br/>
           <span class="pt20">{{con.limit|number:1}}<span class="pt16">kW</span></span>
         </div>
         <!--line:: 바닥부터 cbl라인까지 높이 208px-->
@@ -183,7 +183,7 @@
             <div class="pt16">solar radiation</div>
             <div class="pt16 c-66ffff">today accumulate generation amount</div>
           </div>
-          <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
+          <div class="absolute" style="top:156px;left: 151px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.ac|number:1}}kW</div>
             <div class="pt16">{{con.vtg|number:1}}V</div>
             <div class="pt16 c-66ffff">{{con.crt|number:1}}A</div>

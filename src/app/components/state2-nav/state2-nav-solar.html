@@ -7,7 +7,7 @@
     <span class="c-86bfbf pt38">Solar</span>
   </div>
 
-  <div class="absolute pt70 ff7e47" style="left: 400px;top: 97px;">generation</div>
+  <div class="absolute pt50 ff7e47" style="left: 340px;top: 112px;">GENERATION</div>
   <!--<div class="absolute pt70 fffef2" style="left: 400px;top: 97px;">대기중</div>-->
   <!--<div class="absolute pt70 c-7ca6a6" style="left: 400px;top: 97px;">offline</div>-->
 
@@ -32,11 +32,11 @@
   </div>
 
   <div class="absolute pt26" style="left: 95px;top: 743px;text-align: center;">
-    <span class="state2-btn-active">Feeding instruction</span>
+    <span class="state2-btn-active"><!--urgent -->instruction</span>
     <!--여기부터-->
     <span class="absolute" style="width:180px;left: 160px;">{{state2_3.emergencyStartime}} ~ {{state2_3.emargencyEndtime}}</span>
     <!--<span class="absolute" style="width: 180px;left: 190px;">16:00 ~ 17:00</span>-->
-    <span class="absolute" style="width:250px;left: 330px;">{{state2_3.solarDemandData.event.goal|number:1}} kW (imitation)</span>
+    <span class="absolute" style="width:250px;left: 330px;">{{state2_3.solarDemandData.event.goal|number:1}} kW<!-- (imitation)--></span>
   </div>
 
   <div class="absolute bfffff pt18" style="left:110px;top:840px;">{{state2_3.emergencyStartDate}}
@@ -52,10 +52,10 @@
   <div style="background-color: #fffbcc;height: 7px;top: 916px;position: absolute;"
        ng-style="{width: 180 - (state2_3.maxAvailable), left:124 + (state2_3.maxAvailable)}"></div>
 
-  <div class="absolute pt10 c-86bfbf" style="left: 138px;top: 927px;">current max generation available output</div>
-  <div class="absolute pt10 fffbcc" style="left: 260px;top: 927px;">generation capacity</div>
+  <div class="absolute pt10 c-86bfbf" style="left: 128px;top: 927px;">current max generation available output</div>
+  <div class="absolute pt10 fffbcc" style="left: 250px;top: 937px;">generation capacity</div>
 
-  <div class="pt24 bfffff absolute" style="left: 148px;top: 950px;">solar generation ratio<span class="pt18">%</span></div>
+  <div class="pt24 bfffff absolute" style="left: 86px;top: 950px;">solar generation ratio<span class="pt18">%</span></div>
 
   <table class="pt18 bfffff absolute state2-table" style="left: 383px;top: 850px;">
     <tr>
