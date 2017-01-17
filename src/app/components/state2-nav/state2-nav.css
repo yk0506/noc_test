@@ -82,7 +82,8 @@
   font-size: 24px;
   color: #80ffff;
   background-color: #597c80;
-  width: 160px;
+  /*width: 160px;*/
+  width: 250px;
   height: 45px;
   border-radius: 6px;
   text-align: center;
@@ -93,7 +94,8 @@
   font-size: 24px;
   color: #0d0d0d;
   background-color: #ff7e47;
-  width: 160px;
+  /*width: 160px;*/
+  width: 250px;
   height: 45px;
   border-radius: 6px;
   text-align: center;
