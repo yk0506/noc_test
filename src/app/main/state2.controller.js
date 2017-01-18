@@ -77,7 +77,8 @@
             data: {
               x: vm.timeX[0],
               xFormat:'%H:%M',
-              columns: [vm.timeX, cbl, watt]
+              columns: [vm.timeX, cbl, watt],
+              type: 'spline'  //Line 둥글게
             },
             grid: { //점선
               x: {
