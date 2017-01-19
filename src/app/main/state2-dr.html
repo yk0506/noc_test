@@ -143,11 +143,11 @@
         <div class="absolute" style="top:167px;">
           <div class="pt14">reduction load</div>
           <div class="pt24 ff7e47"
-               ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:1}}<span class="pt16">kW</span></div>
+               ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:292px;">
           <div class="pt14">current load</div>
-          <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt}}<span class="pt16">kW</span></div>
+          <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt|number:0}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
           <!--<div class="pt14">MAX</div>-->
