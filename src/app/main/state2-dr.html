@@ -47,7 +47,7 @@
   <div class="drType-btn" value="1" ng-click="state2_1.clickDR(1)" ng-class="state2_1.drType == 1 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">DR1</div>
   <div class="drType-btn" value="2" ng-click="state2_1.clickDR(2)" ng-class="state2_1.drType == 2 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">DR2</div>
   <div class="drType-btn" value="3" ng-click="state2_1.clickDR(3)" ng-class="state2_1.drType == 3 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">DR3</div>
-  <div class="drType-btn" value="4" onclick="javascript:alert('준비중입니다');" ng-class="state2_1.drType == 4 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">DR4</div>
+  <div class="drType-btn" value="4" onclick="javascript:alert('Prepating this function in the next version');" ng-class="state2_1.drType == 4 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">DR4</div>
   <div class="drType-btn" value="5" ng-click="state2_1.clickDR(5)" ng-class="state2_1.drType == 5 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">DR etc.</div>
 
   <!--section-->
@@ -75,7 +75,7 @@
     </div>
 
     <!--수용가 list repeat-->
-    <div class="absolute pt42 bfffff" style="left: 52px;top: 910px;width: 555px; font-size:34px;">customer electric power use</div>
+    <div class="absolute pt31 bfffff" style="left: 52px;top: 910px;width: 555px;">CUSTOMER ELECTRIC POWER USE</div>
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
@@ -143,11 +143,11 @@
         <div class="absolute" style="top:167px;">
           <div class="pt14">reduction load</div>
           <div class="pt24 ff7e47"
-               ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:1}}<span class="pt16">kW</span></div>
+               ng-style="con.dem_cbl-con.dem_watt >= 10000 && {'font-size':'17px'} || con.dem_cbl-con.dem_watt >= 1000 && {'font-size':'20px'}">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>
         </div>
         <div class="absolute" style="top:292px;">
           <div class="pt14">current load</div>
-          <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt}}<span class="pt16">kW</span></div>
+          <div class="pt20 fffbcc" ng-style="con.dem_watt >= 10000 && {'font-size':'17px'}">{{con.dem_watt|number:0}}<span class="pt16">kW</span></div>
         </div>
         <!--<div class="absolute" style="top:430px;">-->
           <!--<div class="pt14">MAX</div>-->
