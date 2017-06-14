@@ -12,6 +12,17 @@
 
     console.log("# Solar. solar_detail_Controller.");
 
+    var getDemandDataTimeout;
+    var drawLineChartTimeout;
+    var getSolarConsumersTimeout;
+
+    //화면을 떠날 때 interval clear
+    $scope.$on('$destroy', function(event){
+      if(getDemandDataTimeout) $timeout.cancel(getDemandDataTimeout);
+      if(drawLineChartTimeout) $timeout.cancel(drawLineChartTimeout);
+      if(getSolarConsumersTimeout) $timeout.cancel(getSolarConsumersTimeout);
+    });
+
 
      vm.back = function () {
           $window.history.back();
@@ -55,7 +66,7 @@
         $log.debug('ERRORS:: ', response);
       });
 
-      $timeout(getDemandData, 900000);
+      getDemandDataTimeout = $timeout(getDemandData, 900000);
     }
 
     vm.currentTime = moment().format('YYYY-MM-DD hh:mm:ss');
@@ -112,7 +123,7 @@
         $log.debug('ERRORS:: ', response);
       });
 
-      $timeout(drawLineChart, 900000);
+      drawLineChartTimeout = $timeout(drawLineChart, 900000);
     }
 
 
@@ -169,7 +180,7 @@
         utilService.buttonCtrl(vm);
       });
 
-      $timeout(getSolarConsumers, 900000);
+      getSolarConsumersTimeout = $timeout(getSolarConsumers, 900000);
     }
 
 

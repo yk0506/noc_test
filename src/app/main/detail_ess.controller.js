@@ -12,6 +12,17 @@
 
     console.log("# ESS. ess_detail_Controller");
 
+    var getDemandDataTimeout;
+    var drawLineChartTimeout;
+    var getEssConsumersTimeout;
+
+    //화면을 떠날 때 interval clear
+    $scope.$on('$destroy', function(event){
+      if(getDemandDataTimeout) $timeout.cancel(getDemandDataTimeout);
+      if(drawLineChartTimeout) $timeout.cancel(drawLineChartTimeout);
+      if(getEssConsumersTimeout) $timeout.cancel(getEssConsumersTimeout);
+    });
+
      var settings = {
       root: $(".zoomViewport"),
       // show debug points in element corners. helps
@@ -50,7 +61,7 @@
         $log.debug('ERRORS:: ', response);
       });
 
-      $timeout(getDemandData, 900000);
+      getDemandDataTimeout = $timeout(getDemandData, 900000);
     }
 
 
@@ -178,7 +189,7 @@
            $log.debug('ERRORS:: ', response);
          });
 
-         $timeout(drawLineChart, 900000);
+         drawLineChartTimeout = $timeout(drawLineChart, 900000);
        }
 
 
@@ -225,7 +236,7 @@
             utilService.buttonCtrl(vm);
           });
 
-          $timeout(getEssConsumers, 900000);
+          getEssConsumersTimeout = $timeout(getEssConsumers, 900000);
         }
 
 

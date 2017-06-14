@@ -13,6 +13,17 @@
     $log.info("# dr_detail_Controller");
     console.log(vm.drType);
 
+    var initTimeout;
+    var getCompaniesResourcesTimeout;
+    var getResourcesConsumersTimeout;
+
+    //화면을 떠날 때 interval clear
+    $scope.$on('$destroy', function(event){
+      if(initTimeout) $timeout.cancel(initTimeout);
+      if(getCompaniesResourcesTimeout) $timeout.cancel(getCompaniesResourcesTimeout);
+      if(getResourcesConsumersTimeout) $timeout.cancel(getResourcesConsumersTimeout);
+    });
+
     /*
      *  초기화면 셋팅
      */
@@ -32,7 +43,7 @@
       getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
       drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
 
-      $timeout(init, 600000);
+      initTimeout = $timeout(init, 600000);
     }
 
     $interval(function () {
@@ -415,7 +426,7 @@
 
           // vm.gageCurrentDevelop = parseFloat(vm.currentCompanyResources.dem_negawatt) / vm.currentCompanyMax *100;
 
-          $timeout(getCompaniesResources, 900000);
+          getCompaniesResourcesTimeout = $timeout(getCompaniesResources, 900000);
 
         }
       )
@@ -456,7 +467,7 @@
 
           }
 
-          $timeout(getResourcesConsumers, 900000);
+          getResourcesConsumersTimeout = $timeout(getResourcesConsumers, 900000);
 
         }
       )
