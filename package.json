@@ -8,6 +8,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
+
     "chalk": "~1.1.1",
     "del": "~2.0.2",
     "eslint-plugin-angular": "~0.12.0",

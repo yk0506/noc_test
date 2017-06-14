@@ -3,14 +3,14 @@
 
   angular
     .module('power-plant')
-    .controller('State2_1Controller', State2_1Controller);
+    .controller('dr_detail_Controller', dr_detail_Controller);
 
   /** @ngInject */
-  function State2_1Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment, $window) {
+  function dr_detail_Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment, $window) {
     var vm = this;
     vm._ = _;
 
-    $log.info("# State2_1Controller.");
+    $log.info("# dr_detail_Controller");
     console.log(vm.drType);
 
     /*

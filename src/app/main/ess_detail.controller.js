@@ -3,14 +3,14 @@
 
   angular
     .module('power-plant')
-    .controller('State2_2Controller', State2_2Controller);
+    .controller('ess_detail_Controller', ess_detail_Controller);
 
   /** @ngInject */
-  function State2_2Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope) {
+  function ess_detail_Controller($log, $timeout, energyService, c3, $scope, $http, utilService, $rootScope) {
     var vm = this;
     vm._ = _;
 
-    console.log("# ESS. state2-2 Controller.");
+    console.log("# ESS. ess_detail_Controller");
 
      var settings = {
       root: $(".zoomViewport"),

@@ -3,10 +3,10 @@
 
   angular
     .module('power-plant')
-    .controller('State3Controller', State3Controller);
+    .controller('Factory_Controller', Factory_Controller);
 
   /** @ngInject */
-  function State3Controller($log, $timeout, energyService, c3, $scope, computedService) {
+  function Factory_Controller($log, $timeout, energyService, c3, $scope, computedService) {
     var vm = this;
     vm._ = _;
 

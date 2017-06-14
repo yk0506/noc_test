@@ -3,14 +3,14 @@
 
   angular
     .module('power-plant')
-    .controller('State1Controller', State1Controller);
+    .controller('Main_Controller', Main_Controller);
 
   /** @ngInject */
-  function State1Controller($log, $timeout, energyService, c3, $scope, $http) {
+  function Main_Controller($log, $timeout, energyService, c3, $scope, $http) {
     var vm = this;
     vm._ = _;
 
-    console.log("# State1 Controller.");
+    console.log("# Main_Controller Controller.");
 
 
     //전체데이터 가져오기
