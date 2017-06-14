@@ -336,9 +336,7 @@
      * @param drType
      */
     function drawLineChart(drType) {
-
       var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
-
 
       $http({
         method: 'GET',
