@@ -47,7 +47,7 @@
         controller: 'solar_detail_Controller',
         controllerAs: 'state2_3'
       })
-      .state('state3', {
+      .state('state3', {  //공장 모니터링
         url: '/state3',
         templateUrl: 'app/main/factory.html',
         controller: 'Factory_Controller',
