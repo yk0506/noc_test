@@ -31,19 +31,19 @@
       })
       .state('state2-1', { //DR
         url: '/state2-1',
-        templateUrl: 'app/main/state2-dr.html',
+        templateUrl: 'app/main/detail-dr.html',
         controller: 'dr_detail_Controller',
         controllerAs: 'state2_1'
       })
       .state('state2-2', { //ESS
         url: '/state2-2',
-        templateUrl: 'app/main/state2-ess.html',
+        templateUrl: 'app/main/detail-ess.html',
         controller: 'ess_detail_Controller',
         controllerAs: 'state2_2'
       })
       .state('state2-3', { //solar
         url: '/state2-3',
-        templateUrl: 'app/main/state2-solar.html',
+        templateUrl: 'app/main/detail-solar.html',
         controller: 'solar_detail_Controller',
         controllerAs: 'state2_3'
       })
