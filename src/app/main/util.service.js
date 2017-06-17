@@ -179,21 +179,21 @@
             x: yAxis[0],
             xFormat:'%H:%M',
             columns: [yAxis, calcArray]
-            //,type: 'spline'  //Line 둥글게
+            ,type: 'spline'  //Line 둥글게
           },
           grid: { //점선
             x: {
-              show: false
+              show: true
             },
             y: {
               lines:[
-                {value: 170000, text: 'Contract Power', position: 'start'}
+                {value: vm.cont_watt, text: 'Contract(kW) : ' + vm.cont_watt, position: 'start'}
               ]
             }
           },
           axis: { //가로 세로줄
             x: {
-              show: false,
+              show: true,
               type: 'timeseries',
               tick: {
                 format: '%H:%M',
@@ -202,7 +202,7 @@
               }
             },
             y: {
-              show: false
+              show: true
             }
 
           },
@@ -213,16 +213,16 @@
             contents: function (d) {
               // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
 
-              var data = 0;
-              for (var i=0; i<d.length; i++) {
-                if (d[i].id == "전력량") {
-                  data = d[i].value;
-                }
-              }
+              // var data = 0;
+              // for (var i=0; i<d.length; i++) {
+              //   if (d[i].id == "전력량") {
+              //     data = d[i].value;
+              //   }
+              // }
 
-              if (data != null) {
+              if (d[0] && d[0].value) {
                 var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
-                  'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  data + '</div>'; // formatted html as you want
+                  'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  d[0].value + '</div>'; // formatted html as you want
               } else {
                 var dataHtml = '';
               }
@@ -231,18 +231,14 @@
 
             }
           },
-          // size: {
-          //   width: 1634,
-          //   height: 450
-          // },
           color: {
             pattern: ['#608080', '#80ffff']
           },
           line: {
             width: 10
           },
-          legend: { //밑에 데이터 구분 테이블
-            hide: true
+          legend: {
+            hide: false
           }
         });
 

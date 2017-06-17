@@ -43,12 +43,12 @@
     </span>
   </div>
 
-  <div class="drType-btn" value="0" ng-click="state2_1.clickDR(0)" ng-class="state2_1.drType == 0 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">total</div>
-  <div class="drType-btn" value="1" ng-click="state2_1.clickDR(1)" ng-class="state2_1.drType == 1 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">DR1</div>
-  <div class="drType-btn" value="2" ng-click="state2_1.clickDR(2)" ng-class="state2_1.drType == 2 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">DR2</div>
-  <div class="drType-btn" value="3" ng-click="state2_1.clickDR(3)" ng-class="state2_1.drType == 3 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">DR3</div>
-  <div class="drType-btn" value="4" onclick="javascript:alert('Prepating this function in the next version');" ng-class="state2_1.drType == 4 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">DR4</div>
-  <div class="drType-btn" value="5" ng-click="state2_1.clickDR(5)" ng-class="state2_1.drType == 5 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">DR etc.</div>
+  <div class="drType-btn" value="6" ng-click="state2_1.clickDR(6)" ng-class="state2_1.drType == 6 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">C01</div>
+  <div class="drType-btn" value="7" ng-click="state2_1.clickDR(7)" ng-class="state2_1.drType == 7 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">C02</div>
+  <div class="drType-btn" value="8" ng-click="state2_1.clickDR(8)" ng-class="state2_1.drType == 8 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">N01</div>
+  <div class="drType-btn" value="9" ng-click="state2_1.clickDR(9)" ng-class="state2_1.drType == 9 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">N02</div>
+  <div class="drType-btn" value="10" ng-click="state2_1.clickDR(10)" ng-class="state2_1.drType == 10 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">N03</div>
+  <div class="drType-btn" value="11" ng-click="state2_1.clickDR(11)" ng-class="state2_1.drType == 11 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">N04</div>
 
   <!--section-->
   <div class="sector2-map">
@@ -70,8 +70,8 @@
     <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 508px;top: 522px;"  ng-show="state2_1.gageCurrentDevelop == 270" />
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
-      <span class="pt20 bfffff">MAX(MAX availability reduction amount)</span><br/>
-      <span class="pt60 fffef2" ng-style="state2_1.maxAvailNegaWatt >= 1000000 && {'font-size' : '45px'}">{{state2_1.maxAvailNegaWatt | number:1}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt20 bfffff">Total contract(kW)</span><br/>
+      <span class="pt60 fffef2" ng-style="state2_1.totalContract >= 1000000 && {'font-size' : '45px'}">{{state2_1.totalContract | number:1}}</span><span class="pt20 fffef2" style="margin-left: 5px;">kW</span>
     </div>
 
     <!--수용가 list repeat-->
@@ -174,24 +174,24 @@
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
-            <div class="pt14">use</div>
-            <div class="pt60 ff7e47" style="text-align: center;">{{con.dem_rate|number:0}} %</div>
-            <div class="pt8 c-7ca6a6">use =</div>
-            <div class="pt8 c-7ca6a6">current load / CBL</div>
+            <div class="pt14">Contract(kW)</div>
+            <div class="pt60 ff7e47" style="text-align: center;">{{con.cont_watt|number:0}}<span class="pt20" style="margin-left: 8px;">kW</span></div>
+            <div class="pt8 c-7ca6a6"></div>
+            <div class="pt8 c-7ca6a6"></div>
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
             <div class="pt16 c-66ffff">current load</div>
             <div class="pt16">CBL</div>
             <div class="pt16 c-66ffff">reduction load</div>
-            <div class="pt16">TARGET</div>
-            <div class="pt16 c-66ffff">MAX TARGET</div>
+            <div class="pt16">usage</div>
+            <!--<div class="pt16 c-66ffff">MAX TARGET</div>-->
           </div>
           <div class="absolute" style="top:156px;left: 127px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.dem_watt|number:1}}kW</div>
             <div class="pt16">{{con.dem_cbl|number:1}}kW</div>
-            <div class="pt16 c-66ffff">{{con.dem_cbl-con.dem_watt|number:0}}kW</div>
-            <div class="pt16" style="color:#7ca6a6;">0 kW</div>
-            <div class="pt16 c-66ffff"  style="color:#7ca6a6;">0 kW</div>
+            <div class="pt20 c-66ffff">{{con.dem_cbl-con.dem_watt|number:0}}kW</div>
+            <div class="pt16">{{con.dem_watt/con.dem_cbl * 100|number:0}}%</div>
+            <!--<div class="pt16 c-66ffff"  style="color:#7ca6a6;">0 kW</div>-->
           </div>
         </div>
 
