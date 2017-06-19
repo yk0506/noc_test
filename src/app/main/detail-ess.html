@@ -126,7 +126,7 @@
       <!--each-->
       <div class="bfffff graph-section-each"
            ng-repeat="con in state2_2.resourcesConsumers|limitTo:6:state2_2.consumerBeginNumber">
-        <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.cons_name}}</div>
+        <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{con.sgname}}</div>
         <div class="absolute pt24" style="top: 80px;">criteria time <span style="margin-left: 20px;">{{con.curr_date_time}}</span>
         </div>
 
@@ -135,62 +135,63 @@
 
 
         <!--빌딩 게이지 가동률로 변경-->
-        <div class="factory-bg" ng-style="{height: (con.dem_watt/con.dem_cbl)*208}"></div>
+        <!--<div class="factory-bg" ng-style="{height: (con.dem_watt/con.dem_cbl)*208}"></div>-->
+        <div class="factory-bg" ng-style="{height: (con.socAvg / 100)*208}"></div>
         <!--height: con.operateRatio*335/100-->
 
         <div class="absolute" style="top:167px;">
           <!--<div class="pt14">100%</div>-->
           <!--<div class="pt24 ff7e47">{{con.dem_cbl-con.dem_watt|number:0}}<span class="pt16">kW</span></div>-->
         </div>
-        <div class="absolute" style="top:292px;">
-          <div class="pt14">current <br/>discharge</div>
-          <div class="pt20 fffbcc">{{con.generator | number:1}}<span class="pt16"> kW</span></div>
-        </div>
-        <div class="absolute" style="top:430px;">
-          <div class="pt14">0%</div>
-          <!--<div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>-->
-        </div>
+        <!--<div class="absolute" style="top:292px;">-->
+          <!--<div class="pt14">current <br/>discharge</div>-->
+          <!--<div class="pt20 fffbcc">{{con.generator | number:1}}<span class="pt16"> kW</span></div>-->
+        <!--</div>-->
+        <!--<div class="absolute" style="top:430px;">-->
+          <!--<div class="pt14">0%</div>-->
+          <!--&lt;!&ndash;<div class="pt20">{{con.maxTarget|number:0}}<span class="pt16">kW</span></div>&ndash;&gt;-->
+        <!--</div>-->
 
-        <div class="absolute" style="top:235px;left: 273px;z-index: 40;">
-          <span class="pt14">current charge <!--amount--></span>
-          <br>
-          <span class="pt20">{{con.meter_acc | number:1}}<span class="pt16"> kWh</span></span>
-        </div>
-        <img src="../assets/images/sector2_image/factory_line.png"
-             style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>
+        <!--<div class="absolute" style="top:235px;left: 273px;z-index: 40;">-->
+          <!--<span class="pt14">current charge &lt;!&ndash;amount&ndash;&gt;</span>-->
+          <!--<br>-->
+          <!--<span class="pt20">{{con.meter_acc | number:1}}<span class="pt16"> kWh</span></span>-->
+        <!--</div>-->
+        <!--<img src="../assets/images/sector2_image/factory_line.png"-->
+             <!--style="position: absolute;top: 284px;left: 50px;z-index: 40;"/>-->
 
-        <div class="absolute" style="top:390px;left: 273px;z-index: 40;">
-          <span class="pt14">discharge limit<!-- amount--></span>
-          <br>
-          <span class="pt20">{{con.generator_limit | number:1}}<span class="pt16"> kWh</span></span>
-        </div>
+        <!--<div class="absolute" style="top:390px;left: 273px;z-index: 40;">-->
+          <!--<span class="pt14">discharge limit&lt;!&ndash; amount&ndash;&gt;</span>-->
+          <!--<br>-->
+          <!--<span class="pt20">{{con.generator_limit | number:1}}<span class="pt16"> kWh</span></span>-->
+        <!--</div>-->
         <!--line:: 바닥부터 cbl라인까지 높이 208px-->
-        <img src="../assets/images/sector2_image/factory_line2.png"
-             style="position: absolute;left: 50px;z-index: 40;"
-             ng-style="{top: con.line2}"
-        /><!--origin top: 442px-->
+        <!--<img src="../assets/images/sector2_image/factory_line2.png"-->
+             <!--style="position: absolute;left: 50px;z-index: 40;"-->
+             <!--ng-style="{top: con.line2}"-->
+        <!--/>&lt;!&ndash;origin top: 442px&ndash;&gt;-->
 
         <div class="absolute"
              style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
           <div class="absolute" style="width: 177px;">
-            <div class="pt14">generation</div>
+            <div class="pt14">ESS Capacity</div>
             <div class="pt50 ff7e47" style="text-align: center;"
-              ng-style="con.generator >= 1000 && {'font-size' : '35px'} || con.generator >= 100 && {'font-size' : '40px'}">{{con.generator | number:1}} kW</div>
-            <div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>
+              ng-style="{'font-size' : '40px'}">{{con.totalBatteryVolume | number:1}} kWh</div>
+            <!--<div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>-->
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
-            <div class="pt16 c-66ffff"><!--current -->discharge(AC)</div>
-            <div class="pt16"><!--current -->charge(AC)</div>
-            <div class="pt16 c-66ffff">battery capacity</div>
-            <div class="pt16">charge amount</div>
-            <div class="pt16 c-66ffff">remaining time</div>
+            <div class="pt16 c-66ffff">SOC</div>
+            <div class="pt16">Charge</div>
+            <div class="pt16 c-66ffff">DR Resouce</div>
+            <div class="pt16">FR Resouce</div>
+            <!--<div class="pt16 c-66ffff">remaining time</div>-->
           </div>
           <div class="absolute" style="width:100px; top:156px;left: 136px;line-height: 31px;">
-            <div class="pt16 c-66ffff">{{con.generator | number:1}} kW</div>
-            <div class="pt16">{{con.meter | number:1}} kW</div>
-            <div class="pt16 c-66ffff">{{con.battery | number:1}} kWh</div>
-            <div class="pt16" ng-style="con.meter_acc >= 10000 && {'font-size':'15px'}">{{con.meter_acc | number:1}} kWh</div>
-            <div class="pt16 c-66ffff">{{con.rest_hour | number:1}} hour</div>
+            <div class="pt16 c-66ffff">{{con.socAvg | number:1}} %</div>
+            <div class="pt16">{{con.totalBatteryCharge | number:1}} kWh</div>
+            <div class="pt16 c-66ffff">{{con.totalBatteryCharge / 2 | number:1}} kW</div>
+            <div class="pt16" ng-style="con.meter_acc >= 10000 && {'font-size':'15px'}">{{con.totalBatteryCharge * 4 | number:1}} kW</div>
+            <!--<div class="pt16 c-66ffff">{{con.rest_hour | number:1}} hour</div>-->
           </div>
         </div>
 
