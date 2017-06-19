@@ -70,11 +70,11 @@
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(max transmission power)</span><br/>
-      <span class="pt60 fffef2">{{state2_2.max_limit|number:1}}</span><span class="pt24 fffef2">kW</span>
+      <span class="pt60 fffef2">{{state2_2.max_limit|number:1}}</span><span class="pt24 fffef2">kWh</span>
     </div>
 
     <!--수용가 list repeat-->
-    <div class="absolute pt31 bfffff" style="left: 52px;top: 910px;width: 555px;">CUSTOMER GENERATION STATUS</div>
+    <div class="absolute pt31 bfffff" style="left: 52px;top: 910px;width: 555px;">ESS CHARGE STATUS</div>
     <div class="absolute" style="left: 52px;top: 1015px;width: 500px;height: 1037px;overflow-y: hidden;">
       <!--todo:: call value, current temp value-->
       <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
@@ -91,7 +91,7 @@
     height: 55px;
     text-overflow: ellipsis;
     white-space: nowrap;
-    word-break: break-all;">{{con.cons_name}}
+    word-break: break-all;">{{con.sgname}}
           </li>
         </ul>
       </div>
@@ -106,7 +106,7 @@
             ng-show="con.operateRatio >= -1"></div>
 
           <div style="float: left;background-color: #bfffff;height: 30px;margin-bottom: 25px;max-width: 310px;"
-               ng-style="{width: con.operateRatio*310/100}"></div>
+               ng-style="{width: con.socAvg*310/100}"></div>
           <div style="margin-left:10px;background-color: #2e3c40;height: 30px;margin-bottom: 25px;width: 310px;"></div>
         </div>
       </div>

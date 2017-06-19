@@ -52,7 +52,7 @@
         // 데이터 집합
         vm.essDemandData = resp.data.list;
 
-        vm.max_limit = vm.essDemandData.max_limit;
+        //vm.max_limit = vm.essDemandData.max_limit;
         vm.generator = vm.essDemandData.generator;
 
         vm.gageCurrentDevelop = vm.essDemandData.generator_rate;
@@ -220,11 +220,15 @@
       // }).then(function (resp) {
         vm.resourcesConsumers = consList;
 
+        vm.max_limit = 0;
+
         for (var i = 0; i < vm.resourcesConsumers.length; i++) {
 
           var currentConsumer = vm.resourcesConsumers[i];
 
           vm.resourcesConsumers[i].line2 = 442;
+
+          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += vm.resourcesConsumers[i].totalBatteryVolume;
 
         }
 
