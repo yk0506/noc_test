@@ -105,8 +105,17 @@
 
         for (var i = 0; i < vm.energyResources.length; i++) {
           if (vm.energyResources[i].battery_charge != null) {
-            dr.push(vm.energyResources[i].battery_charge / 2);  //DR은 2시간 기준
-            fr.push(vm.energyResources[i].battery_charge * 4);  //FR은 15분 기준
+            dr.push((vm.energyResources[i].battery_charge * 0.75).toFixed(1));  //DR은 2시간 기준
+
+            var frVal = 0;
+            if(vm.energyResources[i].battery_charge > 120){
+              frVal = 120;
+            }else{
+              var soc = (vm.energyResources[i].battery_charge / 180).toFixed(2);  //SOC
+              frVal = 120 * soc;
+            }
+
+            fr.push(frVal);                //FR은 15분 기준
             vm.currentXtime = vm.energyResources[i].dem_date;
           }else{
             dr.push(null);
@@ -228,7 +237,8 @@
 
           vm.resourcesConsumers[i].line2 = 442;
 
-          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += vm.resourcesConsumers[i].totalBatteryVolume * 0.75;
+          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += (30 * vm.resourcesConsumers[i].socAvg / 100);
+          console.log(30 * vm.resourcesConsumers[i].socAvg);
 
           console.log("#####################");
           console.log(vm.max_limit);

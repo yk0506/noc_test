@@ -176,7 +176,7 @@
           <div class="absolute" style="width: 177px;">
             <div class="pt14">ESS Capacity(DR)</div>
             <div class="pt50 ff7e47" style="text-align: center;"
-              ng-style="{'font-size' : '40px'}">{{con.totalBatteryVolume * 0.75 | number:1}} kW</div>
+              ng-style="{'font-size' : '40px'}">{{30 * con.socAvg / 100 | number:1}} kW</div>
             <!--<div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>-->
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
