@@ -105,7 +105,13 @@
 
         for (var i = 0; i < vm.energyResources.length; i++) {
           if (vm.energyResources[i].battery_charge != null) {
-            dr.push((vm.energyResources[i].battery_charge * 0.75).toFixed(1));  //DR은 2시간 기준
+
+
+            var socDR = (vm.energyResources[i].battery_charge / 180).toFixed(2);  //SOC
+            var drVal = 0;
+            drVal = 120 * socDR;
+            dr.push(drVal * 0.5);  //DR은 2시간 기준
+
 
             var frVal = 0;
             if(vm.energyResources[i].battery_charge > 120){
