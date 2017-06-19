@@ -70,7 +70,7 @@
 
     <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
       <span class="pt20 bfffff">MAX(max transmission power)</span><br/>
-      <span class="pt60 fffef2">{{state2_2.max_limit|number:1}}</span><span class="pt24 fffef2">kWh</span>
+      <span class="pt60 fffef2">{{state2_2.max_limit|number:0}}</span><span class="pt24 fffef2">kW</span>
     </div>
 
     <!--수용가 list repeat-->
@@ -176,22 +176,22 @@
           <div class="absolute" style="width: 177px;">
             <div class="pt14">ESS Capacity</div>
             <div class="pt50 ff7e47" style="text-align: center;"
-              ng-style="{'font-size' : '40px'}">{{con.totalBatteryVolume | number:1}} kWh</div>
+              ng-style="{'font-size' : '40px'}">{{con.totalBatteryVolume * 0.75 | number:1}} kW</div>
             <!--<div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>-->
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
             <div class="pt16 c-66ffff">SOC</div>
-            <div class="pt16">Charge</div>
-            <div class="pt16 c-66ffff">DR Resouce</div>
-            <div class="pt16">FR Resouce</div>
-            <!--<div class="pt16 c-66ffff">remaining time</div>-->
+            <div class="pt16">Battery Volume</div>
+            <div class="pt16 c-66ffff">Charge</div>
+            <div class="pt16">DR</div>
+            <div class="pt16 c-66ffff">FR</div>
           </div>
           <div class="absolute" style="width:100px; top:156px;left: 136px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.socAvg | number:1}} %</div>
-            <div class="pt16">{{con.totalBatteryCharge | number:1}} kWh</div>
-            <div class="pt16 c-66ffff">{{con.totalBatteryCharge / 2 | number:1}} kW</div>
-            <div class="pt16" ng-style="con.meter_acc >= 10000 && {'font-size':'15px'}">{{con.totalBatteryCharge * 4 | number:1}} kW</div>
-            <!--<div class="pt16 c-66ffff">{{con.rest_hour | number:1}} hour</div>-->
+            <div class="pt16">{{con.totalBatteryVolume | number:1}} kWh</div>
+            <div class="pt16 c-66ffff">{{con.totalBatteryCharge | number:1}} kWh</div>
+            <div class="pt16" ng-style="con.meter_acc >= 10000 && {'font-size':'15px'}">{{con.totalBatteryCharge * 0.75 | number:1}} kW</div>
+            <div class="pt16 c-66ffff">{{con.totalBatteryCharge * 4 | number:1}} kW</div>
           </div>
         </div>
 

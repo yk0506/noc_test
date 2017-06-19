@@ -228,7 +228,10 @@
 
           vm.resourcesConsumers[i].line2 = 442;
 
-          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += vm.resourcesConsumers[i].totalBatteryVolume;
+          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += vm.resourcesConsumers[i].totalBatteryVolume * 0.75;
+
+          console.log("#####################");
+          console.log(vm.max_limit);
 
         }
 
