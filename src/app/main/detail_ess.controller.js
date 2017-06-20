@@ -110,7 +110,7 @@
             var socDR = (vm.energyResources[i].battery_charge / 180).toFixed(2);  //SOC
             var drVal = 0;
             drVal = 120 * socDR;
-            dr.push(drVal * 0.5);  //DR은 2시간 기준
+            dr.push(drVal * 0.75);  //DR은 미국: 1시간30분, 한국: 2시간 기준
 
 
             var frVal = 0;
