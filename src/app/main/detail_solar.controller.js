@@ -38,6 +38,9 @@
 
     vm.consumerBeginNumber = 0;
 
+    // added by eh.hwang
+    vm.max = 0;
+
 
     getDemandData();
     function getDemandData(){
@@ -100,7 +103,7 @@
 
         vm.energyResources = resp.data.data;
 
-        var avg = ['avg'];
+        var avg = ['10일 평균'];
         var watt = ['발전량'];
 
         for (var i=0; i<vm.energyResources.length; i++) {
@@ -116,8 +119,97 @@
         //죄측상단 미니막대그래프 8개
         utilService.drawMiniEightChart('#chartbar1', vm);
 
+        // added by eh.hwang
         //중앙상단 라인차트
-        utilService.drawTopLineChart('#resource-graph', avg, watt, vm);
+        //utilService.drawTopLineChart('#resource-graph', avg, watt, vm);
+
+        var chart2 = c3.generate({
+          bindto: '#resource-graph',
+          data: {
+            x: vm.timeX[0],
+            xFormat: '%H:%M',
+            columns: [vm.timeX, avg, watt],
+            // axes: {
+            //   // dr: 'y',
+            //   fr: 'y2'
+            // },
+            type: 'spline'  //Line 둥글게
+          },
+          grid: { //점선
+            x: {
+              show: true
+            },
+            y: {
+              show: false
+            }
+          },
+          axis: { //가로 세로줄
+            x: {
+              show: true,
+              type: 'timeseries',
+              tick: {
+                format: '%H:%M',
+                values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+              }
+            },
+            y: {
+              show: true
+            }
+            // ,y2: {
+            //   show: true
+            // }
+          },
+          point: {
+            show: false
+          },
+          // tooltip: {
+          //   contents: function (d) {
+          //     // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
+          //
+          //     var data = 0;
+          //     for (var i = 0; i < d.length; i++) {
+          //       if (d[i].id == "방전량") {
+          //         data = d[i].value;
+          //       }
+          //     }
+          //
+          //     if (data != null) {
+          //       var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
+          //         'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' + data + '</div>'; // formatted html as you want
+          //     } else {
+          //       var dataHtml = '';
+          //     }
+          //
+          //     return dataHtml;
+          //
+          //   }
+          // },
+          // size: {
+          //   width: 1634,
+          //   height: 450
+          // },
+          color: {
+            pattern: ['#ff7e47', '#80ffff']
+          },
+          line: {
+            width: 10
+          },
+          legend: { //밑에 데이터 구분 테이블
+            hide: false
+          }
+        });
+
+        chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
+        $("#resource-graph").mouseleave(function () {
+          chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
+        });
+
+
+
+
+
+
 
       }, function errorCallback(response) {
         $log.debug('ERRORS:: ', response);
@@ -154,6 +246,10 @@
              vm.resourcesConsumers[i].operateRatio = 0;
             $log.error('ERRORS:: ', e);
           }
+
+          // added by eh.hwang
+          vm.max += currentConsumer.goal;
+          console.log("vm.max : " + vm.max);
 
           //최소한계출력 라인
           vm.resourcesConsumers[i].line2 = 442;
