@@ -91,7 +91,7 @@
       $http({
         method: 'GET',
         // url: 'http://api.ourwatt.com/nvpp/noc/ess/energy/5',
-        url: 'http://api.ourwatt.com/nvpp/noc/2017/ess/resource/5/graph',
+        url: 'http://api.ourwatt.com/nvpp/noc/2017/ess/resource/12/graph',
         // url: 'http://localhost:8090/ROOT/nvpp/noc/2017/ess/resource/5/graph',
         headers: {
           api_key: 'smartgrid'
@@ -106,7 +106,6 @@
 
         for (var i = 0; i < vm.energyResources.length; i++) {
           if (vm.energyResources[i].battery_charge != null) {
-
 
             var socDR = (vm.energyResources[i].battery_charge / 180).toFixed(2);  //SOC
             var drVal = 0;
@@ -234,23 +233,47 @@
       //     api_key: 'smartgrid'
       //   }
       // }).then(function (resp) {
-        vm.resourcesConsumers = consList;
+        //vm.resourcesConsumers = consList;
 
         vm.max_limit = 0;
+        vm.resourcesConsumers = [];
 
-        for (var i = 0; i < vm.resourcesConsumers.length; i++) {
+        //수용가 리스트를 돌면서
+        for (var i = 0; i < consList.length; i++) {
+          consList[i].line2 = 442;
 
-          var currentConsumer = vm.resourcesConsumers[i];
+          var totalBatteryVolume = 0;
+          var totalBatteryCharge = 0;
+          var socCount = 0;
+          var socTotalValue = 0;
 
-          vm.resourcesConsumers[i].line2 = 442;
+          //수용가내의 BMS Feed를 돌면서
+          for(var j=0 ; j < consList[i].consBmsFeedJsonList.length ; j++){
+            var nowBmsFeed = consList[i].consBmsFeedJsonList[j];
 
-          if(vm.resourcesConsumers[i].totalBatteryVolume) vm.max_limit += (30 * vm.resourcesConsumers[i].socAvg / 100);
-          console.log(30 * vm.resourcesConsumers[i].socAvg);
+            socCount++;
+            socTotalValue += nowBmsFeed.soc;
+
+            totalBatteryVolume += nowBmsFeed.btr_volume_kwh;
+            totalBatteryCharge += nowBmsFeed.feedBattertyCharge;
+
+            vm.max_limit += nowBmsFeed.pcs_kw * nowBmsFeed.soc / 100;
+          }
+
+          //화면단에 맵핑할 데이터 셋팅
+          vm.resourcesConsumers.push({
+            sgname: consList[i].sgname
+            ,socAvg: socTotalValue / socCount
+            , totalBatteryVolume: totalBatteryVolume
+            , totalBatteryCharge: totalBatteryVolume * socTotalValue / socCount / 100
+          });
 
           console.log("#####################");
           console.log(vm.max_limit);
-
         }
+
+        console.log("vm.resourcesConsumers");
+        console.log(vm.resourcesConsumers);
 
 
         //페이징
