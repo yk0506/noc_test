@@ -92,6 +92,7 @@
         method: 'GET',
         // url: 'http://api.ourwatt.com/nvpp/noc/ess/energy/5',
         url: 'http://api.ourwatt.com/nvpp/noc/2017/ess/resource/5/graph',
+        // url: 'http://localhost:8090/ROOT/nvpp/noc/2017/ess/resource/5/graph',
         headers: {
           api_key: 'smartgrid'
         }
