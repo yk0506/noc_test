@@ -244,15 +244,21 @@
 
           var totalBatteryVolume = 0;
           var totalBatteryCharge = 0;
-          var socCount = 0;
+          var bmsFeedCount = 0;
           var socTotalValue = 0;
+          var pcsTotalValue = 0;
+
+          var curr_date_time = "";
 
           //수용가내의 BMS Feed를 돌면서
           for(var j=0 ; j < consList[i].consBmsFeedJsonList.length ; j++){
             var nowBmsFeed = consList[i].consBmsFeedJsonList[j];
 
-            socCount++;
+            curr_date_time = nowBmsFeed.curr_date_time;
+
+            bmsFeedCount++;
             socTotalValue += nowBmsFeed.soc;
+            pcsTotalValue += nowBmsFeed.pcs_kw;
 
             totalBatteryVolume += nowBmsFeed.btr_volume_kwh;
             totalBatteryCharge += nowBmsFeed.feedBattertyCharge;
@@ -260,21 +266,20 @@
             vm.max_limit += nowBmsFeed.pcs_kw * nowBmsFeed.soc / 100;
           }
 
-          //화면단에 맵핑할 데이터 셋팅
+          /*
+           * 화면단에 맵핑할 데이터 셋팅
+           */
           vm.resourcesConsumers.push({
             sgname: consList[i].sgname
-            ,socAvg: socTotalValue / socCount
+            ,socAvg: socTotalValue / bmsFeedCount
+            , pcs: pcsTotalValue / bmsFeedCount
             , totalBatteryVolume: totalBatteryVolume
-            , totalBatteryCharge: totalBatteryVolume * socTotalValue / socCount / 100
+            , totalBatteryCharge: totalBatteryVolume * socTotalValue / bmsFeedCount / 100
+            , dr: (pcsTotalValue / bmsFeedCount) * (socTotalValue / bmsFeedCount / 100)
+            //, fr: 100
+            , curr_date_time: curr_date_time
           });
-
-          console.log("#####################");
-          console.log(vm.max_limit);
         }
-
-        console.log("vm.resourcesConsumers");
-        console.log(vm.resourcesConsumers);
-
 
         //페이징
         vm.currentPage = 1;

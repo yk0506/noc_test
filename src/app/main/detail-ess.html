@@ -176,7 +176,7 @@
           <div class="absolute" style="width: 177px;">
             <div class="pt14">ESS Capacity(DR)</div>
             <div class="pt50 ff7e47" style="text-align: center;"
-              ng-style="{'font-size' : '40px'}">{{30 * con.socAvg / 100 | number:1}} kW</div>
+              ng-style="{'font-size' : '40px'}">{{con.pcs * con.socAvg / 100 | number:1}} kW</div>
             <!--<div class="pt8 c-7ca6a6">develop(discharge), reduction(charge)</div>-->
           </div>
           <div class="absolute" style="top:156px;line-height: 31px;">
@@ -184,14 +184,14 @@
             <div class="pt16">Battery Volume</div>
             <div class="pt16 c-66ffff">Charge</div>
             <div class="pt16">DR</div>
-            <div class="pt16 c-66ffff">FR</div>
+            <div class="pt16 c-66ffff">PCS</div>
           </div>
           <div class="absolute" style="width:100px; top:156px;left: 136px;line-height: 31px;">
             <div class="pt16 c-66ffff">{{con.socAvg | number:1}} %</div>
             <div class="pt16">{{con.totalBatteryVolume | number:1}} kWh</div>
             <div class="pt16 c-66ffff">{{con.totalBatteryCharge | number:1}} kWh</div>
-            <div class="pt16" ng-style="con.meter_acc >= 10000 && {'font-size':'15px'}">{{con.totalBatteryCharge * 0.75 | number:1}} kW</div>
-            <div class="pt16 c-66ffff">{{con.totalBatteryCharge * 4 | number:1}} kW</div>
+            <div class="pt16">{{con.dr | number:1}} kW</div>
+            <div class="pt16 c-66ffff">{{con.pcs | number:1}} kW</div>
           </div>
         </div>
 
