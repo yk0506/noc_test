@@ -1,0 +1,179 @@
+<div class="sector2-1-img"></div>
+
+
+<img src="../assets/images/sector2_image/companywe_sector2_img2.png"
+     style="position: absolute;left: 742px;z-index: 30;"/>
+
+<!-- 상단 콜드지수 chart -->
+<round-progress
+  max="100"
+  current="state2_5.gaugeCurrentCold/100*87.5"
+  color="#80ffff"
+  bgcolor="#edfbff"
+  radius="210"
+  stroke="50"
+  clockwise="true"
+  responsive="false"
+  duration="800"
+  animation="easeInOutQuart"
+  animation-delay="0"
+  style="top: 735px;left: 1316px;width: 470px;height: 470px;
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);"></round-progress>
+
+<!-- 상단 입고 완료 chart -->
+<round-progress
+  max="100"
+  current="87/100*87"
+  color="#80ffff"
+  bgcolor="#edfbff"
+  radius="230"
+  stroke="10"
+  clockwise="true"
+  responsive="false"
+  duration="800"
+  animation="easeInOutQuart"
+  animation-delay="0"
+  style="top: 752px;left: 1333px;width: 470px;height: 470px;
+  -ms-transform: rotate(180deg); /* IE 9 */
+  -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+  transform: rotate(180deg);z-index: 99"></round-progress>
+
+<div class="absolute" style="z-index: 40;">
+  <!--title-->
+  <div class="absolute pt42 bfffff" style="left: 954px;top: 80px;width: 260px;">
+    NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
+  </div>
+
+  <div class="absolute pt42 bfffff" style="left: 2055px;top: 80px;">NOC</div>
+  <div class="absolute pt42 bfffff resource-dropdown" style="left: 2311px;top: 80px;width: 416px;text-align: center;">
+        X-Mart 광교점
+  </div>
+
+  <div class="drType-btn" value="6" ng-click="state2_5.clickDR(6)" ng-class="state2_5.drType == 6 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">광교점</div>
+  <div class="drType-btn" value="7" ng-click="state2_5.clickDR(7)" ng-class="state2_5.drType == 7 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">수지점</div>
+  <div class="drType-btn" value="8" ng-click="state2_5.clickDR(8)" ng-class="state2_5.drType == 8 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">용인점</div>
+  <div class="drType-btn" value="9" ng-click="state2_5.clickDR(9)" ng-class="state2_5.drType == 9 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">광명점</div>
+  <div class="drType-btn" value="10" ng-click="state2_5.clickDR(10)" ng-class="state2_5.drType == 10 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">안양점</div>
+  <div class="drType-btn" value="11" ng-click="state2_5.clickDR(11)" ng-class="state2_5.drType == 11 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">양재점</div>
+
+  <!--section-->
+  <div class="sector2-map">
+    <div class="absolute" style="left: 250px;top: 476px;width: 230px;text-align: center;">
+      <span class="pt20 bfffff">콜드지수</span><br/>
+      <span
+        class="pt60 fffef2" ng-style="state2_5.leftData.nega_watt >= 10000000 && {'font-size' : '50px'} || state2_5.leftData.nega_watt >= 1000000 && {'font-size' : '55px'}">{{state2_5.gaugeCurrentCold}}</span>
+      <span class="pt24 fffef2">%</span><br/>
+    </div>
+
+    <div class="absolute" style="left: 369px;top: 703px;width: 132px;">
+      <span class="pt16 c-80ffff" style="margin-bottom: 6px;display: inline-block;">FRESHNESS</span><br/>
+      <br/>
+      <span class="" style="color: #80ffff;">TRANSPORTATION</span>
+    </div>
+
+    <img src="../assets/images/sector2_image/high_line.png" style="position: absolute;left: 454px;top: 522px;" />
+    <img src="../assets/images/sector2_image/highcost.png"  style="position: absolute;left: 639px;top: 511px;" />
+
+    <div class="absolute" style="left: 618px;top: 684px;width: 200px;">
+      <span class="pt20 bfffff">입고완료</span><br/>
+      <span class="pt60 fffef2" ng-style="state2_5.totalContract >= 1000000 && {'font-size' : '45px'}">87</span><span class="pt20 fffef2" style="margin-left: 10px;">%</span>
+    </div>
+
+    <!--수용가 list repeat-->
+    <div class="absolute pt36 bfffff" style="left: 52px;top: 915px;width: 555px;">제품별 콜드지수 현황</div>
+    <div class="drType-btn dr-btn state2-btn-cold-index" style="left: 52px;top: 985px;">광교점</div>
+    <div class="absolute" style="left: 52px;top: 1070px;width: 500px;height: 1037px;overflow-y: hidden;">
+      <!--todo:: call value, current temp value-->
+      <div class="absolute pt24 c-7ca6a6" style="width: 170px;line-height: 55px;">
+        <!-- Tim. 로딩중 이미지 추가 -->
+        <img src="../assets/images/loading_img.gif" ng-show=" ( !state2_5.categories || state2_5.categories == 0 ) && !state2_5.error" style="width:150px; height:150px; position: absolute;top: 130px;left: 175px;"/>
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           width="500px" height="1037px" viewBox="-38 23 100 100" enable-background="new -38 20 100 100" xml:space="preserve" ng-show="state2_5.error">
+        <path fill="#FFFFFF" d="M16.142,2L22,7.858v8.284L16.142,22H7.858L2,16.142V7.858L7.858,2H16.142z M16.971,0H7.029L0,7.029v9.941
+          L7.029,24h9.941L24,16.971V7.029C24,7.029,16.971,0,16.971,0z M11,6h2v8h-2V6z M12,18.25c-0.69,0-1.25-0.56-1.25-1.25
+          s0.56-1.25,1.25-1.25s1.25,0.56,1.25,1.25S12.69,18.25,12,18.25z"/>
+        </svg>
+        <ul ng-repeat="cat in state2_5.categories">
+          <!-- 자원선택이 전체(drType == 0)일때 동 상세보기 하면 너무 꼬임.. 일단 전체에서는 수용가 클릭 금지 -->
+          <!--<li class="cons-btn consumer-off" ng-value="con.cons_idx" ng-click=" (state2_5.drType != 0) && state2_5.clickConsumer(con.cons_idx)">{{con.cons_name}}-->
+          <!--</li>-->
+          <li class="cons-btn" ng-value="con.cons_idx" ng-class="cat.cate_idx == 0 ? 'state2-btn-cate-clicked' : 'consumer-off'">{{cat.cate_name}}</li>
+        </ul>
+      </div>
+      <div class="absolute pt24 c-7ca6a6" style="left: 173px;top: 7px;width: 320px;height: 30px;line-height: 55px;" ng-show="!state2_5.error">
+        <div ng-repeat="cat in state2_5.categories" style="position: relative">
+          <div style="float: left;background-color: #bfffff;height: 40px;margin-bottom: 40px;max-width: 310px;" ng-style="{'width' : (cat.cold_index/100)*310}"></div>
+          <div style="margin-left:10px;background-color: #2e3c40;height: 40px;margin-bottom: 40px;width: 310px;"></div>
+          <div style="position: absolute; right: 8px; top: 10px; font-size: 18px; color: #fff; font-weight: 100; letter-spacing: 1px; line-height: 18px;">{{cat.cold_index}} %</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="resource-graph" class="state2-graph cold-index" style="top: 290px;left: 987px;width:1650px;height:520px;"></div>
+
+    <section style="width: 2090px;height: 1225px;position: absolute;top: 903px;left: 600px;overflow: hidden;">
+      <!-- Tim. 로딩중 이미지 추가 -->
+      <img src="../assets/images/loading_img.gif" ng-show=" (!state2_5.products || state2_5.products.length == 0) && !state2_5.error" style="width:300px; height:300px; position: absolute;top: 322.5px;left: 895px;"/>
+      <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           width="2090px" height="1225px" viewBox="-38 -28 100 100" enable-background="new -38 -28 100 100" xml:space="preserve" ng-show="state2_5.error">
+        <path fill="#FFFFFF" d="M16.142,2L22,7.858v8.284L16.142,22H7.858L2,16.142V7.858L7.858,2H16.142z M16.971,0H7.029L0,7.029v9.941
+          L7.029,24h9.941L24,16.971V7.029C24,7.029,16.971,0,16.971,0z M11,6h2v8h-2V6z M12,18.25c-0.69,0-1.25-0.56-1.25-1.25
+          s0.56-1.25,1.25-1.25s1.25,0.56,1.25,1.25S12.69,18.25,12,18.25z"/>
+      </svg>
+      <!--each-->
+      <div class="bfffff graph-section-each" ng-repeat="pro in state2_5.products|limitTo:6:state2_5.products">
+        <div class="pt28" style="border-bottom: 1px solid #bfffff;padding-bottom: 4px;">{{pro.pro_name}}</div>
+        <div class="absolute pt24" style="top: 80px;">수집시각 <span style="margin-left: 20px;">2019-01-14 11:15:21</span>
+        </div>
+
+        <img src="../assets/images/sector2_image/coldcar_img.png" class="coldcar-img"/>
+
+        <!--빌딩 게이지 사용률로 변경-->
+        <div class="coldcar-bg" ng-style="{'height': (pro.cold_index/100)*274}"></div>
+
+        <div class="absolute"
+             style="width: 200px;height: 320px;top:167px;left: 410px;border-left: 1px solid #3e5457;padding-left: 10px;">
+          <div class="absolute" style="width: 177px;">
+            <div class="pt14">콜드지수</div>
+            <div class="pt60 ff7e47" style="margin-left: 10px">{{pro.cold_index|number:0}}<span style="margin-left: 8px;">%</span></div>
+            <div class="pt8 c-7ca6a6"></div>
+            <div class="pt8 c-7ca6a6"></div>
+          </div>
+          <div class="absolute" style="width: 177px;top:140px;">
+            <div class="pt16">#Cold Status</div>
+          </div>
+          <div class="absolute" style="top:186px;line-height: 31px;">
+            <div class="pt16">기준온도</div>
+            <div class="pt16 c-66ffff">유통횟수</div>
+            <div class="pt16">체인데이터</div>
+            <div class="pt16 c-66ffff">기준미달</div>
+            <!--<div class="pt16 c-66ffff">MAX TARGET</div>-->
+          </div>
+          <div class="absolute" style="top:186px;left: 127px;line-height: 31px;">
+            <div class="pt16">{{pro.st_temp|number:1}} °C</div>
+            <div class="pt16 c-66ffff">{{pro.trans_num|number:1}} 회</div>
+            <div class="pt20">{{pro.chain_data|number:0}} 개</div>
+            <div class="pt16 c-66ffff">{{pro.under_st|number:0}} </div>
+            <!--<div class="pt16 c-66ffff"  style="color:#7ca6a6;">0 kW</div>-->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+  </div>
+</div>
+
+<div class="sector2-map-go" ui-sref="state2-map"></div>
+
+<!--consumer minus line-->
+<!--<div class="absolute" style="width: 0;height: 328px;top: 1011px;left: 975px;border: 1px solid #ff0000;z-index: 40;"></div>-->
+
+<!-- Tim 수정. API가 변경되어 include하고 state2-1Controller에서 데이터 제어 -->
+<!--<state2-nav></state2-nav>-->
+<div ng-include="'app/components/state2-nav/state2-nav-coldChain.html'"></div>
+<!--<state2-nav2></state2-nav2>-->
+<div ng-include="'app/components/state2-nav/state2-nav2-coldChain.html'"></div>

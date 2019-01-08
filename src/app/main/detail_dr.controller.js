@@ -11,7 +11,7 @@
     vm._ = _;
 
     $log.info("# dr_detail_Controller");
-    console.log(vm.drType);
+    $log.info(vm.drType);
 
     var initTimeout;
     var getCompaniesResourcesTimeout;
@@ -207,7 +207,6 @@
       }).then(function (resp) {
 
         vm.consumersBuildings = resp.data.data;
-
         //수용가에 동 정보가 없을 경우 수용가 정보 자체를 동 정보로 사용
         if(vm.consumersBuildings.length == 0){
           for(var i=0 ; i < vm.resourcesConsumers.length ; i++){

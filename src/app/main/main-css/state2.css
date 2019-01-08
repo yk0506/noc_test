@@ -7,6 +7,15 @@
   opacity: 0.2;
   display: none;
 }
+.sector2-other-map-go {
+  position: absolute;
+  right: 40px;
+  top: 484px;
+  width: 300px;
+  height: 265px;
+  z-index: 40;
+  cursor: pointer;
+}
 .sector2-graph-go {
   position: absolute;
   right: 40px;
@@ -55,6 +64,36 @@
   position: absolute;
   line-height: 40px;
   cursor:pointer;
+}
+
+.state2-btn-cold-index {
+  font-size: 24px;
+  color: #ffffff;
+  background-color: #ff7e47;
+  width: 130px;
+  height: 50px;
+  border-radius: 6px;
+  text-align: center;
+  position: absolute;
+  line-height: 50px;
+  cursor:pointer;
+}
+
+.state2-btn-cate-clicked {
+  overflow: hidden;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 5px;
+  height: 55px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  background-color: #ff7e47;
+  border-radius: 6px;
+  text-align: center;
+  margin-bottom: 25px;
+  line-height: 46px;
+  width: 150px;
 }
 
 .consumer-on {
@@ -152,7 +191,27 @@
   /*background-color: #0d0d0d;*/
 }
 .consumer-img {
-  position: absolute;top: 163px;left: 90px;z-index: 40;height: 335px;width: 178px;/*original img width: 199px*/
+  position: absolute;
+  top: 163px;
+  left: 90px;
+  z-index: 40;
+  height: 335px;
+  width: 178px;/*original img width: 199px*/
+}
+.coldcar-img {
+  position: absolute;
+  top: 192px;
+  left: 26px;
+  z-index: 40;
+}
+.coldcar-bg {
+  position: absolute;
+  background-color: #80ffff;
+  width: 332px;
+  z-index: 20;
+  left: 27px;
+  bottom: 146px;
+  max-height: 330px;
 }
 .factory-bg {
   position: absolute;
@@ -166,6 +225,21 @@
 
 .c3-tooltip td {
   color: #000;
+}
+
+#resource-graph.cold-index > svg > g:nth-child(2) > g.c3-axis.c3-axis-x > g > text ,
+#resource-graph.cold-index > svg > g:nth-child(2) > g.c3-axis.c3-axis-y > g > text {
+  font-size: 18px;
+  font-weight: 100;
+}
+
+#resource-graph.cold-index > svg > g:nth-child(4) {
+  transform: translate(32px, 508px);
+}
+
+#resource-graph.cold-index > svg > g:nth-child(4) > g.c3-legend-item > text {
+  font-size: 20px;
+  font-weight: 100;
 }
 
 .resource-dropdown .dropdown-menu{

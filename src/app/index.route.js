@@ -20,7 +20,7 @@
         controller: 'State2Controller',
         controllerAs: 'state2'
       })
-      .state('state2-map', {  //zoom map
+      .state('state2-map', {  //korea map
         url: '/state2-map',
         params: {
           param1: null
@@ -47,11 +47,29 @@
         controller: 'solar_detail_Controller',
         controllerAs: 'state2_3'
       })
+      .state('state2-5', { //coldChain
+        url: '/state2-5',
+        templateUrl: 'app/main/detail-coldChain.html',
+        controller: 'coldChain_detail_Controller',
+        controllerAs: 'state2_5'
+      })
       .state('state3', {  //공장 모니터링
         url: '/state3',
         templateUrl: 'app/main/factory.html',
         controller: 'Factory_Controller',
         controllerAs: 'state3'
+      })
+      .state('noc-main', {  //NOC 메인 이미지
+        url: '/noc-main',
+        templateUrl: 'app/main/page-image/main-page.html'
+      })
+      .state('noc-dr', {  //NOC DR 이미지
+        url: '/noc-dr',
+        templateUrl: 'app/main/page-image/dr-page.html'
+      })
+      .state('noc-dhms', {  //NOC 지역난방 이미지
+        url: '/noc-dhms',
+        templateUrl: 'app/main/page-image/dhms-page.html'
       });
 
     $urlRouterProvider.otherwise('/');

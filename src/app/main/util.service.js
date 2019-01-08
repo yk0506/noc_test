@@ -31,6 +31,15 @@
       '22:00', '22:15', '22:30', '22:45', '23:00', '23:15', '23:30', '23:45'
     ];
 
+    var yAxis2 = ['x',
+      '00:00', '00:30', '01:00', '01:30', '02:00', '02:30', '03:00', '03:30',
+      '04:00', '04:30', '05:00', '05:30', '06:00', '06:30', '07:00', '07:30',
+      '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30',
+      '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30',
+      '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30',
+      '20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00', '23:30', '24:00'
+    ];
+
 
     return {
 
@@ -381,6 +390,148 @@
         });
       },
 
+      /*
+       * @description : 화면 상단 그래프 계산식 :     물동량 시간대별 콜드지수
+       * @author : HS
+       * @param selector : DOM 선택자
+       * @param cbl : cbl Array
+       * @param watt : watt Array
+       * @param vm : scope
+       */
+      drawTopLineChartColdIdex : function(selector, todayColdArray, lastColdArray, vm){
+        var chart2 = c3.generate({
+          bindto: selector,
+          data: {
+            x: yAxis2[0],
+            xFormat:'%H:%M',
+            columns: [yAxis2, todayColdArray, lastColdArray]
+          },
+          grid: { //점선
+            x: {
+              lines: [
+                {value: '00:00'}, {value: '01:00'}, {value: '02:00'}, {value: '03:00'}, {value: '04:00'}, {value: '05:00'}, {value: '06:00'}, {value: '07:00'}, {value: '08:00'}, {value: '09:00'}, {value: '10:00'}, {value: '11:00'}, {value: '12:00'},
+                {value: '13:00'}, {value: '14:00'}, {value: '15:00'}, {value: '16:00'}, {value: '17:00'}, {value: '18:00'}, {value: '19:00'}, {value: '20:00'}, {value: '21:00'}, {value: '22:00'}, {value: '23:00'}, {value: '24:00'}
+              ]
+            }
+          },
+          axis: { //가로 세로줄
+            x: {
+              show: true,
+              type: 'timeseries',
+              tick: {
+                format: '%H',
+                values: ['00:00', '01:00', '02:00', '03:00', '04:00', '05:00', '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+                  '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00', '24:00']
+              }
+            },
+            y: {
+              show: true
+              , min: 0
+              , max: 1
+              ,tick: {
+                values: [0, 0.5, 1],
+                format: d3.format(",%")
+              }
+            }
+
+          },
+          point: {
+            show: false
+          },
+          tooltip: {
+            contents: function (d) {
+              // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
+
+              // var data = 0;
+              // for (var i=0; i<d.length; i++) {
+              //   if (d[i].id == "전력량") {
+              //     data = d[i].value;
+              //   }
+              // }
+
+              if (d[0] && d[0].value) {
+                var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
+                  'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' +  d[0].value + '</div>'; // formatted html as you want
+              } else {
+                var dataHtml = '';
+              }
+
+              return dataHtml;
+
+            }
+          },
+          color: {
+            pattern: ['#608080', '#80ffff']
+          },
+          line: {
+            width: 10
+          },
+          legend: {
+            hide: false,
+            padding: 10,
+            item: {
+              tile: {
+                width: 15,
+                height: 14
+              }
+            }
+          }
+        });
+
+      },
+
+
+      /*
+       * @description : 카테고리별 콜드지수 그래프 그리기
+       * @author : HS
+       * @param selector : DOM 선택자
+       * @param cbl : cbl Array
+       * @param watt : watt Array
+       * @param vm : scope
+       */
+      drawMiniCatColdIndex : function(selector, vm){
+        var coldIndex = ['콜드지수', 78, 35, 84, 54, 42, 61, 80];
+
+        var chartbar1 = c3.generate({
+          bindto: selector,
+          data: {
+            x: 'x',
+            columns: [
+              ['x', '1', '2', '3', '4', '5', '6', '7'], coldIndex
+            ],
+            type: 'bar'
+          },
+          bar: {
+            width: 10 // this makes bar width 100px
+          },
+          size: {
+            width: 300,
+            height: 120
+          },
+          color: {
+            pattern: ['#bfffff']
+          },
+          legend: {
+            show: false
+          },
+          axis: {
+            x: {
+              type: 'categories',
+              tick: {
+                rotate: 90
+              },
+              show: false
+            },
+            y: {
+              show: false
+            }
+          }
+        });
+      },
+
+      getRandomIntInclusive:  function (min, max) {
+        return (Math.floor(Math.random() * (max - min + 1)) + min) / 100;
+      }
 
 
 
