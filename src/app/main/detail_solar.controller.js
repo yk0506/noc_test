@@ -116,8 +116,9 @@
           }
         }
 
+        /* 16개 그래프 표현을 위한 임시 주석 */
         //죄측상단 미니막대그래프 8개
-        utilService.drawMiniEightChart('#chartbar1', vm);
+        // utilService.drawMiniEightChart('#chartbar1', vm);
 
         // added by eh.hwang
         //중앙상단 라인차트
@@ -163,32 +164,6 @@
           point: {
             show: false
           },
-          // tooltip: {
-          //   contents: function (d) {
-          //     // $log.debug(d, defaultTitleFormat, defaultValueFormat, color);
-          //
-          //     var data = 0;
-          //     for (var i = 0; i < d.length; i++) {
-          //       if (d[i].id == "방전량") {
-          //         data = d[i].value;
-          //       }
-          //     }
-          //
-          //     if (data != null) {
-          //       var dataHtml = '<div style="width: 100px;height: 30px;color: #80ffff;background-color: #597c80;' +
-          //         'border-radius: 10px;font-size: 20px;text-align: center;margin-left: -70px;">' + data + '</div>'; // formatted html as you want
-          //     } else {
-          //       var dataHtml = '';
-          //     }
-          //
-          //     return dataHtml;
-          //
-          //   }
-          // },
-          // size: {
-          //   width: 1634,
-          //   height: 450
-          // },
           color: {
             pattern: ['#ff7e47', '#80ffff']
           },
@@ -204,15 +179,32 @@
         $("#resource-graph").mouseleave(function () {
           chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
         });
-
-
-
-
-
-
-
       }, function errorCallback(response) {
         $log.debug('ERRORS:: ', response);
+      });
+
+
+      /* 16개 그래프 표현을 위한 임시 코드 */
+      $http({
+        method: 'GET',
+        url: 'http://api.ourwatt.com/nvpp/noc/2017/dr/company/2/resource/6/graph',
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function (resp) {
+        vm.energyResources = resp.data.data;
+
+        for (var i=0; i<vm.energyResources.length; i++) {
+          if(vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0){
+            vm.currentXtime = vm.energyResources[i].dem_date;
+            vm.currentXtime8 = vm.energyResources[i].dem_date;
+          }
+        }
+        //죄측상단 미니막대그래프 8개
+        utilService.drawMiniEightChart('#chartbar1', vm);
+
+      }, function errorCallback(response) {
+        $log.error('ERRORS:: ', response);
       });
 
       drawLineChartTimeout = $timeout(drawLineChart, 900000);

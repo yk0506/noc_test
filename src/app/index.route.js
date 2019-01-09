@@ -8,11 +8,17 @@
   /** @ngInject */
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('state1', {  //ESS, Solar, DR 모니터링
+      .state('state1-1', {  //ESS, Solar, DR 모니터링
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'Main_Controller',
         controllerAs: 'state1'
+      })
+      .state('state1-2', {  //지역난방, 콜드체인, IoT 모니터링
+        url: '/2',
+        templateUrl: 'app/main/main2.html',
+        controller: 'Main2_Controller',
+        controllerAs: 'state1_2'
       })
       .state('state2', {  //Map
         url: '/state2',

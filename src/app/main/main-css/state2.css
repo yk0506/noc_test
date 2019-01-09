@@ -130,6 +130,9 @@
   width: 150px;
 }
 
+.cold-chain-bar .round-progress circle{
+  stroke: #2e3c40!important;
+}
 
 .watt-on {
   position: absolute;

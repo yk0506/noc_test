@@ -57,9 +57,14 @@
   text-align: center;
   position: absolute;
 }
+/*#chartbar1 {*/
+  /*position: absolute !important;*/
+  /*left: 353px;*/
+  /*top: 433px;*/
+/*}*/
 #chartbar1 {
   position: absolute !important;
-  left: 353px;
+  left: 79px;
   top: 433px;
 }
 .c3 text {

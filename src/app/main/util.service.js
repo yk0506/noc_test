@@ -279,8 +279,8 @@
             vm.currentXtime8Mini.push(vm.energyResources[i].dem_date);
           }
         }
-        watt = watt.splice(watt.length-8, 8);
-        vm.currentXtime8Mini = vm.currentXtime8Mini.splice(vm.currentXtime8Mini.length-8, 8); //최근 8개 시간만
+        watt = watt.splice(watt.length-16, 16);
+        vm.currentXtime8Mini = vm.currentXtime8Mini.splice(vm.currentXtime8Mini.length-16, 16); //최근 8개 시간만
 
         var watt8 = ['전력량'];
         watt8 = watt8.concat(watt);
@@ -302,7 +302,7 @@
             width: 10 // this makes bar width 100px
           },
           size: {
-            width: 300,
+            width: 592,
             height: 120
           },
           color: {
