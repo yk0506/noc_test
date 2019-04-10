@@ -206,10 +206,12 @@
           }
         });
 
-        chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
-        $("#resource-graph").mouseleave(function () {
+        if(chart2){
           chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
-        });
+          $("#resource-graph").mouseleave(function () {
+            chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
+          });
+        }
 
         getEssConsumers(resp.data.consArray);
 
