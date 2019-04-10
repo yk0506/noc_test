@@ -206,12 +206,23 @@
           }
         });
 
-        if(chart2){
-          chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
-          $("#resource-graph").mouseleave(function () {
+        try{
+
+          console.log(chart2);
+          console.log("dr : " + dr);
+          console.log("fr : " + fr);
+
+          if(chart2){
             chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
-          });
+            $("#resource-graph").mouseleave(function () {
+              chart2.tooltip.show({x: d3.time.format('%H:%M').parse(vm.currentXtime)});
+            });
+          }
+        }catch(e){
+          console.log("chart2.tooltip.show err");
         }
+
+
 
         getEssConsumers(resp.data.consArray);
 
