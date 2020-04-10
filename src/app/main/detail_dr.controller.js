@@ -214,6 +214,8 @@
           }
         }
 
+        $log.info("### getConsDetailList ", vm.consumersBuildings);
+
         //빌딩 페이징 위해..
         vm.buildingsBeginNumber = 0;
 

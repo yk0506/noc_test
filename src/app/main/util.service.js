@@ -287,6 +287,9 @@
         var currentXtime8 = ['x'];
         currentXtime8 = currentXtime8.concat(vm.currentXtime8Mini);
 
+        $log.info("#### currentXtime8", currentXtime8);
+        $log.info("#### watt8", watt8);
+
         var chartbar1 = c3.generate({
           bindto: selector,
           data: {
@@ -339,6 +342,8 @@
             api_key: 'smartgrid'
           }
         }).then(function (resp) {
+
+          $log.info('### drawDevelopPlanChart ', resp.data);
 
           var developPlan = resp.data.data[0];
 

@@ -7,8 +7,8 @@
 
   angular
     .module('power-plant')
-    .directive('state2NavEss', state2NavEss)
-    .directive('state2Nav2Ess', state2Nav2Ess);
+    .directive('state2NavEss', state2NavEss);
+    // .directive('state2Nav2Ess', state2Nav2Ess);
 
   /** @ngInject */
   function state2NavEss() {
@@ -28,7 +28,11 @@
 
 
 
-    function state2NavESSController(moment, $interval, $state, energyService, $timeout, $log, $http, $window) {
+    function state2NavESSController(moment, $interval, $state, energyService, $timeout, $log, $http, $window, utilService) {
+
+
+      $log.info("## state2NavESSController");
+
       var vm = this;
       vm.currentState = $state.current.name;
 
@@ -41,84 +45,118 @@
       vm.afterTime = moment().format('h:mm');
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
-         vm.back = function () {
-                $window.history.back();
-              };
+       vm.back = function () {
+          $window.history.back();
+        };
+
+
+      /* 16개 그래프 표현을 위한 임시 코드 */
+      try {
+        $http({
+          method: 'GET',
+          url: 'http://api.ourwatt.com/nvpp/noc/2017/dr/company/2/resource/6/graph',
+          headers: {
+            api_key: 'smartgrid'
+          }
+        }).then(function (resp) {
+          vm.energyResources = resp.data.data;
+
+          $log.info("#### 123", vm.energyResources);
+
+          for (var i = 0; i < vm.energyResources.length; i++) {
+            if (vm.energyResources[i].dem_watt != null && vm.energyResources[i].dem_watt != 0) {
+              vm.currentXtime = vm.energyResources[i].dem_date;
+              vm.currentXtime8 = vm.energyResources[i].dem_date;
+            }
+          }
+
+          $log.info("#### vm.currentXtime", vm.currentXtime);
+          $log.info("#### vm.currentXtime8", vm.currentXtime8);
+
+          //죄측상단 미니막대그래프 8개
+          utilService.drawMiniEightChart('#chartbar1', vm);
+
+        }, function errorCallback(response) {
+          $log.error('ERRORS:: ', response);
+        });
+      } catch (e) {
+        $log.info("# drawMiniEightChart Error", e);
+      }
 
 
       // 좌측 상단 막대 8개
       // meter_watt
-       miniBarChart();
-           function miniBarChart(){
-             $http({
-               method: 'GET',
-               url: 'http://api.ourwatt.com/nvpp/noc/ess/energy/5',
-               headers: {
-                 api_key: 'smartgrid'
-               }
-             }).then(function(resp) {
-               vm.energyResources = resp.data.data;
-
-               var watt = [];
-               vm.currentXtime = [];
-
-
-
-               for (var i=0; i<vm.energyResources.length; i++) {
-                 if(vm.energyResources[i].generator_watt != null && vm.energyResources[i].generator_watt != 0){
-                   watt.push(parseInt(vm.energyResources[i].generator_watt));
-                   vm.currentXtime.push(vm.energyResources[i].dem_date);
-                 }
-               }
-               watt = watt.splice(watt.length-8, 8);
-               vm.currentXtime = vm.currentXtime.splice(vm.currentXtime.length-8, 8); //최근 8개 시간만
-
-               var watt8 = ['방전량'];
-               watt8 = watt8.concat(watt);
-               var currentXtime8 = ['x'];
-               currentXtime8 = currentXtime8.concat(vm.currentXtime);
-
-               var chartbar1 = c3.generate({
-                 bindto: '#chartbar1',
-                 data: {
-                   x: 'x',
-                   columns: [
-                     currentXtime8, watt8
-                   ],
-                   type: 'bar'
-                 },
-                 bar: {
-                   width: 10 // this makes bar width 100px
-                 },
-                 size: {
-                   width: 300,
-                   height: 120
-                 },
-                 color: {
-                   pattern: ['#bfffff']
-                 },
-                 legend: {
-                   show: false
-                 },
-                 axis: {
-                   x: {
-                     type: 'categories',
-                     tick: {
-                       rotate: 90
-                     },
-                     show: false
-                   },
-                   y: {
-                     show: false
-                   }
-                 }
-               });
-             }, function errorCallback(response) {
-               $log.debug('ERRORS:: ', response);
-             });
-
-              $timeout(miniBarChart, 900000);
+      //  miniBarChart();
+       function miniBarChart(){
+         $http({
+           method: 'GET',
+           url: 'http://api.ourwatt.com/nvpp/noc/ess/energy/5',
+           headers: {
+             api_key: 'smartgrid'
            }
+         }).then(function(resp) {
+           vm.energyResources = resp.data.data;
+
+           var watt = [];
+           vm.currentXtime = [];
+
+
+
+           for (var i=0; i<vm.energyResources.length; i++) {
+             if(vm.energyResources[i].generator_watt != null && vm.energyResources[i].generator_watt != 0){
+               watt.push(parseInt(vm.energyResources[i].generator_watt));
+               vm.currentXtime.push(vm.energyResources[i].dem_date);
+             }
+           }
+           watt = watt.splice(watt.length-8, 8);
+           vm.currentXtime = vm.currentXtime.splice(vm.currentXtime.length-8, 8); //최근 8개 시간만
+
+           var watt8 = ['방전량'];
+           watt8 = watt8.concat(watt);
+           var currentXtime8 = ['x'];
+           currentXtime8 = currentXtime8.concat(vm.currentXtime);
+
+           var chartbar1 = c3.generate({
+             bindto: '#chartbar1',
+             data: {
+               x: 'x',
+               columns: [
+                 currentXtime8, watt8
+               ],
+               type: 'bar'
+             },
+             bar: {
+               width: 10 // this makes bar width 100px
+             },
+             size: {
+               width: 300,
+               height: 120
+             },
+             color: {
+               pattern: ['#bfffff']
+             },
+             legend: {
+               show: false
+             },
+             axis: {
+               x: {
+                 type: 'categories',
+                 tick: {
+                   rotate: 90
+                 },
+                 show: false
+               },
+               y: {
+                 show: false
+               }
+             }
+           });
+         }, function errorCallback(response) {
+           $log.debug('ERRORS:: ', response);
+         });
+
+          $timeout(miniBarChart, 900000);
+       }
 
 
       //getConsumersStatus();
