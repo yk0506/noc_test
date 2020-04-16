@@ -26,7 +26,7 @@
     return directive;
 
     /** @ngInject */
-    function state2NavController(moment, $interval, $state, energyService, $timeout, $log, utilService, $http) {
+    function state2NavController(moment, $interval, $state, energyService, $timeout, $log, utilService, $http, $window) {
       var vm = this;
       vm.currentState = $state.current.name;
 
@@ -37,6 +37,10 @@
 
       vm.afterTime = moment().format('h:mm');
       vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
+
+      vm.back = function () {
+        $window.history.back();
+      };
 
 
       drawLineChart();

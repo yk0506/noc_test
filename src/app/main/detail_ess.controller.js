@@ -49,9 +49,6 @@
         }
       }).then(function (resp) {
 
-        $log.info("######### resp.data");
-        $log.info(resp.data);
-
         // 데이터 집합
         vm.essDemandData = resp.data.list;
 
@@ -278,6 +275,13 @@
         //수용가 리스트를 돌면서
         for (var i = 0; i < consList.length; i++) {
           consList[i].line2 = 442;
+
+          $log.info("######### consList[i]");
+          $log.info(consList[i]);
+
+          // 수용가명 익명화
+          consList[i].consName = utilService.SHA256(consList[i].consName);
+          consList[i].sgname = utilService.SHA256(consList[i].sgname);
 
           var totalBatteryVolume = 0;
           var totalBatteryCharge = 0;

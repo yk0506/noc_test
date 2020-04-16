@@ -32,7 +32,6 @@
 
     vm.back = function () {
       $window.history.back();
-
     };
 
     //init
@@ -87,17 +86,28 @@
         $log.info("#getConsumerList end.");
 
         //if(0 == drType){
-          vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
+        vm.consumersBuildings = resp.data.data;   //전체이면 수용가리스트 뿌리기
 
-          vm.maxAvailNegaWatt = 0;
-          vm.totalContract = 0;     //총 계약용량 표기
+        // 수용가명 익명화 처리
+        if(vm.consumersBuildings){
+          for(var i=0 ; i < vm.consumersBuildings.length ; i++){
+            var cons = vm.consumersBuildings[i];
 
-          for(var i=0 ; i < resp.data.data.length ; i++){
-            if(resp.data.data[i].dem_cbl) vm.maxAvailNegaWatt += parseInt(resp.data.data[i].dem_cbl);
-            if(resp.data.data[i].cont_watt) vm.totalContract += parseInt(resp.data.data[i].cont_watt);
+            if(cons && cons.cons_name){
+              cons.cons_name = utilService.SHA256(cons.cons_name);
+            }
           }
+        }
 
-          $log.debug("vm.maxAvailNegaWatt : " + vm.maxAvailNegaWatt);
+        vm.maxAvailNegaWatt = 0;
+        vm.totalContract = 0;     //총 계약용량 표기
+
+        for(var i=0 ; i < resp.data.data.length ; i++){
+          if(resp.data.data[i].dem_cbl) vm.maxAvailNegaWatt += parseInt(resp.data.data[i].dem_cbl);
+          if(resp.data.data[i].cont_watt) vm.totalContract += parseInt(resp.data.data[i].cont_watt);
+        }
+
+        $log.debug("vm.maxAvailNegaWatt : " + vm.maxAvailNegaWatt);
         // }
         // else getConsDetailList(vm.resourcesConsumers[0].cons_idx);    //수용가 동 리스트 호출
 
@@ -207,6 +217,21 @@
       }).then(function (resp) {
 
         vm.consumersBuildings = resp.data.data;
+
+        $log.info("### vm.consumersBuildings");
+        $log.info(vm.consumersBuildings);
+
+        // 익명화 처리
+        if(vm.consumersBuildings){
+          for(var i=0 ; i < vm.consumersBuildings.length ; i++){
+            var cons = vm.consumersBuildings[i];
+
+            if(cons && cons.st_name){
+              cons.st_name = utilService.SHA256(cons.st_name);
+            }
+          }
+        }
+
         //수용가에 동 정보가 없을 경우 수용가 정보 자체를 동 정보로 사용
         if(vm.consumersBuildings.length == 0){
           for(var i=0 ; i < vm.resourcesConsumers.length ; i++){

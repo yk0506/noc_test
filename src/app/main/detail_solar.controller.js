@@ -231,6 +231,12 @@
 
           var currentConsumer = vm.resourcesConsumers[i];
 
+          // 수용가명 익명화
+          currentConsumer.cons_name = utilService.SHA256(currentConsumer.cons_name) + " (Solar)";
+
+          $log.info('currentConsumer');
+          $log.info(currentConsumer);
+
           // 가동률
           try{
              vm.resourcesConsumers[i].operateRatio = currentConsumer.ac / currentConsumer.goal * 100;
