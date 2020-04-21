@@ -6,7 +6,7 @@
     .controller('Main_Controller', Main_Controller);
 
   /** @ngInject */
-  function Main_Controller($log, $timeout, energyService, c3, $scope, $http) {
+  function Main_Controller($log, $timeout, energyService, c3, $scope, $http, utilService) {
     var vm = this;
     vm._ = _;
 
@@ -23,10 +23,7 @@
           api_key: 'smartgrid'
         }
       }).then(function(resp) {
-
         vm.apiData = resp.data;
-
-
         vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
         $log.info("Api data load complete.");
@@ -51,7 +48,16 @@
            }).then(function(resp) {
              vm.resourcesConsumersEss = resp.data.list;
 
+             // 수용가명 익명화 처리
+             if(vm.resourcesConsumersEss){
+               for(var i=0 ; i < vm.resourcesConsumersEss.length ; i++){
+                 var cons = vm.resourcesConsumersEss[i];
 
+                 if(cons && cons.cons_name){
+                   cons.cons_name = utilService.SHA256(cons.cons_name);
+                 }
+               }
+             }
            }, function errorCallback(response) {
              $log.debug('ERRORS:: ', response);
            });
@@ -66,6 +72,17 @@
              }
            }).then(function(resp) {
              vm.resourcesConsumersSolar = resp.data.list;
+
+          // 수용가명 익명화 처리
+          if(vm.resourcesConsumersSolar){
+            for(var i=0 ; i < vm.resourcesConsumersSolar.length ; i++){
+              var cons = vm.resourcesConsumersSolar[i];
+
+              if(cons && cons.cons_name){
+                cons.cons_name = utilService.SHA256(cons.cons_name);
+              }
+            }
+          }
 
 
            }, function errorCallback(response) {
@@ -82,6 +99,17 @@
              }
            }).then(function(resp) {
              vm.resourcesConsumersDR = resp.data.data;
+
+          // 수용가명 익명화 처리
+          if(vm.resourcesConsumersDR){
+            for(var i=0 ; i < vm.resourcesConsumersDR.length ; i++){
+              var cons = vm.resourcesConsumersDR[i];
+
+              if(cons && cons.cons_name){
+                cons.cons_name = utilService.SHA256(cons.cons_name);
+              }
+            }
+          }
 
 
            }, function errorCallback(response) {
