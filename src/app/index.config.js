@@ -23,6 +23,6 @@
 
   if(curr_loc.indexOf("westpole") !== -1
       && getCookie("westpoleid") == null ) {
-        //window.location.href = "http://dev.westpole.biz/login";
+        window.location.href = "http://westpole.biz/login";
   }
 })();
