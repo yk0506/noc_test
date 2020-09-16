@@ -21,8 +21,8 @@
         return value? value[2] : null;
     };
 
-  if(curr_loc.indexOf("westpole") !== -1
+  if(curr_loc.indexOf("dev.westpole") !== -1
       && getCookie("westpoleid") == null ) {
-        window.location.href = "http://dev.westpole.biz/login";
+        //window.location.href = "http://dev.westpole.biz/login";
   }
 })();
