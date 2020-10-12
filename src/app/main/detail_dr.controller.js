@@ -5,6 +5,7 @@
     .module('power-plant')
     .controller('dr_detail_Controller', dr_detail_Controller);
 
+
   /** @ngInject */
   function dr_detail_Controller($log, $timeout, energyService, c3, $scope, computedService, $http, utilService, $rootScope, $interval, moment, $window) {
     var vm = this;
@@ -33,6 +34,9 @@
     vm.back = function () {
       $window.history.back();
     };
+
+
+    vm.plantName = ['','','','','','','P01','P02','P03','P04','P05','P06',];
 
     //init
     init();
@@ -101,6 +105,10 @@
 
         vm.maxAvailNegaWatt = 0;
         vm.totalContract = 0;     //총 계약용량 표기
+
+
+        console.log("***** 수용가 count : " + resp.data.data.length);
+        vm.energyNodeCount = resp.data.data.length;
 
         for(var i=0 ; i < resp.data.data.length ; i++){
           if(resp.data.data[i].dem_cbl) vm.maxAvailNegaWatt += parseInt(resp.data.data[i].dem_cbl);

@@ -1,13 +1,13 @@
 <div class="">
   <div class="part2-title">
-    <span class="bfffff pt26" style="margin-right: 10px;">R1</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">R3</span>
     <span class="c-80ffff pt75" style="margin-right: 143px;">ESS</span>
-    <span class="bfffff pt26" style="margin-right: 10px;">resource</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">plant</span>
     <!--<span class="fffef2 pt75" style="margin-right: 60px;">7</span>-->
     <span class="fffef2 pt75" style="margin-right: 60px;">4</span>
-    <span class="bfffff pt26" style="margin-right: 10px;">power plant</span>
+    <span class="bfffff pt26" style="margin-right: 10px;">energy node</span>
     <!--<span class="fffef2 pt75">10</span>-->
-    <span class="fffef2 pt75">4</span>
+    <span class="fffef2 pt75">6</span>
   </div>
 
   <img src="../../../assets/images/polygon/polygon.png" class="polagon-bg"/>
@@ -24,9 +24,9 @@
 
   <div class="part2-current-value">
     <span class="pt26 bfffff" style="margin-right: 40px;">output</span>
-    <!--<span class="pt62 fffef2">{{state1.apiData.sector2.generator}}</span>-->
-    <span class="pt62 fffef2">84</span>
-    <span class="pt26 fffef2">kW</span>
+    <span class="pt62 fffef2">{{state1.apiData.sector2.generator}}</span>
+    <!--<span class="pt62 fffef2">84</span>-->
+    <span class="pt26 fffef2">MW</span>
   </div>
 
   <!---->
@@ -129,6 +129,14 @@
     <div style="width: {{state1.resourcesConsumersEss[3].generator_rate}}%; top: 60px;background-color: #ccffff;"></div>
     <br/>
     <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersEss[3].cons_name}}</span>
+  </div>
+  <div class="part2-sourcebar" style="left: 726px;">
+    <div style="width: 0%;background-color: #597c80;"></div>
+    <div style="width: 0%; top: 20px;background-color: #80ffff;"></div>
+    <div style="width: 0%; top: 40px;background-color: #fffef7;"></div>
+    <div style="width: {{state1.resourcesConsumersEss[4].generator_rate}}%; top: 60px;background-color: #ccffff;"></div>
+    <br/>
+    <span class="pt16 bfffff absolute" style="top: 120px;">{{state1.resourcesConsumersEss[4].cons_name}}</span>
   </div>
   <div class="part2-sourcebar" style="left: 726px;">
     <div style="width: 0%;background-color: #597c80;"></div>

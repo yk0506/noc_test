@@ -138,6 +138,7 @@
         }
     });
 
+
     $q.all([data])
       .then(function (data) {
 

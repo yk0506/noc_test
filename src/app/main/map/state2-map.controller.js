@@ -19,13 +19,13 @@
     if ($stateParams.param1) {
       vm.sitename = $stateParams.param1;
     } else {
-      vm.sitename = 'bucheon';
+      vm.sitename = 'siheung';
     }
 
     if (vm.sitename) {
       vm.site = '/assets/images/map/map-' + vm.sitename + '.png';
     } else {
-      vm.site = '/assets/images/map/map-bucheon.png';
+      vm.site = '/assets/images/map/map-siheung.png';
     }
 
 

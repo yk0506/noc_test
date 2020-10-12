@@ -272,6 +272,8 @@
         vm.max_limit = 0;
         vm.resourcesConsumers = [];
 
+        var extra_node_date; /* 빈칸채우기용 가짜데이터 */
+
         //수용가 리스트를 돌면서
         for (var i = 0; i < consList.length; i++) {
           consList[i].line2 = 442;
@@ -297,6 +299,9 @@
 
             curr_date_time = nowBmsFeed.curr_date_time;
 
+            /* 빈칸채우기용 가짜데이터 */
+            if(i == consList.length - 1) extra_node_date = curr_date_time;
+
             bmsFeedCount++;
             socTotalValue += nowBmsFeed.soc;
             pcsTotalValue += nowBmsFeed.pcs_kw;
@@ -319,6 +324,23 @@
             , dr: (pcsTotalValue / bmsFeedCount) * (socTotalValue / bmsFeedCount / 100)
             //, fr: 100
             , curr_date_time: curr_date_time
+          });
+        }
+
+        /* 빈칸채우기용 가짜데이터 */
+        if(consList.length % 6 != 0) {
+
+          $log.info("######### fixing 6");
+
+          vm.resourcesConsumers.push({
+            sgname: 'EX0381'
+            ,socAvg: 92.0
+            , pcs: 30.0
+            , totalBatteryVolume: 45.0
+            , totalBatteryCharge: 42.8
+            , dr: 26.3
+            //, fr: 100
+            , curr_date_time: extra_node_date
           });
         }
 

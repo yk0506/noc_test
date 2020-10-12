@@ -29,11 +29,11 @@
     NVPP <span class="c-7ca6a6" style="font-weight: 200;">VISION</span>
   </div>
 
-  <div class="absolute pt42 bfffff" style="left: 2040px;top: 80px;width: 260px;">ROOT</div>
+  <div class="absolute pt42 bfffff" style="left: 2040px;top: 80px;width: 260px;">{{state2_1.plantName[state2_1.drType] }}</div>
   <div class="absolute pt42 bfffff resource-dropdown" style="left: 2311px;top: 80px;width: 416px;text-align: center">
     <span uib-dropdown on-toggle="toggled(open)">
       <a href id="simple-dropdown" uib-dropdown-toggle style="color: #bfffff;">
-        WESTPOLE
+        {{state2_1.energyNodeCount}} <span class="c-7ca6a6" style="font-weight: 200;"> Energy nodes</span>
       </a>
       <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
         <li ng-repeat="resource in state2_1.companiesResources">
@@ -43,12 +43,12 @@
     </span>
   </div>
 
-  <div class="drType-btn" value="6" ng-click="state2_1.clickDR(6)" ng-class="state2_1.drType == 6 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">C01</div>
-  <div class="drType-btn" value="7" ng-click="state2_1.clickDR(7)" ng-class="state2_1.drType == 7 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">C02</div>
-  <div class="drType-btn" value="8" ng-click="state2_1.clickDR(8)" ng-class="state2_1.drType == 8 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">N01</div>
-  <div class="drType-btn" value="9" ng-click="state2_1.clickDR(9)" ng-class="state2_1.drType == 9 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">N02</div>
-  <div class="drType-btn" value="10" ng-click="state2_1.clickDR(10)" ng-class="state2_1.drType == 10 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">N03</div>
-  <div class="drType-btn" value="11" ng-click="state2_1.clickDR(11)" ng-class="state2_1.drType == 11 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">N04</div>
+  <div class="drType-btn" value="6" ng-click="state2_1.clickDR(6)" ng-class="state2_1.drType == 6 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 55px;">P01</div>
+  <div class="drType-btn" value="7" ng-click="state2_1.clickDR(7)" ng-class="state2_1.drType == 7 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 55px;">P02</div>
+  <div class="drType-btn" value="8" ng-click="state2_1.clickDR(8)" ng-class="state2_1.drType == 8 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 55px;">P03</div>
+  <div class="drType-btn" value="9" ng-click="state2_1.clickDR(9)" ng-class="state2_1.drType == 9 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 2994px;top: 103px;">P04</div>
+  <div class="drType-btn" value="10" ng-click="state2_1.clickDR(10)" ng-class="state2_1.drType == 10 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3138px;top: 103px;">P05</div>
+  <div class="drType-btn" value="11" ng-click="state2_1.clickDR(11)" ng-class="state2_1.drType == 11 ? 'dr-btn state2-btn-dr-on' : 'dr-btn state2-btn-dr'" style="left: 3280px;top: 103px;">P06</div>
 
   <!--section-->
   <div class="sector2-map">

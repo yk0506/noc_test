@@ -13,48 +13,44 @@
         <span class="pt28 fffef2">{{state1.apiData.sector1.nvppCount}}</span>
       </div>
       <div style="margin-top: 17px;">
-        <!--<span class="pt28 bfffff">National Virtual Power Plant</span>-->
+        <span class="pt28 bfffff">
+
+
+        </span>
         <span class="pt38 bfffff">Smart City Energy Platform</span>
       </div>
+
+      <!--
       <div style="margin-top: 55px;">
       <span class="floatLeft" style="margin-right: 33px;">
         <div class="pt28 bfffff" style="line-height: 26px;">current <br/>output</div>
         <div class="pt20 c-7ca6a6">MW</div>
       </span>
-        <span class="pt70 fffef2 floatLeft" ng-style="state1.apiData.sector1.power_mw >= 1000 && {'font-size':'40px'} || state1.apiData.sector1.power_mw >= 100 && {'font-size':'50px'} || state1.apiData.sector1.power_mw >= 10 && {'font-size':'60px'}" style="margin-right: 35px;line-height: 66px;">{{(state1.apiData.sector1.power_mw|number:1) || '0.0'}}</span>
+      <span class="pt70 fffef2 floatLeft" ng-style="state1.apiData.sector1.power_mw >= 1000 && {'font-size':'40px'} || state1.apiData.sector1.power_mw >= 100 && {'font-size':'50px'} || state1.apiData.sector1.power_mw >= 10 && {'font-size':'60px'}" style="margin-right: 35px;line-height: 66px;">{{(state1.apiData.sector1.power_mw|number:1) || '0.0'}}</span>
+
       <span class="" style="margin-right: 4px;line-height: 36px; position:absolute; left:300px;">
         <div class="pt28 bfffff" style="line-height: 26px;">average <br/>utilization <br/>rate <span class="pt20 c-7ca6a6">%</span></div>
-        <!--<div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>-->
+        <div class="pt28 bfffff"><span class="pt20 c-7ca6a6">%</span> </div>
       </span>
         <span class="pt70 fffef2 floatLeft" ng-style="state1.avgOperRate >= 100 && {'font-size':'45px'} || state1.avgOperRate >= 10 && {'font-size':'60px'}" style="line-height: 66px;position:absolute; left:445px; "> {{(state1.avgOperRate|number:1) || '0.0'}}</span>
+      </div>
+      -->
+      <div style="margin-top: 55px;">
+      <span class="floatLeft" style="margin-right: 33px;">
+        <div class="pt28 bfffff" style="line-height: 26px;">current <br/>capacity</div>
+        <div class="pt20 c-7ca6a6">MW</div>
+      </span>
+        <span class="pt70 fffef2 floatLeft" style="font-size:40px; margin-right: 35px;line-height: 66px;">{{ ((state1.apiData.sector2.max_generator_limit + state1.apiData.sector3.total_nega_watt + state1.apiData.sector4.avail_nega_watt) | number:1 ) || '0.0' }}</span>
+
+      <span class="" style="margin-right: 4px; position:absolute; left:300px;">
+        <div class="pt28 bfffff" style="line-height: 26px;">current <br/>output</div>
+        <div class="pt20 c-7ca6a6">MW</div>
+      </span>
+        <span class="pt70 fffef2 floatLeft" style="font-size:40px; line-height: 66px;position:absolute; left:445px;">{{(state1.apiData.sector1.power_mw|number:1) || '0.0'}}</span>
       </div>
     </div>
 
     <div class="sector1-gage1">
-      <div style="display: inline-block;">
-        <div class="floatLeft pt10 bfffff textalignRight">
-          <div style="margin-top: 65px;">250</div>
-          <div style="margin-top: 93px;">200</div>
-          <div style="margin-top: 93px;">150</div>
-          <div style="margin-top: 93px;">100</div>
-          <div style="margin-top: 93px;">50</div>
-        </div>
-        <div class="floatLeft gageSize"></div>
-        <div class="floatLeft pt10 bfffff textalignLeft">
-          <div style="margin-top: 65px;">250</div>
-          <div style="margin-top: 93px;">200</div>
-          <div style="margin-top: 93px;">150</div>
-          <div style="margin-top: 93px;">100</div>
-          <div style="margin-top: 93px;">50</div>
-        </div>
-      </div>
-      <div class="pt26" style="color: #80ffff;text-align: center;margin-top: 13px;">
-        <div>ESS</div>
-        <div>{{state1.apiData.sector1.ess_power_mw}}</div>
-      </div>
-    </div>
-
-    <div class="sector1-gage2">
       <div style="display: inline-block;">
         <div class="floatLeft pt10 bfffff textalignRight">
           <div style="margin-top: 65px;">250</div>
@@ -78,7 +74,7 @@
       </div>
     </div>
 
-    <div class="sector1-gage3">
+    <div class="sector1-gage2">
       <div style="display: inline-block;">
         <div class="floatLeft pt10 bfffff textalignRight">
           <div style="margin-top: 65px;">250</div>
@@ -99,6 +95,30 @@
       <div class="pt26" style="color: #86bfbf;text-align: center;margin-top: 13px;">
         <div>demand <br/>source</div>
         <div>{{state1.apiData.sector1.dr_power_mw}}</div>
+      </div>
+    </div>
+
+    <div class="sector1-gage3">
+      <div style="display: inline-block;">
+        <div class="floatLeft pt10 bfffff textalignRight">
+          <div style="margin-top: 65px;">250</div>
+          <div style="margin-top: 93px;">200</div>
+          <div style="margin-top: 93px;">150</div>
+          <div style="margin-top: 93px;">100</div>
+          <div style="margin-top: 93px;">50</div>
+        </div>
+        <div class="floatLeft gageSize"></div>
+        <div class="floatLeft pt10 bfffff textalignLeft">
+          <div style="margin-top: 65px;">250</div>
+          <div style="margin-top: 93px;">200</div>
+          <div style="margin-top: 93px;">150</div>
+          <div style="margin-top: 93px;">100</div>
+          <div style="margin-top: 93px;">50</div>
+        </div>
+      </div>
+      <div class="pt26" style="color: #80ffff;text-align: center;margin-top: 13px;">
+        <div>ESS</div>
+        <div>{{state1.apiData.sector1.ess_power_mw}}</div>
       </div>
     </div>
 
@@ -124,9 +144,15 @@
 </div>
 
 
-<div class="sector1-part2" ng-include="'app/main/state1-part/state1-part1.html'" ui-sref="state2-2" style="z-index:99;"></div>
-<div class="sector1-part3" ng-include="'app/main/state1-part/state1-part2.html'" ui-sref="state2-3" style="z-index:99;"></div>
-<div class="sector1-part4" ng-include="'app/main/state1-part/state1-part3.html'" ui-sref="state2-1" style="z-index:99;"></div>
+<div class="sector1-part2" ng-include="'app/main/state1-part/state1-part2.html'" ui-sref="state2-3" style="z-index:99;"></div>
+<div class="sector1-part3" ng-include="'app/main/state1-part/state1-part3.html'" ui-sref="state2-1" style="z-index:99;"></div>
+<div class="sector1-part4" ng-include="'app/main/state1-part/state1-part1.html'" ui-sref="state2-2" style="z-index:99;"></div>
+
+<!--
+<div class="sector1-part4" ng-include="'app/main/state1-part/state1-part3.html'" ui-sref="state2-3" style="z-index:99;"></div>
+<div class="sector1-part2" ng-include="'app/main/state1-part/state1-part1.html'" ui-sref="state2-1" style="z-index:99;"></div>
+<div class="sector1-part3" ng-include="'app/main/state1-part/state1-part2.html'" ui-sref="state2-2" style="z-index:99;"></div>
+-->
 
 <!---->
 <!--PART2 gage bars : cause seperate layer in z-index -->
