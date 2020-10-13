@@ -23,8 +23,8 @@
 
   <div class="part2-current-value">
     <span class="pt26 bfffff" style="margin-right: 40px;">output</span>
-    <span class="pt62 fffef2">{{state1.apiData.sector3.total_nega_watt}}</span>
-    <span class="pt26 fffef2">MW</span>
+    <span class="pt62 fffef2">{{ (state1.apiData.sector3.total_nega_watt * 1000)|number:1 }}</span>
+    <span class="pt26 fffef2">kW</span>
   </div>
 
   <!---->
@@ -78,7 +78,7 @@
   </div>
 
   <div class="part2-box pt26">
-    <span class="bfffff" style="margin-right: 50px;">current load</span>
+    <span class="bfffff" style="margin-right: 35px;">current load</span>
     <span class="ff7e47" ng-style="state1.apiData.sector3.solar_oper_rate >= 10 && {'font-size':'23px'}">{{state1.apiData.sector3.solar_oper_rate}} %</span>
   </div>
 

@@ -337,7 +337,7 @@
             ,socAvg: 92.0
             , pcs: 30.0
             , totalBatteryVolume: 45.0
-            , totalBatteryCharge: 42.8
+            , totalBatteryCharge: 0
             , dr: 26.3
             //, fr: 100
             , curr_date_time: extra_node_date

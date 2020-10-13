@@ -46,6 +46,8 @@
       getLeftData(vm.drType);       //초기화면 화면 왼쪽 데이터
       drawDevelopPlanChart();       //화면 죄측 하단 오늘발전계획
 
+      getAllData();
+
       initTimeout = $timeout(init, 600000);
     }
 
@@ -56,6 +58,28 @@
 
     vm.afterTime = moment().format('h:mm');
     vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
+
+    //전체데이터 가져오기
+    function getAllData(){
+      $http({
+        method: 'GET',
+        url: 'http://api.ourwatt.com/nvpp/noc/total',
+        headers: {
+          api_key: 'smartgrid'
+        }
+      }).then(function(resp) {
+        vm.apiData = resp.data;
+        vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
+
+        $log.info("Api data load complete.");
+
+      }, function errorCallback(response) {
+        $log.debug('ERRORS:: ', response);
+      });
+
+      $timeout(getAllData, 900000);
+    }
+
 
     /*
      * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
