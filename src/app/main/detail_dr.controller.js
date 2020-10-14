@@ -59,7 +59,6 @@
     vm.afterTime = moment().format('h:mm');
     vm.beforeTime = moment().subtract(1, 'hours').format('h:mm');
 
-    //전체데이터 가져오기
     function getAllData(){
       $http({
         method: 'GET',
@@ -69,7 +68,6 @@
         }
       }).then(function(resp) {
         vm.apiData = resp.data;
-        vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
         $log.info("Api data load complete.");
 
@@ -77,9 +75,7 @@
         $log.debug('ERRORS:: ', response);
       });
 
-      $timeout(getAllData, 900000);
     }
-
 
     /*
      * @description : 우측 상단 DR Type 선택했을 때 수용가 리스트 호출
@@ -395,6 +391,10 @@
       // var url = 'http://api.ourwatt.com/nvpp/noc/5/energy/' + drType;
       var url = 'http://api.ourwatt.com/nvpp/noc/2017/dr/company/2/resource/'+ drType +'/graph';
 
+
+      console.log(url);
+
+
       $http({
         method: 'GET',
         url: url,
@@ -409,6 +409,8 @@
         var cbl = ['cbl'];
         var watt = ['전력량'];
         var calc = ['Contract kW + ( CBL - Current kW )'];
+
+        console.log( "*** drType : " + drType + " , type: " + typeof(vm.energyResources) );
 
         for (var i=0; i<vm.energyResources.length; i++) {
           cbl.push(vm.energyResources[i].dem_cbl);
