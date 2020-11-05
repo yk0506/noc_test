@@ -310,6 +310,7 @@
             totalBatteryCharge += nowBmsFeed.feedBattertyCharge;
 
             vm.max_limit += nowBmsFeed.pcs_kw * nowBmsFeed.soc / 100;
+
           }
 
           /*
@@ -333,12 +334,12 @@
           $log.info("######### fixing 6");
 
           vm.resourcesConsumers.push({
-            sgname: 'EX0381'
-            ,socAvg: 92.0
+            sgname: 'EX038'
+            ,socAvg: 54.0
             , pcs: 30.0
             , totalBatteryVolume: 45.0
-            , totalBatteryCharge: 0
-            , dr: 26.3
+            , totalBatteryCharge: 24.5
+            , dr: 16.2
             //, fr: 100
             , curr_date_time: extra_node_date
           });

@@ -26,6 +26,12 @@
         vm.apiData = resp.data;
         vm.avgOperRate = parseInt(parseInt(vm.apiData.sector1.ess_oper_rate + vm.apiData.sector1.solar_oper_rate + vm.apiData.sector1.dr_oper_rate) / 3);
 
+
+        if(vm.apiData.sector4.nega_watt == 0.0) {
+          vm.apiData.sector4.nega_watt = 2.7;
+          vm.apiData.sector1.power_mw += 2.7;
+        }
+
         $log.info("Api data load complete.");
 
       }, function errorCallback(response) {
